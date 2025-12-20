@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3wbwxma2hkqm"]
+[gd_scene load_steps=14 format=3 uid="uid://d3wbwxma2hkqm"]
 
 [ext_resource type="Theme" uid="uid://cyy1ccrel07nx" path="res://root/root.tres" id="1_vvh5c"]
 [ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="2_28aoi"]
 [ext_resource type="Script" uid="uid://dpipac1vlx4vl" path="res://root/root.gd" id="2_jnlp7"]
+[ext_resource type="PackedScene" uid="uid://bd0auisdvfagw" path="res://inGame/player/player.tscn" id="3_gj8ci"]
 [ext_resource type="Texture2D" uid="uid://cqmahlm6jr7w8" path="res://placeholderArt/Sprun.png" id="3_jnlp7"]
-[ext_resource type="PackedScene" uid="uid://ctlnpeebeoqgd" path="res://inGame/npc.tscn" id="5_b33ej"]
+[ext_resource type="PackedScene" uid="uid://cmoedndryju2o" path="res://inGame/enemy/enemy.tscn" id="4_y5gj7"]
+[ext_resource type="Shader" uid="uid://ddycup0alwvnl" path="res://shaders/chromaticAberation.gdshader" id="7_e2nrw"]
+[ext_resource type="Shader" uid="uid://dftiegl3xn8fh" path="res://shaders/pixelizer.gdshader" id="8_gj8ci"]
 
 [sub_resource type="Gradient" id="Gradient_ovlcs"]
 colors = PackedColorArray(2.8878452e-07, 0.508626, 0.6430946, 1, 1, 0, 0, 1)
@@ -19,6 +22,17 @@ metadata/_preview_in_3d_space_ = true
 noise = SubResource("FastNoiseLite_ovlcs")
 color_ramp = SubResource("Gradient_ovlcs")
 in_3d_space = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gj8ci"]
+shader = ExtResource("7_e2nrw")
+shader_parameter/r_displacement = Vector2(3, 0)
+shader_parameter/g_displacement = Vector2(0, 0)
+shader_parameter/b_displacement = Vector2(-3, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5jge4"]
+shader = ExtResource("8_gj8ci")
+shader_parameter/pixel_size = 4
+shader_parameter/screen_size = Vector2(1200, 600)
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -79,14 +93,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.14
 
-[node name="Chara" type="VBoxContainer" parent="RootGame/BattleScreen"]
+[node name="Charas" type="VBoxContainer" parent="RootGame/BattleScreen"]
 layout_mode = 2
 size_flags_horizontal = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="NPC" parent="RootGame/BattleScreen/Chara" instance=ExtResource("5_b33ej")]
+[node name="Player" parent="RootGame/BattleScreen/Charas" instance=ExtResource("3_gj8ci")]
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="VSeparator2" type="VSeparator" parent="RootGame/BattleScreen"]
 modulate = Color(1, 1, 1, 0)
@@ -94,15 +107,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.57
 
-[node name="Enemy" type="VBoxContainer" parent="RootGame/BattleScreen"]
+[node name="Enemies" type="VBoxContainer" parent="RootGame/BattleScreen"]
 layout_mode = 2
 size_flags_horizontal = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="NPC" parent="RootGame/BattleScreen/Enemy" instance=ExtResource("5_b33ej")]
+[node name="Enemy" parent="RootGame/BattleScreen/Enemies" instance=ExtResource("4_y5gj7")]
 layout_mode = 2
+size_flags_horizontal = 1
 size_flags_vertical = 3
-icon = ExtResource("3_jnlp7")
+max_hp = 45
 
 [node name="VSeparator" type="VSeparator" parent="RootGame/BattleScreen"]
 modulate = Color(1, 1, 1, 0)
@@ -113,6 +127,7 @@ size_flags_stretch_ratio = 0.14
 [node name="TurnOrder" type="TextureRect" parent="RootGame/BattleScreen"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.24
 texture = ExtResource("3_jnlp7")
 
 [node name="TurnOrder" type="VBoxContainer" parent="RootGame/BattleScreen/TurnOrder"]
@@ -182,3 +197,35 @@ text = "DFD"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "ITM"
+
+[node name="Shaders" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChromaticAberation" type="ColorRect" parent="Shaders"]
+material = SubResource("ShaderMaterial_gj8ci")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Shaders/ChromaticAberation"]
+
+[node name="Pixelizer" type="ColorRect" parent="Shaders"]
+visible = false
+material = SubResource("ShaderMaterial_5jge4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="RootGame/LowerBar/Actions/ATK" to="." method="_on_atk_pressed"]

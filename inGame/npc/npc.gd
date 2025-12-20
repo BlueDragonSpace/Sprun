@@ -1,5 +1,6 @@
 extends Control
 
+# non-tool
 @onready var Icon: TextureRect = $VBoxContainer/Icon
 @onready var HP: TextureProgressBar = $VBoxContainer/LowerBar/HP
 @onready var CurrentHp: Label = $VBoxContainer/LowerBar/HP/HPBar/CurrentHP
@@ -19,8 +20,7 @@ var current_hp: int = max_hp
 var current_defense : int = 0
 
 func _ready() -> void:
-	HP.value = current_hp
-	CurrentHp.text = str(int(HP.value))
+	visual_hp(current_hp)
 	
 	HP.max_value = max_hp
 	MaxHp.text = str(max_hp)
@@ -28,8 +28,17 @@ func _ready() -> void:
 	Icon.texture = icon
 
 func _process(_delta) -> void:
+	
+	if Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()
+	
 	if HP.value > current_hp:
-		HP.value -= 1
-		
+		visual_hp(int(HP.value) - 1)
 	elif HP.value < current_hp:
-		HP.value += 1
+		visual_hp(int(HP.value) + 1)
+		
+	
+
+func visual_hp(new_hp : int) -> void:
+	HP.value = new_hp
+	CurrentHp.text = str(int(HP.value))

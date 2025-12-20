@@ -1,1 +1,1 @@
-extends "res://inGame/npc.gd"
+extends "res://inGame/npc/npc.gd"

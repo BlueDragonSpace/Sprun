@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ctlnpeebeoqgd"]
 
 [ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="1_2jrf3"]
-[ext_resource type="Script" uid="uid://cdbuic4bcd67n" path="res://inGame/npc.gd" id="1_3atjd"]
+[ext_resource type="Script" uid="uid://cdbuic4bcd67n" path="res://inGame/npc/npc.gd" id="1_3atjd"]
 [ext_resource type="Texture2D" uid="uid://cqmahlm6jr7w8" path="res://placeholderArt/Sprun.png" id="2_3atjd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bleps"]
@@ -17,7 +17,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
 script = ExtResource("1_3atjd")
+sprun_container_angle = 135
 icon = ExtResource("1_2jrf3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -28,11 +30,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.34
+
 [node name="Icon" type="TextureRect" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("2_3atjd")
+texture = ExtResource("1_2jrf3")
 stretch_mode = 5
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.29
 
 [node name="LowerBar" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -42,7 +56,8 @@ size_flags_stretch_ratio = 0.15
 [node name="HP" type="TextureProgressBar" parent="VBoxContainer/LowerBar"]
 layout_mode = 2
 size_flags_horizontal = 3
-value = 50.0
+max_value = 40.0
+value = 40.0
 rounded = true
 nine_patch_stretch = true
 texture_under = ExtResource("1_2jrf3")
@@ -79,10 +94,16 @@ vertical_alignment = 1
 
 [node name="MaxHP" type="Label" parent="VBoxContainer/LowerBar/HP/HPBar"]
 layout_mode = 2
-text = "80"
+text = "40"
 label_settings = SubResource("LabelSettings_bleps")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/LowerBar"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.08
 
 [node name="Shield" type="TextureRect" parent="VBoxContainer/LowerBar"]
 layout_mode = 2

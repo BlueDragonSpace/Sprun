@@ -9,7 +9,6 @@ extends Control
 @onready var Actions: HBoxContainer = $RootGame/LowerBar/Actions
 
 
-
 ## In-Battle
 enum TURN_TYPE {INPUT, OUTPUT}
 @export var turn = TURN_TYPE.INPUT:
@@ -35,3 +34,9 @@ func _process(delta: float) -> void:
 			pass
 		TURN_TYPE.OUTPUT:
 			pass
+
+# signal functions
+func _on_atk_pressed() -> void:
+	# in reality it's a lot more complicated than this, but whatever
+	if $RootGame/BattleScreen/Enemies/Enemy:
+		$RootGame/BattleScreen/Enemies/Enemy.current_hp -= 8

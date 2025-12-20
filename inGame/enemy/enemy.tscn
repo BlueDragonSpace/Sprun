@@ -1,11 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmoedndryju2o"]
+[gd_scene load_steps=4 format=3 uid="uid://cmoedndryju2o"]
 
-[ext_resource type="PackedScene" uid="uid://ctlnpeebeoqgd" path="res://inGame/npc.tscn" id="1_y8jsf"]
+[ext_resource type="PackedScene" uid="uid://ctlnpeebeoqgd" path="res://inGame/npc/npc.tscn" id="1_y8jsf"]
 [ext_resource type="Script" uid="uid://qk0yaqbhbtaf" path="res://inGame/enemy/enemy.gd" id="2_sumcb"]
+[ext_resource type="Texture2D" uid="uid://cqmahlm6jr7w8" path="res://placeholderArt/Sprun.png" id="3_sumcb"]
 
 [node name="Enemy" instance=ExtResource("1_y8jsf")]
 script = ExtResource("2_sumcb")
-icon = null
+icon = ExtResource("3_sumcb")
 
-[node name="LowerBar" parent="VBoxContainer" index="1"]
+[node name="LowerBar" parent="VBoxContainer" index="3"]
 layout_direction = 3
