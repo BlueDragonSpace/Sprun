@@ -1,0 +1,184 @@
+[gd_scene load_steps=9 format=3 uid="uid://d3wbwxma2hkqm"]
+
+[ext_resource type="Theme" uid="uid://cyy1ccrel07nx" path="res://root/root.tres" id="1_vvh5c"]
+[ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="2_28aoi"]
+[ext_resource type="Script" uid="uid://dpipac1vlx4vl" path="res://root/root.gd" id="2_jnlp7"]
+[ext_resource type="Texture2D" uid="uid://cqmahlm6jr7w8" path="res://placeholderArt/Sprun.png" id="3_jnlp7"]
+[ext_resource type="PackedScene" uid="uid://ctlnpeebeoqgd" path="res://inGame/npc.tscn" id="5_b33ej"]
+
+[sub_resource type="Gradient" id="Gradient_ovlcs"]
+colors = PackedColorArray(2.8878452e-07, 0.508626, 0.6430946, 1, 1, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ovlcs"]
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 2
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b33ej"]
+noise = SubResource("FastNoiseLite_ovlcs")
+color_ramp = SubResource("Gradient_ovlcs")
+in_3d_space = true
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vvh5c")
+script = ExtResource("2_jnlp7")
+
+[node name="NoiseBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_b33ej")
+stretch_mode = 6
+
+[node name="RootGame" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="Panel" parent="RootGame"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="Time" type="Label" parent="RootGame/TopBar"]
+layout_mode = 0
+offset_top = 18.0
+offset_right = 1152.0
+offset_bottom = 34.0
+size_flags_horizontal = 3
+text = "11:11"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="RootGame"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.14
+
+[node name="BattleScreen" type="HBoxContainer" parent="RootGame"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VSeparator3" type="VSeparator" parent="RootGame/BattleScreen"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.14
+
+[node name="Chara" type="VBoxContainer" parent="RootGame/BattleScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="NPC" parent="RootGame/BattleScreen/Chara" instance=ExtResource("5_b33ej")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VSeparator2" type="VSeparator" parent="RootGame/BattleScreen"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.57
+
+[node name="Enemy" type="VBoxContainer" parent="RootGame/BattleScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="NPC" parent="RootGame/BattleScreen/Enemy" instance=ExtResource("5_b33ej")]
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("3_jnlp7")
+
+[node name="VSeparator" type="VSeparator" parent="RootGame/BattleScreen"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.14
+
+[node name="TurnOrder" type="TextureRect" parent="RootGame/BattleScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_jnlp7")
+
+[node name="TurnOrder" type="VBoxContainer" parent="RootGame/BattleScreen/TurnOrder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="RootGame/BattleScreen/TurnOrder/TurnOrder"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_jnlp7")
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="RootGame/BattleScreen/TurnOrder/TurnOrder"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_28aoi")
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="RootGame/BattleScreen/TurnOrder/TurnOrder"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_jnlp7")
+stretch_mode = 5
+
+[node name="VSeparator4" type="VSeparator" parent="RootGame/BattleScreen"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.14
+
+[node name="HSeparator" type="HSeparator" parent="RootGame"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.14
+
+[node name="LowerBar" type="Panel" parent="RootGame"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.12
+
+[node name="Actions" type="HBoxContainer" parent="RootGame/LowerBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ATK" type="Button" parent="RootGame/LowerBar/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ATK"
+icon = ExtResource("3_jnlp7")
+expand_icon = true
+
+[node name="DFD" type="Button" parent="RootGame/LowerBar/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DFD"
+
+[node name="ITM" type="Button" parent="RootGame/LowerBar/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ITM"

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmoedndryju2o"]
+
+[ext_resource type="PackedScene" uid="uid://ctlnpeebeoqgd" path="res://inGame/npc.tscn" id="1_y8jsf"]
+[ext_resource type="Script" uid="uid://qk0yaqbhbtaf" path="res://inGame/enemy/enemy.gd" id="2_sumcb"]
+
+[node name="Enemy" instance=ExtResource("1_y8jsf")]
+script = ExtResource("2_sumcb")
+icon = null
+
+[node name="LowerBar" parent="VBoxContainer" index="1"]
+layout_direction = 3

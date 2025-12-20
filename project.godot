@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/image="uid://cqmahlm6jr7w8"
 config/icon="uid://cqmahlm6jr7w8"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
