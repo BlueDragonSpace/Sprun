@@ -1,0 +1,148 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3wbwxma2hkqm"]
+
+[ext_resource type="Theme" uid="uid://cyy1ccrel07nx" path="res://root.tres" id="1_vvh5c"]
+[ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="2_28aoi"]
+[ext_resource type="Texture2D" uid="uid://cqmahlm6jr7w8" path="res://placeholderArt/Sprun.png" id="3_jnlp7"]
+
+[sub_resource type="Gradient" id="Gradient_vvh5c"]
+colors = PackedColorArray(1, 0.46151346, 0.38850313, 1, 0, 0.86039895, 0.86512065, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_28aoi"]
+gradient = SubResource("Gradient_vvh5c")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.8)
+metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jnlp7"]
+texture = SubResource("GradientTexture2D_28aoi")
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vvh5c")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_jnlp7")
+
+[node name="RootGame" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="Panel" parent="RootGame"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="Time" type="Label" parent="RootGame/TopBar"]
+layout_mode = 0
+offset_top = 18.0
+offset_right = 1152.0
+offset_bottom = 34.0
+size_flags_horizontal = 3
+text = "ATK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BattleScreen" type="HBoxContainer" parent="RootGame"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Enemy" type="VBoxContainer" parent="RootGame/BattleScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="RootGame/BattleScreen/Enemy"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_28aoi")
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="RootGame/BattleScreen/Enemy"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_28aoi")
+stretch_mode = 5
+
+[node name="Chara" type="VBoxContainer" parent="RootGame/BattleScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="RootGame/BattleScreen/Chara"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_jnlp7")
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="RootGame/BattleScreen/Chara"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_jnlp7")
+stretch_mode = 5
+
+[node name="TurnOrder" type="VBoxContainer" parent="RootGame/BattleScreen"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RootGame/BattleScreen/TurnOrder"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_jnlp7")
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="RootGame/BattleScreen/TurnOrder"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_28aoi")
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="RootGame/BattleScreen/TurnOrder"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_jnlp7")
+stretch_mode = 5
+
+[node name="Actions" type="Panel" parent="RootGame"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RootGame/Actions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ATK" type="Button" parent="RootGame/Actions/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ATK"
+icon = ExtResource("3_jnlp7")
+expand_icon = true
+
+[node name="DFD" type="Button" parent="RootGame/Actions/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DFD"
+
+[node name="ITM" type="Button" parent="RootGame/Actions/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ITM"

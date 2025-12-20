@@ -11,10 +11,15 @@ config_version=5
 [application]
 
 config/name="Sprun"
+config/description="Turn-based thing (I just really wanted to make a turn based)"
+config/version="0.0.0"
+run/main_scene="uid://d3wbwxma2hkqm"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="uid://cqmahlm6jr7w8"
+config/icon="uid://cqmahlm6jr7w8"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
