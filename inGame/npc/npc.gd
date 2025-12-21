@@ -10,12 +10,12 @@ extends Control
 @export var icon = Image
 
 # stats
-@export var speed : int = 12
+@export var speedStat : int = 12
 
 @export var max_hp: int = 40
 var current_hp: int = max_hp
 
-@export var attack : int = 3
+@export var attackStat : int = 3
 
 var current_defense : int = 0:
 	set(new):
@@ -37,7 +37,6 @@ func _process(_delta) -> void:
 		get_tree().reload_current_scene()
 	
 	if HP.value > current_hp:
-		print('please decrease')
 		visual_hp(int(HP.value) - 1)
 	elif HP.value < current_hp:
 		visual_hp(int(HP.value) + 1)
@@ -45,6 +44,5 @@ func _process(_delta) -> void:
 	
 
 func visual_hp(new_hp : int) -> void:
-	print('helpme')
 	HP.value = new_hp
 	CurrentHp.text = str(int(HP.value))

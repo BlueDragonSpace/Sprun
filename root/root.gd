@@ -6,6 +6,9 @@ extends Control
 
 @onready var current_player = $RootGame/BattleScreen/Charas/Player
 @onready var current_enemy = $RootGame/BattleScreen/Enemies/Enemy
+@onready var Charas: VBoxContainer = $RootGame/BattleScreen/Charas
+@onready var Enemies: VBoxContainer = $RootGame/BattleScreen/Enemies
+
 
 var mid_animation_action = func() : pass
 
@@ -33,7 +36,7 @@ func _process(delta: float) -> void:
 		TURN_TYPE.ENEMY:
 			match(current_enemy.intent):
 				current_enemy.INTENTS.ATTACK:
-					mid_animation_action = func(): current_player.current_hp -= 10
+					mid_animation_action = func(): current_enemy.attack(current_player)
 					Animate.play("enemyAttack")
 
 
@@ -42,6 +45,13 @@ func middle_enemy_attack() -> void:
 	mid_animation_action.call()
 	mid_animation_action = func(): pass #resets the action to be nothing afterward
 	#intended for use with lambda functions, in the middle of an animation
+
+func set_enemies_intents() -> void:
+	for enemy in Enemies.get_children():
+		enemy.intent = randi_range(0,0) #currently only sets to attack
+		var tween = create_tween()
+		# makes the intent visible again
+		tween.tween_property(enemy.Intent, "modulate", Color(1.0,1.0,1.0,1.0),1.0)
 
 ## signal functions
 func _on_atk_pressed() -> void:
@@ -57,12 +67,15 @@ func _on_dfd_pressed() -> void:
 
 func _on_itm_pressed() -> void:
 	player_pass_turn()
-	
+
+# animation-only functions
 func player_pass_turn() -> void:
 	Animate.play("playerPassTurn")
 
 func animate_to_enemy() -> void:
+	current_enemy.Animate.play("attack")
 	Animate.play("enemyAttack")
 
 func enemy_pass_turn() -> void:
+	set_enemies_intents()
 	Animate.play("to_player")
