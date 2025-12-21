@@ -30,18 +30,19 @@ func _ready() -> void:
 	MaxHp.text = str(max_hp)
 	
 	Icon.texture = icon
+	
+	add_ready()
+
+# this function is meant to be added on to the ready function, by children, so they don't have to redefine ready
+func add_ready() -> void:
+	pass
 
 func _process(_delta) -> void:
-	
-	if Input.is_action_just_pressed("restart"):
-		get_tree().reload_current_scene()
 	
 	if HP.value > current_hp:
 		visual_hp(int(HP.value) - 1)
 	elif HP.value < current_hp:
 		visual_hp(int(HP.value) + 1)
-		
-	
 
 func visual_hp(new_hp : int) -> void:
 	HP.value = new_hp

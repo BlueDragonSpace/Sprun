@@ -14,15 +14,15 @@ enum INTENTS {ATTACK, DEFEND, HEAL, BUFF, DEBUFF, UNKNOWN}
 			INTENTS.ATTACK:
 				random_offset = randi_range(-2, 3)
 				#set new art for attack (a sword, duh)
-				print(IntentLabel.text)
 				IntentLabel.text = str(attackStat + random_offset)
 			_:
 				pass
 		intent = new
 
-func _ready() -> void:
+func add_ready() -> void:
 	intent = INTENTS.ATTACK
 
 func attack(victim: Node) -> void:
 	victim.current_hp -= attackStat + random_offset
 	random_offset = 0
+	speedStat = randi_range(1, 10)

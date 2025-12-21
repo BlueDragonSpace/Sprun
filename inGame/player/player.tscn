@@ -10,6 +10,7 @@ sprun_slots = 3
 sprun_container_angle = 135
 sprun_distance = 100
 icon = null
+speedStat = 5
 
 [node name="Icon" parent="VBoxContainer" index="1"]
 size_flags_stretch_ratio = 0.76
