@@ -4,16 +4,20 @@ extends Control
 @onready var Actions: HBoxContainer = $RootGame/LowerBar/Actions
 @onready var Animate: AnimationPlayer = $Animate
 
+@onready var current_player = $RootGame/BattleScreen/Charas/Player
+@onready var current_enemy = $RootGame/BattleScreen/Enemies/Enemy
+
+var mid_animation_action = func() : pass
 
 ## In-Battle
-enum TURN_TYPE {INPUT, OUTPUT}
-@export var turn = TURN_TYPE.INPUT:
+enum TURN_TYPE {PLAYER, PLAYER_PASS, ENEMY, ENEMY_PASS}
+@export var turn = TURN_TYPE.PLAYER:
 	set(new):
 		match(new):
-			TURN_TYPE.INPUT:
-				Actions.visible = true
-			TURN_TYPE.OUTPUT:
-				Actions.visible = false
+			TURN_TYPE.ENEMY_PASS:
+				current_player.current_defense = 0
+			# SHOULD DO THE SAME FOR ENEMY (SORRY FOR CAPSLOCK)
+		turn = new
 
 var in_transition = false
 
@@ -26,12 +30,20 @@ func _process(delta: float) -> void:
 	NoiseBackground.texture.noise.offset += Vector3(delta * 0.1, delta * 5, delta * 5)
 	
 	match(turn):
-		TURN_TYPE.INPUT:
-			pass
-		TURN_TYPE.OUTPUT:
-			pass
+		TURN_TYPE.ENEMY:
+			match(current_enemy.intent):
+				current_enemy.INTENTS.ATTACK:
+					mid_animation_action = func(): current_player.current_hp -= 10
+					Animate.play("enemyAttack")
 
-# signal functions
+
+func middle_enemy_attack() -> void:
+	
+	mid_animation_action.call()
+	mid_animation_action = func(): pass #resets the action to be nothing afterward
+	#intended for use with lambda functions, in the middle of an animation
+
+## signal functions
 func _on_atk_pressed() -> void:
 	# in reality it's a lot more complicated than this, but whatever
 	if $RootGame/BattleScreen/Enemies/Enemy:
@@ -41,11 +53,16 @@ func _on_atk_pressed() -> void:
 
 func _on_dfd_pressed() -> void:
 	$RootGame/BattleScreen/Charas/Player.current_defense += 6
-	
 	player_pass_turn()
 
 func _on_itm_pressed() -> void:
-	pass # Replace with function body.
+	player_pass_turn()
 	
 func player_pass_turn() -> void:
 	Animate.play("playerPassTurn")
+
+func animate_to_enemy() -> void:
+	Animate.play("enemyAttack")
+
+func enemy_pass_turn() -> void:
+	Animate.play("to_player")

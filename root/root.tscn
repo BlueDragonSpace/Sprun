@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d3wbwxma2hkqm"]
+[gd_scene load_steps=19 format=3 uid="uid://d3wbwxma2hkqm"]
 
 [ext_resource type="Theme" uid="uid://cyy1ccrel07nx" path="res://root/root.tres" id="1_vvh5c"]
 [ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="2_28aoi"]
@@ -79,10 +79,47 @@ tracks/3/path = NodePath("RootGame/LowerBar/Actions/ITM:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.033333335),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RootGame/LowerBar/Actions:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-2.5, -0.25, 0, 0.25, 0, 6, -0.019999992, -1.4166667, 0, 0),
+"times": PackedFloat32Array(0.66, 1)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:turn")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animate_to_enemy"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_5jge4"]
@@ -134,11 +171,163 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RootGame/LowerBar/Actions:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-2.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:turn")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RootGame/BattleScreen/Enemies/Enemy:modulate:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_y3dhr"]
+resource_name = "enemy_attack"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"middle_enemy_attack"
+}, {
+"args": [],
+"method": &"enemy_pass_turn"
+}]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RootGame/BattleScreen/Enemies/Enemy:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.36862746, -0.101666674, 0.10522876, 0, 0, 1, -0.065, -0.10522877, 0, 0),
+"times": PackedFloat32Array(0, 0.61, 1)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:turn")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_0n2s5"]
+resource_name = "to_player"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RootGame/LowerBar:size_flags_stretch_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.16666667, 0.02, 0, 0, 0.12, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.5, 0.96666664)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RootGame/LowerBar/Actions/ATK:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RootGame/LowerBar/Actions/DFD:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RootGame/LowerBar/Actions/ITM:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RootGame/LowerBar/Actions:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(6, -0.019999992, -1.4166667, 0, 0, -2.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.66)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:turn")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y3dhr"]
 _data = {
 &"RESET": SubResource("Animation_5jge4"),
-&"playerPassTurn": SubResource("Animation_gj8ci")
+&"enemyAttack": SubResource("Animation_y3dhr"),
+&"playerPassTurn": SubResource("Animation_gj8ci"),
+&"to_player": SubResource("Animation_0n2s5")
 }
 
 [node name="Root" type="Control"]
@@ -207,7 +396,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="RootGame/BattleScreen/Charas" instance=ExtResource("3_gj8ci")]
 layout_mode = 2
-sprun_container_angle = 135
+max_hp = 30
 
 [node name="VSeparator2" type="VSeparator" parent="RootGame/BattleScreen"]
 modulate = Color(1, 1, 1, 0)
@@ -222,7 +411,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Enemy" parent="RootGame/BattleScreen/Enemies" instance=ExtResource("4_y5gj7")]
 layout_mode = 2
-size_flags_horizontal = 1
 size_flags_vertical = 3
 max_hp = 45
 
@@ -256,6 +444,7 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("2_28aoi")
+expand_mode = 5
 stretch_mode = 5
 
 [node name="TextureRect2" type="TextureRect" parent="RootGame/BattleScreen/TurnOrder/TurnOrder"]
@@ -288,10 +477,9 @@ anchor_right = 1.001
 anchor_bottom = 0.5425529
 offset_top = -2.5
 offset_right = -0.19995117
-offset_bottom = 21.500015
+offset_bottom = 21.500006
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="ATK" type="Button" parent="RootGame/LowerBar/Actions"]
 layout_mode = 2

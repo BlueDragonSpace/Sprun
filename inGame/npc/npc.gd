@@ -23,6 +23,7 @@ var current_defense : int = 0:
 		current_defense = new
 
 func _ready() -> void:
+	current_hp = max_hp
 	visual_hp(current_hp)
 	
 	HP.max_value = max_hp
@@ -36,6 +37,7 @@ func _process(_delta) -> void:
 		get_tree().reload_current_scene()
 	
 	if HP.value > current_hp:
+		print('please decrease')
 		visual_hp(int(HP.value) - 1)
 	elif HP.value < current_hp:
 		visual_hp(int(HP.value) + 1)
@@ -43,5 +45,6 @@ func _process(_delta) -> void:
 	
 
 func visual_hp(new_hp : int) -> void:
+	print('helpme')
 	HP.value = new_hp
 	CurrentHp.text = str(int(HP.value))

@@ -40,8 +40,3 @@ func _ready() -> void:
 		#rotate(i * spread / (rads-1));
 		#ellipse(dis,0,10,10);
 		#popMatrix();
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
