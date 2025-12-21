@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3wbwxma2hkqm"]
+[gd_scene load_steps=17 format=3 uid="uid://d3wbwxma2hkqm"]
 
 [ext_resource type="Theme" uid="uid://cyy1ccrel07nx" path="res://root/root.tres" id="1_vvh5c"]
 [ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="2_28aoi"]
@@ -13,6 +13,7 @@
 colors = PackedColorArray(2.8878452e-07, 0.508626, 0.6430946, 1, 1, 0, 0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ovlcs"]
+offset = Vector3(0, 0, 313.73)
 cellular_return_type = 0
 domain_warp_enabled = true
 domain_warp_type = 2
@@ -33,6 +34,112 @@ shader_parameter/b_displacement = Vector2(-3, 0)
 shader = ExtResource("8_gj8ci")
 shader_parameter/pixel_size = 4
 shader_parameter/screen_size = Vector2(1200, 600)
+
+[sub_resource type="Animation" id="Animation_gj8ci"]
+resource_name = "playerPassTurn"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RootGame/LowerBar:size_flags_stretch_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.12, -0.25, 0, 0.25, 0, 0, -0.16666667, 0.02, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RootGame/LowerBar/Actions/ATK:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RootGame/LowerBar/Actions/DFD:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RootGame/LowerBar/Actions/ITM:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_5jge4"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RootGame/LowerBar:size_flags_stretch_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.12, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RootGame/LowerBar/Actions/ATK:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RootGame/LowerBar/Actions/DFD:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RootGame/LowerBar/Actions/ITM:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y3dhr"]
+_data = {
+&"RESET": SubResource("Animation_5jge4"),
+&"playerPassTurn": SubResource("Animation_gj8ci")
+}
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -100,6 +207,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="RootGame/BattleScreen/Charas" instance=ExtResource("3_gj8ci")]
 layout_mode = 2
+sprun_container_angle = 135
 
 [node name="VSeparator2" type="VSeparator" parent="RootGame/BattleScreen"]
 modulate = Color(1, 1, 1, 0)
@@ -175,11 +283,15 @@ size_flags_stretch_ratio = 0.12
 
 [node name="Actions" type="HBoxContainer" parent="RootGame/LowerBar"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_right = 1.001
+anchor_bottom = 0.5425529
+offset_top = -2.5
+offset_right = -0.19995117
+offset_bottom = 21.500015
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="ATK" type="Button" parent="RootGame/LowerBar/Actions"]
 layout_mode = 2
@@ -192,6 +304,7 @@ expand_icon = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "DFD"
+clip_text = true
 
 [node name="ITM" type="Button" parent="RootGame/LowerBar/Actions"]
 layout_mode = 2
@@ -228,4 +341,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Animate" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_y3dhr")
+}
+
 [connection signal="pressed" from="RootGame/LowerBar/Actions/ATK" to="." method="_on_atk_pressed"]
+[connection signal="pressed" from="RootGame/LowerBar/Actions/DFD" to="." method="_on_dfd_pressed"]
+[connection signal="pressed" from="RootGame/LowerBar/Actions/ITM" to="." method="_on_itm_pressed"]

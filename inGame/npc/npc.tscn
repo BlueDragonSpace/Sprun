@@ -19,7 +19,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("1_3atjd")
-sprun_container_angle = 135
 icon = ExtResource("1_2jrf3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

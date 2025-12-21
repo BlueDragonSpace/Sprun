@@ -1,15 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bd0auisdvfagw"]
+[gd_scene load_steps=3 format=3 uid="uid://bd0auisdvfagw"]
 
 [ext_resource type="PackedScene" uid="uid://ctlnpeebeoqgd" path="res://inGame/npc/npc.tscn" id="1_kfrmh"]
-[ext_resource type="PackedScene" uid="uid://b6wgjet502thq" path="res://inGame/player/sprun.tscn" id="2_1pxb3"]
 [ext_resource type="Script" uid="uid://sj0wnis8wnpb" path="res://inGame/player/player.gd" id="2_v55o0"]
 
 [node name="Player" instance=ExtResource("1_kfrmh")]
 size_flags_vertical = 3
 script = ExtResource("2_v55o0")
-sprun_slots = 8
-sprun_container_angle = 360
-sprun_distance = 1
+sprun_slots = 3
+sprun_distance = 100
 icon = null
 
 [node name="Icon" parent="VBoxContainer" index="1"]
@@ -28,7 +26,3 @@ offset_bottom = -0.085998535
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
-
-[node name="Sprun" parent="VBoxContainer/Icon" index="1" instance=ExtResource("2_1pxb3")]
-layout_mode = 1
-scale = Vector2(0.46076077, 0.46076077)

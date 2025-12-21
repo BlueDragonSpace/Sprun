@@ -1,12 +1,8 @@
 extends Control
 
-# I think imma do everything in a single script lol
-# that's what I used to do... a long time ago
-
-
 @onready var NoiseBackground: TextureRect = $NoiseBackground
-
 @onready var Actions: HBoxContainer = $RootGame/LowerBar/Actions
+@onready var Animate: AnimationPlayer = $Animate
 
 
 ## In-Battle
@@ -40,3 +36,16 @@ func _on_atk_pressed() -> void:
 	# in reality it's a lot more complicated than this, but whatever
 	if $RootGame/BattleScreen/Enemies/Enemy:
 		$RootGame/BattleScreen/Enemies/Enemy.current_hp -= 8
+		
+	player_pass_turn()
+
+func _on_dfd_pressed() -> void:
+	$RootGame/BattleScreen/Charas/Player.current_defense += 6
+	
+	player_pass_turn()
+
+func _on_itm_pressed() -> void:
+	pass # Replace with function body.
+	
+func player_pass_turn() -> void:
+	Animate.play("playerPassTurn")

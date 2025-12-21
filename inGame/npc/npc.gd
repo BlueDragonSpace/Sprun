@@ -17,7 +17,10 @@ var current_hp: int = max_hp
 
 @export var attack : int = 3
 
-var current_defense : int = 0
+var current_defense : int = 0:
+	set(new):
+		$VBoxContainer/LowerBar/Shield/ShieldNum.text = str(new)
+		current_defense = new
 
 func _ready() -> void:
 	visual_hp(current_hp)

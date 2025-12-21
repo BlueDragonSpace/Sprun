@@ -23,6 +23,10 @@ config/icon="uid://cqmahlm6jr7w8"
 window/size/viewport_width=1200
 window/size/viewport_height=600
 
+[editor]
+
+movie_writer/movie_file="D:/Godot/projects/sprun/shrok.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
