@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6wgjet502thq"]
+
+[ext_resource type="Script" uid="uid://m4lpc8h8xs5" path="res://inGame/player/sprun.gd" id="1_i2nwe"]
+[ext_resource type="Texture2D" uid="uid://cqmahlm6jr7w8" path="res://placeholderArt/Sprun.png" id="2_i2nwe"]
+
+[node name="Sprun" type="Control"]
+modulate = Color(1, 1, 1, 0.3137255)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i2nwe")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_i2nwe")
+expand_mode = 3
+stretch_mode = 5

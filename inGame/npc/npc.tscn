@@ -1,0 +1,122 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctlnpeebeoqgd"]
+
+[ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="1_2jrf3"]
+[ext_resource type="Script" uid="uid://cdbuic4bcd67n" path="res://inGame/npc/npc.gd" id="1_3atjd"]
+[ext_resource type="Texture2D" uid="uid://cqmahlm6jr7w8" path="res://placeholderArt/Sprun.png" id="2_3atjd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bleps"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ak11v"]
+
+[node name="NPC" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_3atjd")
+icon = ExtResource("1_2jrf3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.34
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_2jrf3")
+stretch_mode = 5
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.29
+
+[node name="LowerBar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+
+[node name="HP" type="TextureProgressBar" parent="VBoxContainer/LowerBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 40.0
+value = 40.0
+rounded = true
+nine_patch_stretch = true
+texture_under = ExtResource("1_2jrf3")
+texture_progress = ExtResource("2_3atjd")
+
+[node name="HPBar" type="HBoxContainer" parent="VBoxContainer/LowerBar/HP"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CurrentHP" type="Label" parent="VBoxContainer/LowerBar/HP/HPBar"]
+layout_mode = 2
+text = "40"
+label_settings = SubResource("LabelSettings_bleps")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="slash" type="Label" parent="VBoxContainer/LowerBar/HP/HPBar"]
+layout_mode = 2
+text = "/"
+label_settings = SubResource("LabelSettings_bleps")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MaxHP" type="Label" parent="VBoxContainer/LowerBar/HP/HPBar"]
+layout_mode = 2
+text = "40"
+label_settings = SubResource("LabelSettings_bleps")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/LowerBar"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.08
+
+[node name="Shield" type="TextureRect" parent="VBoxContainer/LowerBar"]
+layout_mode = 2
+texture = ExtResource("1_2jrf3")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ShieldNum" type="Label" parent="VBoxContainer/LowerBar/Shield"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_ak11v")
+horizontal_alignment = 1
+vertical_alignment = 1

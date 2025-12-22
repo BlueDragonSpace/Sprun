@@ -1,0 +1,25 @@
+
+Forking forks of frok fkro frok amok bok
+
+https://lonebot.itch.io/make-it-juicy
+
+1:
+	Player orbs surrounding
+2:
+	huh
+3:
+	wuh
+4: 
+	uh-huh
+
+
+Turn sections:
+	Player Input
+	Middle:
+		Defense,
+		Quick Actions,
+		The Rest (by the timeline)
+	End
+
+if not working, try changing the place that turn_order first gets decided
+	then fix functions not being inputted to turn_order_data

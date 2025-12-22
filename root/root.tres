@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cyy1ccrel07nx"]
+
+[ext_resource type="FontFile" uid="uid://b15cwifjx6qg0" path="res://placeholderArt/PixelOperator8.ttf" id="1_0mcec"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1c7yr"]
+bg_color = Color(0.61572146, 0.49886578, 1, 1)
+
+[resource]
+default_font = ExtResource("1_0mcec")
+HBoxContainer/colors/colorThing = Color(0.44942772, 0, 0.13488623, 1)
+HBoxContainer/styles/background = SubResource("StyleBoxFlat_1c7yr")
