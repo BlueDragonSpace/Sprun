@@ -137,38 +137,6 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0)
 }
 
-[sub_resource type="Animation" id="Animation_y3dhr"]
-resource_name = "enemy_attack"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.4, 1),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"middle_enemy_attack"
-}, {
-"args": [],
-"method": &"enemy_pass_turn"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:turn")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-
 [sub_resource type="Animation" id="Animation_gj8ci"]
 resource_name = "playerPassTurn"
 tracks/0/type = "bezier"
@@ -236,43 +204,29 @@ tracks/5/path = NodePath(".:turn")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [2]
+"values": [0, 1]
 }
-tracks/6/type = "method"
+tracks/6/type = "bezier"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath(".")
+tracks/6/path = NodePath("RootGame/LowerBar/Actions:size:x")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"animate_to_enemy"
-}]
-}
-tracks/7/type = "bezier"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("RootGame/LowerBar/Actions:size:x")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(1200.4001, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/8/type = "bezier"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("RootGame/LowerBar/Actions:size:y")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RootGame/LowerBar/Actions:size:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(48.5, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
@@ -373,10 +327,30 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0)
 }
 
+[sub_resource type="Animation" id="Animation_y3dhr"]
+resource_name = "middle_round"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"middle_animation_constant"
+}, {
+"args": [],
+"method": &"middle_round_loop"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y3dhr"]
 _data = {
 &"RESET": SubResource("Animation_5jge4"),
-&"enemyAttack": SubResource("Animation_y3dhr"),
+&"middle_round": SubResource("Animation_y3dhr"),
 &"playerPassTurn": SubResource("Animation_gj8ci"),
 &"to_player": SubResource("Animation_0n2s5")
 }

@@ -27,16 +27,5 @@ func _ready() -> void:
 		sprun.visual_rotation += deg_to_rad(-sprun_container_angle/2)
 		@warning_ignore("integer_division")
 		sprun.visual_rotation += deg_to_rad(slot * sprun_container_angle / (sprun_slots - 1))
-		
-		#
-		#sprun.position -= sprun_container.position #why
-		#
-		
-		#
-		#pushMatrix();
-		#translate(200,200);
-		#//rotate(-90);
-		#rotate(-spread/2);
-		#rotate(i * spread / (rads-1));
-		#ellipse(dis,0,10,10);
-		#popMatrix();
+
+# player has it's intended actions set by the Root (because it's from input from the UI)

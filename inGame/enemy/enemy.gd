@@ -22,7 +22,14 @@ enum INTENTS {ATTACK, DEFEND, HEAL, BUFF, DEBUFF, UNKNOWN}
 func add_ready() -> void:
 	intent = INTENTS.ATTACK
 
-func attack(victim: Node) -> void:
+func set_intended_action(victim: Node) -> void:
+	# where the magic happens
+	# by default, just attack
+	intended_action = attack(victim)
+
+func attack(victim: Node):
 	victim.current_hp -= attackStat + random_offset
 	random_offset = 0
 	speedStat = randi_range(1, 10)
+	Animate.play("attack")
+	print('enemy action')

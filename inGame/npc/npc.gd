@@ -22,6 +22,8 @@ var current_defense : int = 0:
 		$VBoxContainer/LowerBar/Shield/ShieldNum.text = str(new)
 		current_defense = new
 
+var intended_action = func() : pass
+
 func _ready() -> void:
 	current_hp = max_hp
 	visual_hp(current_hp)
