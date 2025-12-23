@@ -47,8 +47,6 @@ enum TURN_TYPE {PLAYER, SELECT_ENEMY, MIDDLE, END}
 				middle_round_loop() # could just call this method in Animate...
 			TURN_TYPE.END:
 				pass
-				#current_player.current_defense = 0
-			# SHOULD DO THE SAME FOR ENEMY (SORRY FOR CAPSLOCK)
 		turn = new
 
 var back_action = Callable(Global, "empty_function")
@@ -85,15 +83,17 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action("TabAction"):
 		if turn == TURN_TYPE.SELECT_ENEMY:
 			# change the enemy selected (remove current selection from previous enemy, add it to new enemy); if it's the last enemy, choose the first
-			#current_enemy.get_child(0).queue_free()
+			print(current_enemy.get_child(-1).name)
+			current_enemy.get_child(-1).queue_free()
 			
 			var child_index = current_enemy.get_index()
-			if child_index == Enemies.get_child_count():
+			if child_index == Enemies.get_child_count() - 1:
 				current_enemy = Enemies.get_child(0)
 			else:
 				current_enemy = Enemies.get_child(child_index + 1)
 				
 			var selector = ENEMY_SELECTION.instantiate()
+			selector.connect("pressed", select_enemy)
 			current_enemy.add_child(selector)
 
 # custom functions
@@ -139,9 +139,9 @@ func set_turn_order() -> void:
 		marker.texture = body[1]
 		TurnOrder.add_child(marker)
 
-func enemy_select() -> void:
+func select_enemy() -> void:
 	current_player.action_victim = current_enemy
-	current_enemy.get_child(0).queue_free()
+	current_enemy.get_child(-1).queue_free()
 	
 	player_pass_turn()
 
@@ -174,7 +174,11 @@ func _on_atk_pressed() -> void:
 	$RootGame/BattleScreen/Charas/Player.intended_action = Callable(current_player, "attack")
 	if Enemies.get_child_count() > 1:
 		var selector = ENEMY_SELECTION.instantiate()
-		Enemies.get_child(0).add_child(selector)
+		selector.connect("pressed", select_enemy)
+		
+		current_enemy = Enemies.get_child(0)
+		current_enemy.add_child(selector)
+		
 		turn = TURN_TYPE.SELECT_ENEMY
 	else:
 		current_player.action_victim = current_enemy

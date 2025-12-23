@@ -22,3 +22,4 @@ Turn sections:
 	End
 
 Refactoring: Animation tracks don't worry about unresolvable tracks (the NPC's animate node has a track for Enemy intent, but Player doesn't have intent and doesn't need the track)
+Make HP changing set by a tween

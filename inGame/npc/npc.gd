@@ -44,6 +44,7 @@ func add_ready() -> void:
 
 func _process(_delta) -> void:
 	
+	# wait a second I could just set this to a tween
 	if HP.value > current_hp:
 		visual_hp(int(HP.value) - 1)
 	elif HP.value < current_hp:
