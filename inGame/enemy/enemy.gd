@@ -32,8 +32,7 @@ func set_intended_action(victim: Node) -> void:
 	action_victim = victim
 
 func attack():
-	action_victim.current_hp -= attackStat + random_offset
+	action_victim.take_damage(attackStat + random_offset)
 	random_offset = 0
 	speedStat = randi_range(1, 10)
 	Animate.play("attack")
-	print('enemy action')

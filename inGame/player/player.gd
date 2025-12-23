@@ -1,12 +1,14 @@
 extends "res://inGame/npc/npc.gd"
 
-## Tool testing
 @export var sprun_slots = 8
 @export_range(0, 360) var sprun_container_angle = 135
 @export var sprun_distance = 0 ## wow that's pretty cool
 const SPRUN = preload("uid://b6wgjet502thq")
 
+@export var defendStat = 6
+
 @onready var sprun_container: Control = $VBoxContainer/Icon/SprunContainer
+@onready var Animate: AnimationPlayer = $Animate
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,6 +33,9 @@ func _ready() -> void:
 # player has it's intended actions set by the Root (because it's from input from the UI)
 
 func attack():
-	action_victim.current_hp -= attackStat
-	#Animate.play("attack")
-	print('player attack action')
+	action_victim.take_damage(attackStat)
+	Animate.play("attack")
+
+func defend():
+	self.current_defense += defendStat
+	Animate.play("defend")

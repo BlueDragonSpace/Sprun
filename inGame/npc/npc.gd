@@ -13,7 +13,9 @@ extends Control
 @export var speedStat : int = 12
 
 @export var max_hp: int = 40
-var current_hp: int = max_hp
+var current_hp: int = max_hp:
+	set(new):
+		current_hp = new
 
 @export var attackStat : int = 3
 
@@ -22,7 +24,7 @@ var current_defense : int = 0:
 		$VBoxContainer/LowerBar/Shield/ShieldNum.text = str(new)
 		current_defense = new
 
-var intended_action = Callable(self, "empty_function")
+var intended_action = Callable(Global, "empty_function")
 var action_victim : Node
 
 func _ready() -> void:
@@ -53,4 +55,15 @@ func visual_hp(new_hp : int) -> void:
 
 #for some reason, if you call a Callable as a Callable, the function doesn't go through
 func do_intended_action() -> void:
+	current_defense = 0
+	
 	intended_action.call()
+
+func take_damage(damage) -> void:
+	if current_defense > 0:
+		var undefended_damage = damage - current_defense
+		current_defense = clamp(current_defense - damage, 0, INF)
+		if undefended_damage > 0:
+			current_hp -= undefended_damage
+	else:
+		current_hp -= damage

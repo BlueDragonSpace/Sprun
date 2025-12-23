@@ -9,11 +9,11 @@ script = ExtResource("2_v55o0")
 sprun_slots = 3
 sprun_container_angle = 135
 sprun_distance = 100
+defendStat = 6
 icon = null
 speedStat = 5
 
 [node name="Icon" parent="VBoxContainer" index="1"]
-size_flags_stretch_ratio = 0.76
 expand_mode = 2
 
 [node name="SprunContainer" type="Control" parent="VBoxContainer/Icon" index="0"]

@@ -1,65 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmoedndryju2o"]
+[gd_scene load_steps=5 format=3 uid="uid://cmoedndryju2o"]
 
 [ext_resource type="PackedScene" uid="uid://ctlnpeebeoqgd" path="res://inGame/npc/npc.tscn" id="1_y8jsf"]
 [ext_resource type="Script" uid="uid://qk0yaqbhbtaf" path="res://inGame/enemy/enemy.gd" id="2_sumcb"]
 [ext_resource type="Texture2D" uid="uid://cqmahlm6jr7w8" path="res://placeholderArt/Sprun.png" id="3_sumcb"]
 [ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="4_5rpnx"]
-
-[sub_resource type="Animation" id="Animation_ocmfa"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/Icon:size_flags_stretch_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer/Intent:modulate:a")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
-[sub_resource type="Animation" id="Animation_5rpnx"]
-resource_name = "attack"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/Icon:size_flags_stretch_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, 0, 0, 0.10000001, 0.060000006, 1.36, -0.25, 0, 0.25, 0, 1, 0, 0, 0.10000001, 0.060000006),
-"times": PackedFloat32Array(0, 0.4, 0.9)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer/Intent:modulate:a")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.16666667, 0.16666667, 0, 0),
-"times": PackedFloat32Array(0, 0.4)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ocmfa"]
-_data = {
-&"RESET": SubResource("Animation_ocmfa"),
-&"attack": SubResource("Animation_5rpnx")
-}
 
 [node name="Enemy" instance=ExtResource("1_y8jsf")]
 script = ExtResource("2_sumcb")
@@ -67,6 +11,7 @@ intent = 5
 icon = ExtResource("3_sumcb")
 
 [node name="Intent" type="TextureRect" parent="VBoxContainer" index="1"]
+self_modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.28
@@ -102,8 +47,3 @@ expand_mode = 2
 
 [node name="LowerBar" parent="VBoxContainer" index="5"]
 layout_direction = 3
-
-[node name="Animate" type="AnimationPlayer" parent="." index="1"]
-libraries = {
-&"": SubResource("AnimationLibrary_ocmfa")
-}
