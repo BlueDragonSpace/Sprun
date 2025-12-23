@@ -6,6 +6,8 @@ extends Control
 @onready var CurrentHp: Label = $VBoxContainer/LowerBar/HP/HPBar/CurrentHP
 @onready var MaxHp: Label = $VBoxContainer/LowerBar/HP/HPBar/MaxHP
 
+@onready var Animate: AnimationPlayer = $Animate
+
 # Character Icon
 @export var icon = Image
 
@@ -66,5 +68,7 @@ func take_damage(damage) -> void:
 		current_defense = clamp(current_defense - damage, 0, INF)
 		if undefended_damage > 0:
 			current_hp -= undefended_damage
+			Animate.play("take_hit")
 	else:
 		current_hp -= damage
+		Animate.play("take_hit")

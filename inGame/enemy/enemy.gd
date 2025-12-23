@@ -1,7 +1,5 @@
 extends "res://inGame/npc/npc.gd"
 
-@onready var Animate: AnimationPlayer = $Animate
-
 @onready var Intent: TextureRect = $VBoxContainer/Intent
 @onready var IntentLabel: Label = $VBoxContainer/Intent/IntentLabel
 

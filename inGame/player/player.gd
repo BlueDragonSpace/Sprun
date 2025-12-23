@@ -8,10 +8,8 @@ const SPRUN = preload("uid://b6wgjet502thq")
 @export var defendStat = 6
 
 @onready var sprun_container: Control = $VBoxContainer/Icon/SprunContainer
-@onready var Animate: AnimationPlayer = $Animate
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func add_ready() -> void:
 	for slot in range(0, sprun_slots):
 		var sprun = SPRUN.instantiate()
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctlnpeebeoqgd"]
+[gd_scene load_steps=11 format=3 uid="uid://ctlnpeebeoqgd"]
 
 [ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="1_2jrf3"]
 [ext_resource type="Script" uid="uid://cdbuic4bcd67n" path="res://inGame/npc/npc.gd" id="1_3atjd"]
@@ -55,6 +55,28 @@ tracks/3/keys = {
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("VBoxContainer/Icon:self_modulate:g")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("VBoxContainer/Icon:self_modulate:b")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_1pxb3"]
 resource_name = "attack"
@@ -106,11 +128,37 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4, 1)
 }
 
+[sub_resource type="Animation" id="Animation_a1cnd"]
+resource_name = "take_hit"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/Icon:self_modulate:g")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.06666667, 0.16666667, 0, 0, 1, -0.10000001, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.4, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/Icon:self_modulate:b")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.06666667, 0.16666667, 0, 0, 1, -0.10000001, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.4, 1)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eymni"]
 _data = {
 &"RESET": SubResource("Animation_v55o0"),
 &"attack": SubResource("Animation_1pxb3"),
-&"defend": SubResource("Animation_eymni")
+&"defend": SubResource("Animation_eymni"),
+&"take_hit": SubResource("Animation_a1cnd")
 }
 
 [node name="NPC" type="Control"]
@@ -240,6 +288,12 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.08
+
+[node name="VSeparator3" type="VSeparator" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
 
 [node name="Animate" type="AnimationPlayer" parent="."]
 libraries = {

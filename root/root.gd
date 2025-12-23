@@ -1,12 +1,16 @@
 extends Control
 
 @onready var NoiseBackground: TextureRect = $NoiseBackground
-@onready var Actions: HBoxContainer = $RootGame/LowerBar/Actions
-@onready var BAK: Button = $RootGame/LowerBar/Actions/BAK
+@onready var Actions: HBoxContainer = $RootGame/LowerBar/VBoxContainer/Actions
+@onready var BAK: Button = $RootGame/LowerBar/VBoxContainer/Actions/BAK
+@onready var LittlePlayerIcon: TextureRect = $RootGame/LowerBar/VBoxContainer/InfoBar/LittlePlayerIcon
 
 @onready var Animate: AnimationPlayer = $Animate
 
-@onready var current_player = $RootGame/BattleScreen/Charas/Player
+var current_player = null:
+	set(new):
+		LittlePlayerIcon.texture = new.icon
+		current_player = new
 @onready var current_enemy = $RootGame/BattleScreen/Enemies/Enemy
 
 @onready var Charas: VBoxContainer = $RootGame/BattleScreen/Charas
@@ -27,25 +31,34 @@ var current_turn = 0
 ## end section
 
 ## In-Battle
-enum TURN_TYPE {PLAYER, SELECT_ENEMY, MIDDLE, END}
+enum TURN_TYPE {PLAYER, SELECT_ENEMY, MIDDLE, END, TRANSITION}
 @export var turn = TURN_TYPE.PLAYER:
 	set(new):
 		match(new):
 			TURN_TYPE.PLAYER:
+				current_player = Charas.get_child(0)
 				for action in Actions.get_children():
 					action.disabled = false
+				BAK.disabled = true
 			TURN_TYPE.SELECT_ENEMY:
 				for action in Actions.get_children():
 					action.disabled = true
 				BAK.disabled = false
 				back_action = func(): 
 					turn = TURN_TYPE.PLAYER
-					current_enemy.get_child(0).queue_free()
+					current_enemy.get_child(-1).queue_free()
 					BAK.disabled = true
 					# may be worth turning the back_action to be the empty function
 			TURN_TYPE.MIDDLE:
 				middle_round_loop() # could just call this method in Animate...
 			TURN_TYPE.END:
+				BAK.disabled = true
+				back_action = func(): Callable(Global, "empty_function")
+				
+			TURN_TYPE.TRANSITION:
+				# this type is more like an empty function than anything else
+				# it means that the Animate is going to another type, and right now
+				# -it doesn't need to do anything
 				pass
 		turn = new
 
@@ -59,6 +72,8 @@ var current_round = 0:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	current_player = Charas.get_child(0)
+	
 	NoiseBackground.texture.noise.seed = randi()
 	call_deferred("set_turn_order")
 	set_enemies_intents()
@@ -83,7 +98,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action("TabAction"):
 		if turn == TURN_TYPE.SELECT_ENEMY:
 			# change the enemy selected (remove current selection from previous enemy, add it to new enemy); if it's the last enemy, choose the first
-			print(current_enemy.get_child(-1).name)
 			current_enemy.get_child(-1).queue_free()
 			
 			var child_index = current_enemy.get_index()
@@ -94,6 +108,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				
 			var selector = ENEMY_SELECTION.instantiate()
 			selector.connect("pressed", select_enemy)
+			selector.call_deferred("grab_focus")
 			current_enemy.add_child(selector)
 
 # custom functions
@@ -140,6 +155,7 @@ func set_turn_order() -> void:
 		TurnOrder.add_child(marker)
 
 func select_enemy() -> void:
+	
 	current_player.action_victim = current_enemy
 	current_enemy.get_child(-1).queue_free()
 	
@@ -170,11 +186,16 @@ func final_pass_turn() -> void:
 
 ## signal functions
 func _on_atk_pressed() -> void:
-	# in reality it's a lot more complicated than this, but whatever
-	$RootGame/BattleScreen/Charas/Player.intended_action = Callable(current_player, "attack")
+	
+	# the player's action is attack
+	# if there's only one enemy, it just sets the victim to be that enemy
+	# otherwise we need to select an enemy
+	
+	current_player.intended_action = Callable(current_player, "attack")
 	if Enemies.get_child_count() > 1:
 		var selector = ENEMY_SELECTION.instantiate()
 		selector.connect("pressed", select_enemy)
+		selector.call_deferred("grab_focus")
 		
 		current_enemy = Enemies.get_child(0)
 		current_enemy.add_child(selector)
@@ -184,13 +205,26 @@ func _on_atk_pressed() -> void:
 		current_player.action_victim = current_enemy
 		player_pass_turn()
 func _on_dfd_pressed() -> void:
-	$RootGame/BattleScreen/Charas/Player.intended_action = Callable(current_player, "defend")
+	current_player.intended_action = Callable(current_player, "defend")
 	player_pass_turn()
 func _on_itm_pressed() -> void:
 	player_pass_turn()
 func _on_bak_pressed() -> void:
 	back_action.call()
 
-# animation-only functions
+# animation-only functions (whoops that's not true anymore)
 func player_pass_turn() -> void:
-	Animate.play("playerPassTurn")
+	
+	# check if the current player is the last in order
+	# if: they are, end the turn
+	# else: go to the next player and get their action
+	
+	if current_player == Charas.get_child(-1):
+		
+		#for action in Actions.get_children():
+			#action.disabled = true
+		
+		Animate.play("playerPassTurn")
+	else:
+		turn = TURN_TYPE.PLAYER
+		current_player = Charas.get_child(current_player.get_index() + 1)

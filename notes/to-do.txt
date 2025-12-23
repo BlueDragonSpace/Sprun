@@ -1,16 +1,23 @@
 
 Forking forks of frok fkro frok amok bok
 
-https://lonebot.itch.io/make-it-juicy
-
 1:
-	Player orbs surrounding
+	Multiple Players!!!!:
+		Player choosing differnt actions
+		Enemy choosing different players
+	Information Bar (above actions, what does an action do?)
+	Action Selection Bar
 2:
-	huh
+	Orb system
+	Death
+	Enemy Waves
 3:
-	wuh
+	Character Select Screen
+	Right-click to tab (when in mouse mode)
+	Litle dialogue things
 4: 
-	uh-huh
+	art and music lol
+	https://lonebot.itch.io/make-it-juicy
 
 
 Turn sections:
@@ -21,5 +28,22 @@ Turn sections:
 		The Rest (by the timeline)
 	End
 
+Test the selection system a little longer (add multiple enemies)
+
 Refactoring: Animation tracks don't worry about unresolvable tracks (the NPC's animate node has a track for Enemy intent, but Player doesn't have intent and doesn't need the track)
 Make HP changing set by a tween
+
+
+
+
+
+
+
+
+
+Noot noot:
+	When double player defend:
+		On first player's turn, second player defends
+		On second player's turn, neither player does anything
+	
+	likely due to only one intended action being tracked
