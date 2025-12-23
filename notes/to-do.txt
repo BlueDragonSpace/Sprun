@@ -36,6 +36,7 @@ Make HP changing set by a tween
 
 Current Additions:
 	Multiple player actions
+	Info Bar (Character icon + text) above actions
 
 
 

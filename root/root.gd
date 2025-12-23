@@ -112,6 +112,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				
 			var selector = ENEMY_SELECTION.instantiate()
 			selector.connect("pressed", select_enemy)
+			selector.text = ''
+			selector.info = current_enemy.name
 			selector.call_deferred("grab_focus")
 			current_enemy.add_child(selector)
 
@@ -203,6 +205,8 @@ func _on_atk_pressed() -> void:
 	current_player.intended_action = Callable(current_player, "attack")
 	if Enemies.get_child_count() > 1:
 		var selector = ENEMY_SELECTION.instantiate()
+		selector.text = ''
+		selector.info = current_enemy.name
 		selector.connect("pressed", select_enemy)
 		selector.call_deferred("grab_focus")
 		
@@ -239,3 +243,4 @@ func player_pass_turn() -> void:
 	else:
 		turn = TURN_TYPE.PLAYER
 		current_player = Charas.get_child(current_player.get_index() + 1)
+		button_info(current_player.name + " probably has issues")
