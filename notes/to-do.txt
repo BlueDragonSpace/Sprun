@@ -2,9 +2,6 @@
 Forking forks of frok fkro frok amok bok
 
 1:
-	Multiple Players!!!!:
-		Player choosing differnt actions
-		Enemy choosing different players
 	Information Bar (above actions, what does an action do?)
 	Action Selection Bar
 2:
@@ -37,13 +34,9 @@ Make HP changing set by a tween
 
 
 
+Current Additions:
+	Multiple player actions
 
 
 
-
-Noot noot:
-	When double player defend:
-		On first player's turn, second player defends
-		On second player's turn, neither player does anything
-	
-	likely due to only one intended action being tracked
+Noot noot

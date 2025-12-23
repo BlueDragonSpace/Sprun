@@ -4,6 +4,8 @@ extends Control
 @onready var Actions: HBoxContainer = $RootGame/LowerBar/VBoxContainer/Actions
 @onready var BAK: Button = $RootGame/LowerBar/VBoxContainer/Actions/BAK
 @onready var LittlePlayerIcon: TextureRect = $RootGame/LowerBar/VBoxContainer/InfoBar/LittlePlayerIcon
+@onready var ActionInfo: Label = $RootGame/LowerBar/VBoxContainer/InfoBar/ActionInfo
+
 
 @onready var Animate: AnimationPlayer = $Animate
 
@@ -36,7 +38,6 @@ enum TURN_TYPE {PLAYER, SELECT_ENEMY, MIDDLE, END, TRANSITION}
 	set(new):
 		match(new):
 			TURN_TYPE.PLAYER:
-				current_player = Charas.get_child(0)
 				for action in Actions.get_children():
 					action.disabled = false
 				BAK.disabled = true
@@ -72,7 +73,10 @@ var current_round = 0:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	button_info("A last stand.")
 	current_player = Charas.get_child(0)
+	
+	BAK.disabled = true
 	
 	NoiseBackground.texture.noise.seed = randi()
 	call_deferred("set_turn_order")
@@ -170,6 +174,9 @@ func middle_round_loop() -> void:
 		final_pass_turn()
 
 func final_pass_turn() -> void:
+	button_info("wow it's ur turn nerd")
+	current_player = Charas.get_child(0)
+	
 	set_enemies_intents()
 	set_turn_order()
 	Animate.play("to_player")
@@ -185,6 +192,8 @@ func final_pass_turn() -> void:
 	current_turn = 0
 
 ## signal functions
+func _on_bak_pressed() -> void:
+	back_action.call()
 func _on_atk_pressed() -> void:
 	
 	# the player's action is attack
@@ -209,8 +218,10 @@ func _on_dfd_pressed() -> void:
 	player_pass_turn()
 func _on_itm_pressed() -> void:
 	player_pass_turn()
-func _on_bak_pressed() -> void:
-	back_action.call()
+
+# technically a signal function... to change the info when for focus and mouse_entering
+func button_info(new_info: String) -> void:
+	ActionInfo.text = new_info
 
 # animation-only functions (whoops that's not true anymore)
 func player_pass_turn() -> void:
