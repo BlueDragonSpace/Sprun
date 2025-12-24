@@ -8,7 +8,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="FoldableContainer2" type="TabContainer" parent="."]
+[node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,12 +19,12 @@ tab_alignment = 1
 current_tab = 0
 drag_to_rearrange_enabled = true
 
-[node name="Button" type="Button" parent="FoldableContainer2"]
+[node name="Button" type="Button" parent="TabContainer"]
 layout_mode = 2
 text = "I'm button"
 metadata/_tab_index = 0
 
-[node name="NotButton" type="Label" parent="FoldableContainer2"]
+[node name="NotButton" type="Label" parent="TabContainer"]
 visible = false
 layout_mode = 2
 text = "This isn't a button nerd"
@@ -32,22 +32,22 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_tab_index = 1
 
-[node name="Button2" type="HBoxContainer" parent="FoldableContainer2"]
+[node name="Button2" type="HBoxContainer" parent="TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Button" type="Button" parent="FoldableContainer2/Button2"]
+[node name="Button" type="Button" parent="TabContainer/Button2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Sooper button"
 
-[node name="Button2" type="Button" parent="FoldableContainer2/Button2"]
+[node name="Button2" type="Button" parent="TabContainer/Button2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "I'm cooler tho"
 
-[node name="Button3" type="Button" parent="FoldableContainer2"]
+[node name="Button3" type="Button" parent="TabContainer"]
 visible = false
 layout_mode = 2
 text = "Woah I'm button too"

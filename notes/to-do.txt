@@ -37,6 +37,7 @@ Make HP changing set by a tween
 
 Tips:
 	Hey you can rearrange the tabs on the Action Bar (thanks Godot!)
+	Actions don't have to spend as much as they cost!!!! (Takes 5 to use it, but spends only 1 sprun instead!)
 
 
 Current Additions:

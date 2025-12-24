@@ -47,49 +47,27 @@ shader_parameter/angle = 45.0000021375
 
 [sub_resource type="Animation" id="Animation_5jge4"]
 length = 0.001
-tracks/0/type = "bezier"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RootGame/LowerBar:size_flags_stretch_ratio")
+tracks/0/path = NodePath(".:turn")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.25, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:turn")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
 }
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("RootGame/LowerBar/VBoxContainer:position:x")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RootGame/LowerBar:size_flags_stretch_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("RootGame/LowerBar/VBoxContainer:position:y")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0.25, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 
@@ -115,109 +93,54 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_gj8ci"]
 resource_name = "playerPassTurn"
-tracks/0/type = "bezier"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RootGame/LowerBar:size_flags_stretch_ratio")
+tracks/0/path = NodePath(".:turn")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0.25, -0.25, 0, 0.25, 0, 0, -0.16666667, 0.02, 0, 0),
-"times": PackedFloat32Array(0, 0.5)
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:turn")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [4, 2]
 }
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("RootGame/LowerBar/VBoxContainer:position:x")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("RootGame/LowerBar/VBoxContainer:position:y")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RootGame/LowerBar:size_flags_stretch_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.25, -0.25, 0, 0.25, 0, 0.01, -0.16666667, 0.04, 0, 0),
+"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="Animation" id="Animation_0n2s5"]
 resource_name = "to_player"
-tracks/0/type = "bezier"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RootGame/LowerBar:size_flags_stretch_ratio")
+tracks/0/path = NodePath(".:turn")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.16666667, 0.02, 0, 0, 0.25, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.5, 0.96666664)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("RootGame/LowerBar/VBoxContainer/Actions:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(6, -0.019999992, -1.4166667, 0, 0, -2.5, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.66)
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:turn")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [3, 0]
 }
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("RootGame/LowerBar/VBoxContainer/Actions:size:x")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1200.4001, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("RootGame/LowerBar/VBoxContainer/Actions:size:y")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(48.5, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RootGame/LowerBar:size_flags_stretch_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.01, -0.25, 0, 0.25, 0, 0.25, -0.16666667, -0.04, 0, 0),
+"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y3dhr"]
@@ -303,14 +226,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="Player3" parent="RootGame/BattleScreen/Charas" instance=ExtResource("3_gj8ci")]
+[node name="Xiyichi" parent="RootGame/BattleScreen/Charas" instance=ExtResource("3_gj8ci")]
 layout_mode = 2
+sprun_active = 0
 icon = ExtResource("5_y3dhr")
 max_hp = 30
 attackStat = 7
 
-[node name="Player2" parent="RootGame/BattleScreen/Charas" instance=ExtResource("3_gj8ci")]
+[node name="Lucar" parent="RootGame/BattleScreen/Charas" instance=ExtResource("3_gj8ci")]
 layout_mode = 2
+sprun_active = 0
 icon = ExtResource("4_y3dhr")
 max_hp = 30
 attackStat = 7
@@ -367,7 +292,7 @@ size_flags_stretch_ratio = 0.14
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.14
+size_flags_stretch_ratio = 0.08
 
 [node name="LowerBar" type="Panel" parent="RootGame"]
 layout_mode = 2
@@ -379,7 +304,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 44.0
+offset_bottom = 1.5258789e-05
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -399,27 +324,53 @@ size_flags_vertical = 1
 text = "I love to talk about info. Especially what each move does. But it doesn't function rn sry."
 vertical_alignment = 1
 
-[node name="Actions" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer"]
+[node name="Actions" type="TabContainer" parent="RootGame/LowerBar/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+current_tab = 3
 
-[node name="BAK" parent="RootGame/LowerBar/VBoxContainer/Actions" instance=ExtResource("10_th5d7")]
+[node name="BackButton" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="BAK" parent="RootGame/LowerBar/VBoxContainer/Actions/BackButton" instance=ExtResource("10_th5d7")]
 layout_mode = 2
 text = "BAK
 "
 info = "Go back."
 
-[node name="ATK" parent="RootGame/LowerBar/VBoxContainer/Actions" instance=ExtResource("10_th5d7")]
+[node name="Attack" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ATK" parent="RootGame/LowerBar/VBoxContainer/Actions/Attack" instance=ExtResource("10_th5d7")]
 layout_mode = 2
 text = "ATK"
 info = "Not a friendly"
 
-[node name="DFD" parent="RootGame/LowerBar/VBoxContainer/Actions" instance=ExtResource("10_th5d7")]
+[node name="BigATK" parent="RootGame/LowerBar/VBoxContainer/Actions/Attack" instance=ExtResource("10_th5d7")]
+layout_mode = 2
+text = "BigATK"
+info = "MoreDamaging Attack Costs a sprun"
+sprun_cost = 1
+
+[node name="Defend" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="DFD" parent="RootGame/LowerBar/VBoxContainer/Actions/Defend" instance=ExtResource("10_th5d7")]
 layout_mode = 2
 text = "DFD"
 info = "Unpunch ur self"
 
-[node name="ITM" parent="RootGame/LowerBar/VBoxContainer/Actions" instance=ExtResource("10_th5d7")]
+[node name="Other" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="ITM" parent="RootGame/LowerBar/VBoxContainer/Actions/Other" instance=ExtResource("10_th5d7")]
 layout_mode = 2
 text = "ITM"
 info = "Do an item uwu"
@@ -434,7 +385,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ChromaticAberation" type="ColorRect" parent="Shaders"]
-visible = false
 material = SubResource("ShaderMaterial_gj8ci")
 layout_mode = 1
 anchors_preset = 15
@@ -470,7 +420,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_y3dhr")
 }
 
-[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/BAK" to="." method="_on_bak_pressed"]
-[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/ATK" to="." method="_on_atk_pressed"]
-[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/DFD" to="." method="_on_dfd_pressed"]
-[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/ITM" to="." method="_on_itm_pressed"]
+[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/BackButton/BAK" to="." method="_on_bak_pressed"]
+[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/Attack/ATK" to="." method="_on_atk_pressed"]
+[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/Attack/BigATK" to="." method="_on_big_atk_pressed"]
+[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/Defend/DFD" to="." method="_on_dfd_pressed"]
+[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/Other/ITM" to="." method="_on_itm_pressed"]

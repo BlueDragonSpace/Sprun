@@ -1,8 +1,8 @@
 extends Control
 
 @onready var NoiseBackground: TextureRect = $NoiseBackground
-@onready var Actions: HBoxContainer = $RootGame/LowerBar/VBoxContainer/Actions
-@onready var BAK: Button = $RootGame/LowerBar/VBoxContainer/Actions/BAK
+@onready var Actions: TabContainer = $RootGame/LowerBar/VBoxContainer/Actions
+@onready var BAK: Button = $RootGame/LowerBar/VBoxContainer/Actions/BackButton/BAK
 @onready var LittlePlayerIcon: TextureRect = $RootGame/LowerBar/VBoxContainer/InfoBar/LittlePlayerIcon
 @onready var ActionInfo: Label = $RootGame/LowerBar/VBoxContainer/InfoBar/ActionInfo
 
@@ -38,12 +38,11 @@ enum TURN_TYPE {PLAYER, SELECT_ENEMY, MIDDLE, END, TRANSITION}
 	set(new):
 		match(new):
 			TURN_TYPE.PLAYER:
-				for action in Actions.get_children():
-					action.disabled = false
+				disable_all_actions(false)
 				BAK.disabled = true
+				check_cost_all_actions(current_player.sprun_active)
 			TURN_TYPE.SELECT_ENEMY:
-				for action in Actions.get_children():
-					action.disabled = true
+				disable_all_actions(true)
 				BAK.disabled = false
 				back_action = func(): 
 					turn = TURN_TYPE.PLAYER
@@ -75,6 +74,7 @@ var current_round = 0:
 func _ready() -> void:
 	button_info("A last stand.")
 	current_player = Charas.get_child(0)
+	check_cost_all_actions(current_player.sprun_active)
 	
 	BAK.disabled = true
 	
@@ -119,12 +119,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # custom functions
 
-func middle_animation_constant() -> void:
-	# constant, in the sense that this function is constant, while the mid animation action is not
-	mid_animation_action.call()
-	mid_animation_action = func(): pass #resets the action to be nothing afterward
-	#intended for use with lambda functions, in the middle of an animation
-
 func set_enemies_intents() -> void:
 	for enemy in Enemies.get_children():
 		enemy.intent = randi_range(0,0) #currently only sets to attack
@@ -167,6 +161,28 @@ func select_enemy() -> void:
 	
 	player_pass_turn()
 
+func disable_all_actions(boolean: bool) -> void:
+	for container in Actions.get_children():
+		for action in container.get_children():
+			action.disabled = boolean
+
+func check_cost_all_actions(sprun: int) -> void:
+	
+	print('checked cost for ' + current_player.name)
+	print('sprun: ' + str(sprun))
+	print('---------')
+	
+	for container in Actions.get_children():
+		for action in container.get_children():
+			action.check_cost(sprun)
+
+## turn focussed functions
+func middle_animation_constant() -> void:
+	# constant, in the sense that this function is constant, while the mid animation action is not
+	mid_animation_action.call()
+	mid_animation_action = func(): pass #resets the action to be nothing afterward
+	#intended for use with lambda functions, in the middle of an animation
+
 func middle_round_loop() -> void:
 	if current_turn < turn_order_data.size():
 		mid_animation_action = turn_order_data[current_turn][3]
@@ -193,16 +209,12 @@ func final_pass_turn() -> void:
 	
 	current_turn = 0
 
-## signal functions
-func _on_bak_pressed() -> void:
-	back_action.call()
-func _on_atk_pressed() -> void:
-	
-	# the player's action is attack
-	# if there's only one enemy, it just sets the victim to be that enemy
-	# otherwise we need to select an enemy
-	
-	current_player.intended_action = Callable(current_player, "attack")
+
+# technically a signal function... to change the info when for focus and mouse_entering
+func button_info(new_info: String) -> void:
+	ActionInfo.text = new_info
+
+func initiate_select_enemy() -> void:
 	if Enemies.get_child_count() > 1:
 		var selector = ENEMY_SELECTION.instantiate()
 		selector.text = ''
@@ -217,18 +229,8 @@ func _on_atk_pressed() -> void:
 	else:
 		current_player.action_victim = current_enemy
 		player_pass_turn()
-func _on_dfd_pressed() -> void:
-	current_player.intended_action = Callable(current_player, "defend")
-	player_pass_turn()
-func _on_itm_pressed() -> void:
-	current_player.intended_action = Callable(current_player, "focus")
-	player_pass_turn()
 
-# technically a signal function... to change the info when for focus and mouse_entering
-func button_info(new_info: String) -> void:
-	ActionInfo.text = new_info
-
-# animation-only functions (whoops that's not true anymore)
+# whenever each character passes their turn (and for the final character pass)
 func player_pass_turn() -> void:
 	
 	# check if the current player is the last in order
@@ -240,4 +242,30 @@ func player_pass_turn() -> void:
 	else:
 		turn = TURN_TYPE.PLAYER
 		current_player = Charas.get_child(current_player.get_index() + 1)
+		check_cost_all_actions(current_player.sprun_active)
 		button_info(current_player.name + " probably has issues")
+		BAK.disabled = true
+
+## signal functions
+func _on_bak_pressed() -> void:
+	back_action.call()
+func _on_atk_pressed() -> void:
+	
+	# the player's action is attack
+	# if there's only one enemy, it just sets the victim to be that enemy
+	# otherwise we need to select an enemy
+	
+	current_player.intended_action = Callable(current_player, "attack")
+	initiate_select_enemy()
+func _on_dfd_pressed() -> void:
+	current_player.intended_action = Callable(current_player, "defend")
+	player_pass_turn()
+func _on_itm_pressed() -> void:
+	current_player.intended_action = Callable(current_player, "focus")
+	player_pass_turn()
+func _on_big_atk_pressed() -> void:
+	
+	## ugghghghhghghghghghg big attack is an attack so it needs to select
+	
+	current_player.intended_action = Callable(current_player, "big_attack")
+	initiate_select_enemy()
