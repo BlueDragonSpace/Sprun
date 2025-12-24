@@ -9,6 +9,7 @@ script = ExtResource("2_v55o0")
 sprun_slots = 3
 sprun_container_angle = 135
 sprun_distance = 100
+sprun_active = 1
 defendStat = 6
 icon = null
 speedStat = 5

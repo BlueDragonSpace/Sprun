@@ -221,6 +221,7 @@ func _on_dfd_pressed() -> void:
 	current_player.intended_action = Callable(current_player, "defend")
 	player_pass_turn()
 func _on_itm_pressed() -> void:
+	current_player.intended_action = Callable(current_player, "focus")
 	player_pass_turn()
 
 # technically a signal function... to change the info when for focus and mouse_entering
@@ -235,10 +236,6 @@ func player_pass_turn() -> void:
 	# else: go to the next player and get their action
 	
 	if current_player == Charas.get_child(-1):
-		
-		#for action in Actions.get_children():
-			#action.disabled = true
-		
 		Animate.play("playerPassTurn")
 	else:
 		turn = TURN_TYPE.PLAYER

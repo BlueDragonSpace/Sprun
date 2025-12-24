@@ -2,17 +2,21 @@
 Forking forks of frok fkro frok amok bok
 
 1:
-	Information Bar (above actions, what does an action do?)
+	Orb system
 	Action Selection Bar
 2:
-	Orb system
+	
 	Death
 	Enemy Waves
 3:
+	Levelling System
 	Character Select Screen
+	Increase Speed of Play (like Balatro)
+	Aggro Drawing (90% chance or so?)
 	Right-click to tab (when in mouse mode)
 	Litle dialogue things
 4: 
+	Top Level UI Tweening (TurnMarker)
 	art and music lol
 	https://lonebot.itch.io/make-it-juicy
 
@@ -31,7 +35,8 @@ Refactoring: Animation tracks don't worry about unresolvable tracks (the NPC's a
 Make HP changing set by a tween
 
 
-
+Tips:
+	Hey you can rearrange the tabs on the Action Bar (thanks Godot!)
 
 
 Current Additions:
