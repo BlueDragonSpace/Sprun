@@ -22,6 +22,11 @@ var current_hp: int = max_hp:
 
 @export var attackStat : int = 3
 
+# bad code: is it Npc or Character!
+# and worst of all: Characters are contolled by Player, meaning that they are literal PCs instead of NPCs
+enum CHARACTER_TYPE {ENEMY, PLAYER, NUHUH}
+var npc_type = CHARACTER_TYPE.NUHUH # this class isn't intended to be used on it's own...
+
 var current_defense : int = 0:
 	set(new):
 		$VBoxContainer/LowerBar/Shield/ShieldNum.text = str(new)
@@ -63,7 +68,7 @@ func do_intended_action() -> void:
 	current_defense = 0
 	
 	intended_action.call()
-
+ 
 func take_damage(damage) -> void:
 	if current_defense > 0:
 		var undefended_damage = damage - current_defense

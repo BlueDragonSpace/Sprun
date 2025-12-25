@@ -230,7 +230,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Xiyichi" parent="RootGame/BattleScreen/Charas" instance=ExtResource("3_gj8ci")]
 layout_mode = 2
 icon = ExtResource("5_y3dhr")
-max_hp = 30
+max_hp = 15
 attackStat = 7
 
 [node name="Lucar" parent="RootGame/BattleScreen/Charas" instance=ExtResource("3_gj8ci")]

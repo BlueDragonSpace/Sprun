@@ -196,15 +196,24 @@ func remove_dead_actions(dead: Node) -> void:
 				print('what the hell')
 				print('action victim is dead, but container is not a Node or Array')
 	
-	# will this cause an issue? maybe
-	# solves the error that the current_enemy is freed on next read tho
-	if current_enemy == Enemies.get_child(0) and Enemies.get_child_count() > 1:
-		current_enemy = Enemies.get_child(1)
-	elif Enemies.get_child_count() > 0:
-		current_enemy = Enemies.get_child(0)
-	else:
-		current_enemy = null
-	print(current_enemy.name + " is the new current enemy after death of another")
+	match(dead.npc_type):
+		dead.CHARACTER_TYPE.ENEMY:
+			# solves the error that the current_enemy is freed on next read tho
+			if dead == Enemies.get_child(0) and Enemies.get_child_count() > 1:
+				current_enemy = Enemies.get_child(1)
+			elif Enemies.get_child_count() > 0:
+				current_enemy = Enemies.get_child(0)
+			else:
+				current_enemy = null
+		dead.CHARACTER_TYPE.PLAYER:
+				# solves the error that the current_enemy is freed on next read tho
+			if dead == Charas.get_child(0) and Charas.get_child_count() > 1:
+				current_player = Charas.get_child(1)
+			elif Enemies.get_child_count() > 0:
+				current_player = Charas.get_child(0)
+			else:
+				current_player = null
+			print(current_player.name + " is the new current player")
 
 ## turn focussed functions
 func middle_animation_constant() -> void:

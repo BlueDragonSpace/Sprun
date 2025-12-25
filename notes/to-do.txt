@@ -2,7 +2,7 @@
 Forking forks of frok fkro frok amok bok
 
 1:
-	
+	Pointer on timeline for current action
 2:
 	Death:
 		Actually animating queue_free()

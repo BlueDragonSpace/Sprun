@@ -11,6 +11,8 @@ const SPRUN = preload("uid://b6wgjet502thq")
 @onready var sprun_container: Control = $VBoxContainer/Icon/SprunContainer
 
 func add_ready() -> void:
+	npc_type = CHARACTER_TYPE.PLAYER
+	
 	for slot in range(0, sprun_slots):
 		var sprun = SPRUN.instantiate()
 		

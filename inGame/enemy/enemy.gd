@@ -21,6 +21,7 @@ enum INTENTS {ATTACK, DEFEND, HEAL, BUFF, DEBUFF, UNKNOWN}
 		intent = new
 
 func add_ready() -> void:
+	npc_type = CHARACTER_TYPE.ENEMY
 	intent = INTENTS.ATTACK
 
 func set_intended_action(victim: Node) -> void:
