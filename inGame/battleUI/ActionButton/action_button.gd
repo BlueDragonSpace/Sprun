@@ -3,7 +3,7 @@ extends Button
 # info for the info bar
 @export var info: String = 'default text... uwu'
 
-@onready var root = get_tree().get_current_scene()
+@onready var Root = get_tree().get_current_scene()
 
 @export var sprun_cost = 0
 
@@ -14,7 +14,7 @@ func check_cost(sprun: int) -> void:
 		disabled = true
 
 func send_info() -> void:
-	root.button_info(info)
+	Root.button_info(info)
 
 func _on_focus_entered() -> void:
 	send_info()

@@ -1,6 +1,7 @@
 extends Control
 
-# non-tool
+@onready var Root = get_tree().get_current_scene()
+
 @onready var Icon: TextureRect = $VBoxContainer/Icon
 @onready var HP: TextureProgressBar = $VBoxContainer/LowerBar/HP
 @onready var CurrentHp: Label = $VBoxContainer/LowerBar/HP/HPBar/CurrentHP
@@ -29,6 +30,8 @@ var current_defense : int = 0:
 var intended_action = Callable(Global, "empty_function")
 var action_victim : Node
 
+var is_dead = false
+
 func _ready() -> void:
 	current_hp = max_hp
 	visual_hp(current_hp)
@@ -39,7 +42,6 @@ func _ready() -> void:
 	Icon.texture = icon
 	
 	add_ready()
-
 # this function is meant to be added on to the ready function, by children, so they don't have to redefine ready
 func add_ready() -> void:
 	pass
@@ -71,4 +73,15 @@ func take_damage(damage) -> void:
 			Animate.play("take_hit")
 	else:
 		current_hp -= damage
+		
+		if current_hp <= 0:
+			die()
 		Animate.play("take_hit")
+
+
+func die() -> void:
+	# you can only die once
+	if is_dead == false:
+		is_dead = true
+		Root.remove_dead_actions(self)
+		Animate.call_deferred("play", "die")

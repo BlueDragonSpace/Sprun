@@ -29,7 +29,7 @@ func set_intended_action(victim: Node) -> void:
 	intended_action = Callable(self, "attack")
 	action_victim = victim
 
-func attack():
+func attack() -> void:
 	action_victim.take_damage(attackStat + random_offset)
 	random_offset = 0
 	speedStat = randi_range(1, 10)

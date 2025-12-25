@@ -2,11 +2,12 @@
 Forking forks of frok fkro frok amok bok
 
 1:
-	Orb system
-	Action Selection Bar
-2:
 	
-	Death
+2:
+	Death:
+		Actually animating queue_free()
+		Cancel all moves related to the dead
+		Moves that go toward the dead (don't take effect) [however, multiple target moves]
 	Enemy Waves
 3:
 	Levelling System
@@ -38,12 +39,6 @@ Make HP changing set by a tween
 Tips:
 	Hey you can rearrange the tabs on the Action Bar (thanks Godot!)
 	Actions don't have to spend as much as they cost!!!! (Takes 5 to use it, but spends only 1 sprun instead!)
-
-
-Current Additions:
-	Multiple player actions
-	Info Bar (Character icon + text) above actions
-
 
 
 Noot noot

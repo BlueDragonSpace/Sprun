@@ -13,7 +13,7 @@ var current_player = null:
 	set(new):
 		LittlePlayerIcon.texture = new.icon
 		current_player = new
-@onready var current_enemy = $RootGame/BattleScreen/Enemies/Enemy
+var current_enemy = null
 
 @onready var Charas: VBoxContainer = $RootGame/BattleScreen/Charas
 @onready var Enemies: VBoxContainer = $RootGame/BattleScreen/Enemies
@@ -74,6 +74,7 @@ var current_round = 0:
 func _ready() -> void:
 	button_info("A last stand.")
 	current_player = Charas.get_child(0)
+	current_enemy = Enemies.get_child(0)
 	check_cost_all_actions(current_player.sprun_active)
 	
 	BAK.disabled = true
@@ -168,13 +169,42 @@ func disable_all_actions(boolean: bool) -> void:
 
 func check_cost_all_actions(sprun: int) -> void:
 	
-	print('checked cost for ' + current_player.name)
-	print('sprun: ' + str(sprun))
-	print('---------')
-	
 	for container in Actions.get_children():
 		for action in container.get_children():
 			action.check_cost(sprun)
+
+func remove_dead_actions(dead: Node) -> void:
+	# gets called by npc whenever it dies
+	
+	# for reference of turn_order_data: speed_stat, icon, node_path, action
+	
+	# if the character that initiated the action is dead, remove action
+	for num in range(current_turn + 1, turn_order_data.size() - 1): # Wow! A regular for loop!
+		if turn_order_data[num][2] == dead:
+			turn_order_data.remove_at(num)
+	
+	# for all that are left, if the character that initiated the action is targeting the dead, remove it
+	for num in range(current_turn + 1, turn_order_data.size() - 1):
+		if turn_order_data[num][2].action_victim == dead:
+			if turn_order_data[num][2].action_victim is Node:
+				turn_order_data.remove_at(num)
+				# you know, this never actually seems to happen...
+				print('removed dead victim action')
+			elif turn_order_data[num][2].action_victim is Array:
+				print('action_victim is array but I havent done that yet')
+			else:
+				print('what the hell')
+				print('action victim is dead, but container is not a Node or Array')
+	
+	# will this cause an issue? maybe
+	# solves the error that the current_enemy is freed on next read tho
+	if current_enemy == Enemies.get_child(0) and Enemies.get_child_count() > 1:
+		current_enemy = Enemies.get_child(1)
+	elif Enemies.get_child_count() > 0:
+		current_enemy = Enemies.get_child(0)
+	else:
+		current_enemy = null
+	print(current_enemy.name + " is the new current enemy after death of another")
 
 ## turn focussed functions
 func middle_animation_constant() -> void:
@@ -208,7 +238,6 @@ func final_pass_turn() -> void:
 	current_round += 1
 	
 	current_turn = 0
-
 
 # technically a signal function... to change the info when for focus and mouse_entering
 func button_info(new_info: String) -> void:

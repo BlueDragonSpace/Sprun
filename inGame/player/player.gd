@@ -57,7 +57,7 @@ func big_attack():
 	# plus it opens up the possibility to make a cheaper attack or decrease later on
 	set_sprun(sprun_active - 1)
 	
-	action_victim.take_damage(int(attackStat * 1.5))
+	action_victim.take_damage(int(attackStat * 2.5))
 	Animate.play("attack")
 
 
