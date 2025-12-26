@@ -122,14 +122,15 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func set_enemies_intents() -> void:
 	for enemy in Enemies.get_children():
-		enemy.intent = randi_range(0,0) #currently only sets to attack
-		var tween = create_tween()
-		# makes the Intent visible again
-		# it's worth noting that "Intent" and "intent" are two completely separate things
-			#I capitalize NodePaths, and make variables lowercase...
-		tween.tween_property(enemy.Intent, "modulate", Color(1.0,1.0,1.0,1.0),1.0)
-		
-		enemy.set_intended_action(current_player)
+		if enemy.is_dead == false:
+			enemy.intent = randi_range(0,0) #currently only sets to attack
+			var tween = create_tween()
+			# makes the Intent visible again
+			# it's worth noting that "Intent" and "intent" are two completely separate things
+				#I capitalize NodePaths, and make variables lowercase...
+			tween.tween_property(enemy.Intent, "modulate", Color(1.0,1.0,1.0,1.0),1.0)
+			
+			enemy.set_intended_action(current_player)
 
 func set_turn_order() -> void:
 	## sorts the Turn Order
@@ -141,10 +142,12 @@ func set_turn_order() -> void:
 	
 	
 	for enemy in Enemies.get_children():
-		turn_order_data.push_back([enemy.speedStat, enemy.Icon.texture, enemy, Callable(enemy, "do_intended_action")])
+		if enemy.is_dead == false:
+			turn_order_data.push_back([enemy.speedStat, enemy.Icon.texture, enemy, Callable(enemy, "do_intended_action")])
 	# wonder if there is a such thing as a shared for loop..?
 	for character in Charas.get_children():
-		turn_order_data.push_back([character.speedStat, character.Icon.texture,character, Callable(character, "do_intended_action")])
+		if character.is_dead == false:
+			turn_order_data.push_back([character.speedStat, character.Icon.texture,character, Callable(character, "do_intended_action")])
 	
 	#as it turns out, Godot's sort method will sort by the first element of each array in a nested array
 	# which makes life a whole lot easier than doing custom_sort()
@@ -175,45 +178,71 @@ func check_cost_all_actions(sprun: int) -> void:
 
 func remove_dead_actions(dead: Node) -> void:
 	# gets called by npc whenever it dies
-	
 	# for reference of turn_order_data: speed_stat, icon, node_path, action
 	
-	# if the character that initiated the action is dead, remove action
-	for num in range(current_turn + 1, turn_order_data.size() - 1): # Wow! A regular for loop!
-		if turn_order_data[num][2] == dead:
-			turn_order_data.remove_at(num)
+	print('the dead is ' + dead.name)
 	
-	# for all that are left, if the character that initiated the action is targeting the dead, remove it
-	for num in range(current_turn + 1, turn_order_data.size() - 1):
+	var num = current_turn
+	
+	# evaluated inside of a while loop so it dynamically changes the length of the loop while inside of it
+	while num < turn_order_data.size():
+		print(turn_order_data[num][2].name + " monitoriing---")
+		
+		if turn_order_data[num][2] == dead:
+			print(turn_order_data[num][2].name + " is dead, removing their actions")
+			turn_order_data.remove_at(num)
+			continue # if we remove the action at this point in the array, we need to re-read what this current action is, since all items forward are pushed back one, menaing the current action is new in this current index
+			
+		#print(turn_order_data[num][2].name + " is targeting " + turn_order_data[num][2].action_victim.name)
 		if turn_order_data[num][2].action_victim == dead:
 			if turn_order_data[num][2].action_victim is Node:
 				turn_order_data.remove_at(num)
 				# you know, this never actually seems to happen...
 				print('removed dead victim action')
+				continue
 			elif turn_order_data[num][2].action_victim is Array:
 				print('action_victim is array but I havent done that yet')
 			else:
 				print('what the hell')
 				print('action victim is dead, but container is not a Node or Array')
+				
+		
+		num += 1 # progress the loop
+		
 	
 	match(dead.npc_type):
 		dead.CHARACTER_TYPE.ENEMY:
 			# solves the error that the current_enemy is freed on next read tho
-			if dead == Enemies.get_child(0) and Enemies.get_child_count() > 1:
-				current_enemy = Enemies.get_child(1)
-			elif Enemies.get_child_count() > 0:
-				current_enemy = Enemies.get_child(0)
-			else:
-				current_enemy = null
+			
+			var total_wave_kill = true
+			
+			for loop in Enemies.get_child_count():
+				if Enemies.get_child(loop).is_dead == false:
+					total_wave_kill = false
+					current_enemy = Enemies.get_child(loop)
+					break
+			
+			if total_wave_kill:
+				print("successfully made them begone of this world")
+				get_tree().quit()
+			
+			print(current_enemy.name + " is the new current enemy")
 		dead.CHARACTER_TYPE.PLAYER:
-				# solves the error that the current_enemy is freed on next read tho
-			if dead == Charas.get_child(0) and Charas.get_child_count() > 1:
-				current_player = Charas.get_child(1)
-			elif Enemies.get_child_count() > 0:
-				current_player = Charas.get_child(0)
-			else:
-				current_player = null
-			print(current_player.name + " is the new current player")
+			
+			var total_party_kill = true
+			
+			for loop in Charas.get_child_count():
+				if Charas.get_child(loop).is_dead == false:
+					total_party_kill = false
+					current_player = Charas.get_child(loop)
+					break
+			
+			if total_party_kill:
+				print("The entire party lost the will to continue.")
+				get_tree().quit()
+			
+			print(current_player.name + "is the new current player")
+	print("-----------------------")
 
 ## turn focussed functions
 func middle_animation_constant() -> void:
@@ -232,7 +261,11 @@ func middle_round_loop() -> void:
 
 func final_pass_turn() -> void:
 	button_info("wow it's ur turn nerd")
-	current_player = Charas.get_child(0)
+	
+	for num in range(0, Charas.get_child_count()):
+		if Charas.get_child(num).is_dead == false:
+			current_player = Charas.get_child(num)
+		break
 	
 	set_enemies_intents()
 	set_turn_order()
@@ -245,8 +278,6 @@ func final_pass_turn() -> void:
 	
 	current_turn = 0
 	current_round += 1
-	
-	current_turn = 0
 
 # technically a signal function... to change the info when for focus and mouse_entering
 func button_info(new_info: String) -> void:
