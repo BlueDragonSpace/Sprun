@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d3wbwxma2hkqm"]
+[gd_scene load_steps=27 format=3 uid="uid://d3wbwxma2hkqm"]
 
 [ext_resource type="Theme" uid="uid://cyy1ccrel07nx" path="res://root/root.tres" id="1_vvh5c"]
 [ext_resource type="Script" uid="uid://dpipac1vlx4vl" path="res://root/root.gd" id="2_jnlp7"]
@@ -12,7 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="7_th5d7"]
 [ext_resource type="Shader" uid="uid://dftiegl3xn8fh" path="res://shaders/pixelizer.gdshader" id="8_gj8ci"]
 [ext_resource type="Shader" uid="uid://bo0lvrtc1mrha" path="res://shaders/rainbows.gdshader" id="10_b1gtb"]
+[ext_resource type="PackedScene" uid="uid://dim074qeqwx6x" path="res://inGame/battleUI/turnOrderMarker.tscn" id="10_m38np"]
 [ext_resource type="PackedScene" uid="uid://drtw4kuprkapi" path="res://inGame/battleUI/ActionButton/action_button.tscn" id="10_th5d7"]
+[ext_resource type="PackedScene" uid="uid://kbdvggtyupd2" path="res://inGame/battleUI/turn_order_point.tscn" id="11_bbrdx"]
 
 [sub_resource type="Gradient" id="Gradient_ovlcs"]
 colors = PackedColorArray(2.8878452e-07, 0.508626, 0.6430946, 1, 1, 0, 0, 1)
@@ -287,6 +289,41 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TurnOrderMarker" parent="RootGame/BattleScreen/TurnOrder/TurnOrder" instance=ExtResource("10_m38np")]
+layout_mode = 2
+
+[node name="TurnOrderPoint" parent="RootGame/BattleScreen/TurnOrder/TurnOrder/TurnOrderMarker" instance=ExtResource("11_bbrdx")]
+layout_mode = 0
+anchors_preset = 0
+
+[node name="TurnOrderMarker3" parent="RootGame/BattleScreen/TurnOrder/TurnOrder" instance=ExtResource("10_m38np")]
+layout_mode = 2
+
+[node name="TurnOrderPoint" parent="RootGame/BattleScreen/TurnOrder/TurnOrder/TurnOrderMarker3" instance=ExtResource("11_bbrdx")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 40.0
+offset_bottom = 68.57143
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="TurnOrderMarker4" parent="RootGame/BattleScreen/TurnOrder/TurnOrder" instance=ExtResource("10_m38np")]
+layout_mode = 2
+
+[node name="TurnOrderMarker2" parent="RootGame/BattleScreen/TurnOrder/TurnOrder" instance=ExtResource("10_m38np")]
+layout_mode = 2
+
+[node name="TurnOrderPoint" parent="RootGame/BattleScreen/TurnOrder/TurnOrder/TurnOrderMarker2" instance=ExtResource("11_bbrdx")]
+layout_mode = 1
+offset_left = -27.708332
+offset_bottom = 0.0
 
 [node name="VSeparator4" type="VSeparator" parent="RootGame/BattleScreen"]
 modulate = Color(1, 1, 1, 0)

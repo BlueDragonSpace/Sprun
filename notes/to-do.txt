@@ -3,10 +3,13 @@ Forking forks of frok fkro frok amok bok
 
 1:
 	Pointer on timeline for current action
+	Player Moveset -> UI Buttons
 2:
 	Enemy Waves
 	TPK (total party kill)
+	Sprun Invisible Child Linking
 3:
+	Different kinds of enemy intents (defend, debuff, buff, charge up, unknown)
 	Levelling System
 	Character Select Screen
 	Increase Speed of Play (like Balatro)
@@ -18,6 +21,10 @@ Forking forks of frok fkro frok amok bok
 	art and music lol
 	https://lonebot.itch.io/make-it-juicy
 
+Quirks:
+	Balance the funny and serious (makes both more meaningful)
+	2...3...4!
+	Looking up Camera Angle (size up)
 
 Turn sections:
 	Player Input
@@ -29,8 +36,10 @@ Turn sections:
 
 Test the selection system a little longer (add multiple enemies)
 
-Refactoring: Animation tracks don't worry about unresolvable tracks (the NPC's animate node has a track for Enemy intent, but Player doesn't have intent and doesn't need the track)
+Refactoring
+	Animation tracks don't worry about unresolvable tracks (the NPC's animate node has a track for Enemy intent, but Player doesn't have intent and doesn't need the track)
 Make HP changing set by a tween
+	Set that one .set() method that isn't already in ready() for some reason
 
 
 Tips:
@@ -39,12 +48,10 @@ Tips:
 
 
 Bugs:
-	Just-now dead enemy intends to attack dead chara, error occurs,
+	
 
 Noot noot
 
 Currently finished:
-	Death:
-		Actually animating queue_free()
-		Cancel all moves related to the dead
-		Moves that go toward the dead (don't take effect) [however, multiple target moves]
+	Sprun sizing
+	TurnOrderMarker (for current turn in the timeline)

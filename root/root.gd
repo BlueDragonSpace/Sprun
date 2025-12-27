@@ -19,8 +19,8 @@ var current_enemy = null
 @onready var Enemies: VBoxContainer = $RootGame/BattleScreen/Enemies
 @onready var TurnOrder: VBoxContainer = $RootGame/BattleScreen/TurnOrder/TurnOrder
 
-
-const TURN_ORDER_MARKER = preload("uid://dim074qeqwx6x")
+const TURN_ORDER_POINT = preload("uid://kbdvggtyupd2") # current turn marker
+const TURN_ORDER_MARKER = preload("uid://dim074qeqwx6x") # character/enemy order
 const ENEMY_SELECTION = preload("uid://c6hsrr8o4xvi3")
 
 
@@ -180,16 +180,12 @@ func remove_dead_actions(dead: Node) -> void:
 	# gets called by npc whenever it dies
 	# for reference of turn_order_data: speed_stat, icon, node_path, action
 	
-	print('the dead is ' + dead.name)
-	
 	var num = current_turn
 	
 	# evaluated inside of a while loop so it dynamically changes the length of the loop while inside of it
 	while num < turn_order_data.size():
-		print(turn_order_data[num][2].name + " monitoriing---")
 		
 		if turn_order_data[num][2] == dead:
-			print(turn_order_data[num][2].name + " is dead, removing their actions")
 			turn_order_data.remove_at(num)
 			continue # if we remove the action at this point in the array, we need to re-read what this current action is, since all items forward are pushed back one, menaing the current action is new in this current index
 			
@@ -252,9 +248,26 @@ func middle_animation_constant() -> void:
 	#intended for use with lambda functions, in the middle of an animation
 
 func middle_round_loop() -> void:
+	
+	
+	
 	if current_turn < turn_order_data.size():
+		
+		# different from prev_mark, cuz we changed the turn
+		if current_turn < turn_order_data.size():
+			var now_mark = TurnOrder.get_child(current_turn)
+			now_mark.add_child(TURN_ORDER_POINT.instantiate())
+		
 		mid_animation_action = turn_order_data[current_turn][3]
 		current_turn += 1
+		
+		if current_turn < turn_order_data.size() + 1:
+			var prev_mark = TurnOrder.get_child(current_turn - 2)
+			
+			if current_turn != 0:
+				prev_mark.remove_child(prev_mark.get_child(-1))
+		
+		
 		Animate.play("middle_round")
 	else:
 		final_pass_turn()
@@ -262,9 +275,13 @@ func middle_round_loop() -> void:
 func final_pass_turn() -> void:
 	button_info("wow it's ur turn nerd")
 	
+	# removes the turn order point from the last child of the last npc in turn order
+	var last_npc = TurnOrder.get_child(-1)
+	last_npc.remove_child(last_npc.get_child(-1))
+	
 	for num in range(0, Charas.get_child_count()):
 		if Charas.get_child(num).is_dead == false:
-			current_player = Charas.get_child(num)
+			current_player = Charas.get_child(num) # sets the current_player to be not dead
 		break
 	
 	set_enemies_intents()
@@ -273,8 +290,6 @@ func final_pass_turn() -> void:
 	
 	for player in Charas.get_children():
 		player.intended_action = Callable(Global, "empty_function")
-	
-	current_turn = TURN_TYPE.END
 	
 	current_turn = 0
 	current_round += 1

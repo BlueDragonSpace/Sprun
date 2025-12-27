@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://bd0auisdvfagw"]
+
+[ext_resource type="PackedScene" uid="uid://ctlnpeebeoqgd" path="res://inGame/npc/npc.tscn" id="1_kfrmh"]
+[ext_resource type="Script" uid="uid://sj0wnis8wnpb" path="res://inGame/player/player.gd" id="2_v55o0"]
+[ext_resource type="Script" uid="uid://dmegbpii5uwyh" path="res://inGame/player/invisible_sprun.gd" id="3_eymni"]
+[ext_resource type="Texture2D" uid="uid://cqmahlm6jr7w8" path="res://placeholderArt/Sprun.png" id="4_gtbgf"]
+
+[node name="Player" instance=ExtResource("1_kfrmh")]
+size_flags_vertical = 3
+script = ExtResource("2_v55o0")
+sprun_slots = 3
+sprun_container_angle = 135
+sprun_distance = 100
+sprun_active = 0
+defendStat = 6
+icon = null
+speedStat = 5
+
+[node name="Icon" parent="VBoxContainer" index="1"]
+expand_mode = 2
+
+[node name="SprunContainer" type="Control" parent="VBoxContainer/Icon" index="0"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="InvisibleSprun" type="Control" parent="VBoxContainer/Icon" index="1"]
+modulate = Color(1, 1, 1, 0.3137255)
+layout_mode = 1
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_eymni")
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/Icon/InvisibleSprun" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_gtbgf")
+expand_mode = 3
+stretch_mode = 5

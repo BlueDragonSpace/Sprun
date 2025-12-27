@@ -8,23 +8,24 @@ const SPRUN = preload("uid://b6wgjet502thq")
 
 @export var defendStat = 6
 
-@onready var sprun_container: Control = $VBoxContainer/Icon/SprunContainer
+@onready var SprunContainer: Control = $VBoxContainer/Icon/SprunContainer
 
+ 
 func add_ready() -> void:
 	npc_type = CHARACTER_TYPE.PLAYER
 	
 	for slot in range(0, sprun_slots):
 		var sprun = SPRUN.instantiate()
 		
-		sprun_container.add_child(sprun)
+		SprunContainer.add_child(sprun)
 		sprun.pivot_offset.y += sprun_distance
 		sprun.position.y -= sprun_distance
 		@warning_ignore("integer_division")
-		sprun.position -= Vector2(128 / 2, 128 / 2) # 128 comes from the Godot Sprite's original dimensions
+		#sprun.position -= Vector2(128 / 2, 128 / 2) # 128 comes from the Godot Sprite's original dimensions
 		
 		
 		@warning_ignore("integer_division")
-		sprun.visual_rotation += deg_to_rad(45/2)
+		#sprun.visual_rotation += deg_to_rad(45/2)
 		@warning_ignore("integer_division")
 		sprun.visual_rotation += deg_to_rad(-sprun_container_angle/2)
 		@warning_ignore("integer_division")
@@ -39,9 +40,9 @@ func set_sprun(new_sprun_count):
 	# goes through and sets the individual spruns to be active or not
 	for num in range(0, sprun_slots):
 		if num < sprun_active:
-			sprun_container.get_child(num).active = true
+			SprunContainer.get_child(num).active = true
 		else:
-			sprun_container.get_child(num).active = false
+			SprunContainer.get_child(num).active = false
 	
 	if sprun_active > sprun_slots:
 		print('wow you over charged on sprun congrats')
