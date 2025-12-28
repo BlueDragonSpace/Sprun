@@ -5,6 +5,7 @@ Forking forks of frok fkro frok amok bok
 	Player Moveset -> UI Buttons
 	Randomize Enemy Attack direction
 2:
+	Add Pass Action
 	Enemy Waves
 	TPK (total party kill)
 	Sprun Invisible Child Linking
@@ -51,7 +52,7 @@ Tips:
 
 
 Bugs:
-	
+	Not initially checking sprun cost? first player first turn
 
 Noot noot
 

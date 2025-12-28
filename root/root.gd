@@ -316,6 +316,7 @@ func button_info(new_info: String) -> void:
 	ActionInfo.text = new_info
 
 func initiate_select_enemy() -> void:
+	
 	if Enemies.get_child_count() > 1:
 		var selector = ENEMY_SELECTION.instantiate()
 		selector.text = ''

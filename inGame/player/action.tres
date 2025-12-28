@@ -5,3 +5,7 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_cky2r")
+name = "Mega Lazer"
+func_name = "mega_lazer"
+modifier = 4.0
+button_info = "I simply cannot decide whether or not you should die"
