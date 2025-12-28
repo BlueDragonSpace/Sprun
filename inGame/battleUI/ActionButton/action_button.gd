@@ -1,11 +1,14 @@
 extends Button
 
-# info for the info bar
-@export var info: String = 'default text... uwu'
+# surprisingly, this thing isn't directly correlated in code with the 
+# -Action class or Resource
 
+# info for the info bar
 @onready var Root = get_tree().get_current_scene()
 
+@export var info: String = 'default text... uwu'
 @export var sprun_cost = 0
+@export_custom(PROPERTY_HINT_FLAGS, Action.PLAYER_TYPE) var usable_on_player: int = 0
 
 func check_cost(sprun: int) -> void:
 	if sprun >= sprun_cost:

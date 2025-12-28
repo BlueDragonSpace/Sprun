@@ -1,25 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bd0auisdvfagw"]
+[gd_scene load_steps=3 format=3 uid="uid://bd0auisdvfagw"]
 
 [ext_resource type="PackedScene" uid="uid://ctlnpeebeoqgd" path="res://inGame/npc/npc.tscn" id="1_kfrmh"]
 [ext_resource type="Script" uid="uid://sj0wnis8wnpb" path="res://inGame/player/player.gd" id="2_v55o0"]
-[ext_resource type="Script" uid="uid://diifqu7v6338q" path="res://inGame/player/action.gd" id="3_v55o0"]
-
-[sub_resource type="Resource" id="Resource_eymni"]
-resource_local_to_scene = true
-script = ExtResource("3_v55o0")
-name = "Chunk up"
-action_type = 3
-modifier = 1.2
-button_info = "theren't buff no"
-
-[sub_resource type="Resource" id="Resource_gtbgf"]
-resource_local_to_scene = true
-script = ExtResource("3_v55o0")
-name = "poke self"
-action_type = 5
-sprun_necessary = 1
-sprun_loss = 1
-button_info = "kinda hurts, honestly"
 
 [node name="Player" instance=ExtResource("1_kfrmh")]
 size_flags_vertical = 3
@@ -29,7 +11,8 @@ sprun_container_angle = 135
 sprun_distance = 75
 sprun_active = 0
 defendStat = 6
-new_actions = Array[Resource]([SubResource("Resource_eymni"), SubResource("Resource_gtbgf")])
+new_action = Array[Resource]([])
+player_type = 0
 icon = null
 speedStat = 5
 

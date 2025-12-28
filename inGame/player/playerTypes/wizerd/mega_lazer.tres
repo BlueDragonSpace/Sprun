@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Action" load_steps=2 format=3 uid="uid://c3a14axpyy1n0"]
+
+[ext_resource type="Script" uid="uid://diifqu7v6338q" path="res://inGame/player/action.gd" id="1_wcvlx"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_wcvlx")
+name = "Mega Lazer"
+func_name = "mega_lazer"
+player_type = 2
+button_info = "I simply cannot decide whether or not you should die"

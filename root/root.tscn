@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d3wbwxma2hkqm"]
+[gd_scene load_steps=30 format=3 uid="uid://d3wbwxma2hkqm"]
 
 [ext_resource type="Theme" uid="uid://cyy1ccrel07nx" path="res://root/root.tres" id="1_vvh5c"]
 [ext_resource type="Script" uid="uid://dpipac1vlx4vl" path="res://root/root.gd" id="2_jnlp7"]
@@ -7,9 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://q3twdhe3guuq" path="res://placeholderArt/SSBULucario.png" id="4_y3dhr"]
 [ext_resource type="PackedScene" uid="uid://cmoedndryju2o" path="res://inGame/enemy/enemy.tscn" id="4_y5gj7"]
 [ext_resource type="Texture2D" uid="uid://b535plvyviqhb" path="res://placeholderArt/ChoosyCorners-1.png (1).png" id="5_0n2s5"]
+[ext_resource type="Resource" uid="uid://c0f7kbcssl6jc" path="res://inGame/player/action.tres" id="5_mg5wv"]
 [ext_resource type="Texture2D" uid="uid://co7fnqru8dy5r" path="res://placeholderArt/Xi.png" id="5_y3dhr"]
-[ext_resource type="PackedScene" uid="uid://cm4voswejvugr" path="res://inGame/player/playerTypes/wizerd.tscn" id="6_m38np"]
-[ext_resource type="Resource" uid="uid://c0f7kbcssl6jc" path="res://inGame/player/action.tres" id="7_bbrdx"]
+[ext_resource type="PackedScene" uid="uid://cm4voswejvugr" path="res://inGame/player/playerTypes/wizerd/wizerd.tscn" id="6_m38np"]
+[ext_resource type="Script" uid="uid://diifqu7v6338q" path="res://inGame/player/action.gd" id="7_bbrdx"]
 [ext_resource type="Shader" uid="uid://ddycup0alwvnl" path="res://shaders/chromaticAberation.gdshader" id="7_e2nrw"]
 [ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="7_th5d7"]
 [ext_resource type="Shader" uid="uid://dftiegl3xn8fh" path="res://shaders/pixelizer.gdshader" id="8_gj8ci"]
@@ -31,6 +32,14 @@ metadata/_preview_in_3d_space_ = true
 noise = SubResource("FastNoiseLite_ovlcs")
 color_ramp = SubResource("Gradient_ovlcs")
 in_3d_space = true
+
+[sub_resource type="Resource" id="Resource_x1xj5"]
+resource_local_to_scene = true
+script = ExtResource("7_bbrdx")
+name = "Mega Lazer"
+func_name = "mega_lazer"
+player_type = 2
+button_info = "I simply cannot decide whether or not you should die"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gj8ci"]
 shader = ExtResource("7_e2nrw")
@@ -271,21 +280,21 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Xiyichi" parent="RootGame/BattleScreen/Charas" instance=ExtResource("3_gj8ci")]
 layout_mode = 2
-new_action = Array[Resource]([])
 icon = ExtResource("5_y3dhr")
 max_hp = 15
 attackStat = 7
 
 [node name="Lucar" parent="RootGame/BattleScreen/Charas" instance=ExtResource("3_gj8ci")]
 layout_mode = 2
-new_action = Array[Resource]([])
+new_action = Array[Resource]([ExtResource("5_mg5wv")])
+player_type = 4
 icon = ExtResource("4_y3dhr")
 max_hp = 30
 attackStat = 7
 
 [node name="Wizerd" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_m38np")]
 layout_mode = 2
-new_action = Array[Resource]([ExtResource("7_bbrdx")])
+new_action = Array[Resource]([SubResource("Resource_x1xj5")])
 
 [node name="VSeparator2" type="VSeparator" parent="RootGame/BattleScreen"]
 modulate = Color(1, 1, 1, 0)
@@ -308,7 +317,6 @@ max_hp = 10
 layout_mode = 2
 size_flags_vertical = 3
 icon = ExtResource("7_th5d7")
-max_hp = 10
 
 [node name="square" parent="RootGame/BattleScreen/Enemies" instance=ExtResource("4_y5gj7")]
 layout_mode = 2
@@ -390,13 +398,14 @@ expand_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "I love to talk about info. Especially what each move does. But it doesn't function rn sry."
+text = "Woah if I had bones I wouldn't give them to you
+At least not for free"
 vertical_alignment = 1
 
 [node name="Actions" type="TabContainer" parent="RootGame/LowerBar/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 4
+current_tab = 1
 drag_to_rearrange_enabled = true
 
 [node name="BackButton" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
@@ -411,7 +420,6 @@ text = "BAK
 info = "Go back."
 
 [node name="Attack" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -447,6 +455,7 @@ text = "FOCUS"
 info = "Create 1 Sprun."
 
 [node name="Other" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 4
 

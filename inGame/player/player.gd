@@ -8,7 +8,7 @@ const SPRUN = preload("uid://b6wgjet502thq")
 @export var defendStat = 6
 
 @export var new_action: Array[Resource]
-var new_action_callable = [] #pass in the callables here
+@export_custom(PROPERTY_HINT_FLAGS, Action.PLAYER_TYPE) var player_type : int = 0
 
 @onready var SprunContainer: Control = $VBoxContainer/Icon/SprunContainer
 
@@ -35,6 +35,8 @@ func add_ready() -> void:
 		sprun.visual_rotation += deg_to_rad(slot * sprun_container_angle / (sprun_slots - 1))
 	set_sprun(sprun_active)
 	
+	call_deferred("add_actions", new_action)
+	
 	double_add_ready()
 
 func double_add_ready() -> void:
@@ -60,6 +62,8 @@ func add_actions(custom_actions : Array) -> void:
 		new_button.info = this_action.button_info
 		new_button.sprun_cost = this_action.sprun_necessary
 		new_button.text = this_action.name
+		new_button.usable_on_player = this_action.player_type
+		new_button.visible = false # Button needs to be visible for it to be used
 		
 		@warning_ignore("standalone_expression")
 		var lambda = func() : null
@@ -68,7 +72,6 @@ func add_actions(custom_actions : Array) -> void:
 				lambda = func(): 
 					intended_action = Callable(self, this_action.func_name)
 					Root.initiate_select_enemy()
-					print('called the lambda')
 		
 		new_button.connect("pressed", lambda)
 		

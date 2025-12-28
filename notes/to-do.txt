@@ -2,7 +2,11 @@
 Forking forks of frok fkro frok amok bok
 
 1:
-	Player Moveset -> UI Buttons
+	Player Moveset -> UI Buttons:
+		Boom! Hardest part is already done
+		Button appears for characters that don't have the move (can fix with either):
+			Invisible the non-applicable buttons
+			Recreate the UI every single time the player changes (woah that's not a good )
 	Randomize Enemy Attack direction
 2:
 	Add Pass Action
@@ -52,7 +56,9 @@ Tips:
 
 
 Bugs:
-	Not initially checking sprun cost? first player first turn
+	Not initially checking sprun cost? first player first turn (for the custom attack)
+	Not initially adding the first actions (like the get put in later than the check_visible_actions can account for)
+	On the animation to the first player (after a round), last player's actions show up (but aren't clickable, thankfully)
 
 Noot noot
 
@@ -62,7 +68,4 @@ Solution! To the resource problem:
 	there
 
 Currently finished:
-	unsuccessful tweening of the turnOrderPoint
-	
-	
-	
+	Bitwise functions (for the export flags of enabled actions for Player_Types)

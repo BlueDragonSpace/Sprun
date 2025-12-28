@@ -1,13 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://cm4voswejvugr"]
 
 [ext_resource type="PackedScene" uid="uid://bd0auisdvfagw" path="res://inGame/player/player.tscn" id="1_n4oco"]
-[ext_resource type="Script" uid="uid://c22h5dc4inak1" path="res://inGame/player/playerTypes/wizerd.gd" id="2_n4oco"]
+[ext_resource type="Script" uid="uid://c22h5dc4inak1" path="res://inGame/player/playerTypes/wizerd/wizerd.gd" id="2_n4oco"]
 [ext_resource type="Texture2D" uid="uid://cvggsr6dniihs" path="res://placeholderArt/wizerdhat-1.png (1).png" id="2_whysk"]
-[ext_resource type="Resource" uid="uid://c0f7kbcssl6jc" path="res://inGame/player/action.tres" id="3_whysk"]
+[ext_resource type="Resource" uid="uid://c3a14axpyy1n0" path="res://inGame/player/playerTypes/wizerd/mega_lazer.tres" id="3_i643x"]
 
 [node name="Wizerd" instance=ExtResource("1_n4oco")]
 script = ExtResource("2_n4oco")
-sprun_slots = 8
-new_action = Array[Resource]([ExtResource("3_whysk")])
+sprun_slots = 5
+new_action = Array[Resource]([ExtResource("3_i643x")])
+player_type = 2
 icon = ExtResource("2_whysk")
 speedStat = 12

@@ -43,6 +43,7 @@ enum TURN_TYPE {PLAYER, SELECT_ENEMY, MIDDLE, END, TRANSITION}
 				disable_all_actions(false)
 				BAK.disabled = true
 				check_cost_all_actions(current_player.sprun_active)
+				check_actions_visible(current_player.player_type)
 			TURN_TYPE.SELECT_ENEMY:
 				disable_all_actions(true)
 				BAK.disabled = false
@@ -72,18 +73,23 @@ var current_round = 0:
 		$RootGame/TopBar/HBoxContainer/RoundNum.text = str(new)
 		current_round = new
 
+# the player types, for use within the root, as an array rather than one string
+var root_player_type_array = Action.PLAYER_TYPE.split(', ')
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	button_info("A last stand.")
 	current_player = Charas.get_child(0)
 	current_enemy = Enemies.get_child(0)
 	check_cost_all_actions(current_player.sprun_active)
+	check_actions_visible(current_player.player_type)
 	
 	BAK.disabled = true
 	
 	NoiseBackground.texture.noise.seed = randi()
 	call_deferred("set_turn_order")
 	set_enemies_intents()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -197,6 +203,33 @@ func check_cost_all_actions(sprun: int) -> void:
 		for action in container.get_children():
 			action.check_cost(sprun)
 
+func check_actions_visible(player_type_bitwise: int) -> void:
+	
+	print(player_type_bitwise)
+	
+	# now, for every action, check if it is available to the character
+	for tab in Actions.get_children():
+		for action in tab.get_children():
+			
+			action.visible = false
+			
+			#print(action.name)
+			#print(action.usable_on_player)
+			#print(action.usable_on_player & 1)
+			#print(action.usable_on_player & 2 and true)
+			#print("---------------------")
+			
+			if action.usable_on_player & 1: # if 'All' is set, it's gonna be visible
+				action.visible = true
+				continue
+			
+			for bit in root_player_type_array.size(): # loops through every player type
+				
+				if action.usable_on_player & bit and player_type_bitwise & bit:
+					# if the action and the player have at least one of the same bit type, the action is visible
+					action.visible = true
+					continue
+
 func remove_dead_actions(dead: Node) -> void:
 	# gets called by npc whenever it dies
 	# for reference of turn_order_data: speed_stat, icon, node_path, action
@@ -308,6 +341,8 @@ func final_pass_turn() -> void:
 	for player in Charas.get_children():
 		player.intended_action = Callable(Global, "empty_function")
 	
+	BAK.disabled = true
+	
 	current_turn = 0
 	current_round += 1
 
@@ -343,12 +378,14 @@ func player_pass_turn() -> void:
 		# sets the TurnOrderPointMaster to the correct y position for the first point
 		add_turn_order_point(0)
 		
-		# the actual setting it all in motion part
+		# the actual ending turn part
 		Animate.play("playerPassTurn")
 	else:
 		turn = TURN_TYPE.PLAYER
+		# might be worth making a function for this cuz it gets call on passing turn too
 		current_player = Charas.get_child(current_player.get_index() + 1)
 		check_cost_all_actions(current_player.sprun_active)
+		check_actions_visible(current_player.player_type)
 		button_info(current_player.name + " probably has issues")
 		BAK.disabled = true
 
