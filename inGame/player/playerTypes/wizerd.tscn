@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm4voswejvugr"]
+
+[ext_resource type="PackedScene" uid="uid://bd0auisdvfagw" path="res://inGame/player/player.tscn" id="1_n4oco"]
+[ext_resource type="Script" uid="uid://c22h5dc4inak1" path="res://inGame/player/playerTypes/wizerd.gd" id="2_n4oco"]
+
+[node name="Wizerd" instance=ExtResource("1_n4oco")]
+script = ExtResource("2_n4oco")
+sprun_slots = 8
+sprun_distance = 0
+speedStat = 12

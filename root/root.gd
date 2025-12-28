@@ -18,6 +18,8 @@ var current_enemy = null
 @onready var Charas: VBoxContainer = $RootGame/BattleScreen/Charas
 @onready var Enemies: VBoxContainer = $RootGame/BattleScreen/Enemies
 @onready var TurnOrder: VBoxContainer = $RootGame/BattleScreen/TurnOrder/TurnOrder
+@onready var TurnOrderPointMaster: TextureRect = $RootGame/BattleScreen/TurnOrder/TurnOrderPointMaster
+var temp_turn_order_point = null # turns into node which is turned into a tween for the master
 
 const TURN_ORDER_POINT = preload("uid://kbdvggtyupd2") # current turn marker
 const TURN_ORDER_MARKER = preload("uid://dim074qeqwx6x") # character/enemy order
@@ -157,6 +159,25 @@ func set_turn_order() -> void:
 		var marker = TURN_ORDER_MARKER.instantiate()
 		marker.texture = body[1]
 		TurnOrder.add_child(marker)
+func tween_turn_order_point() -> void:
+	#var tween = create_tween()
+	#
+	#
+	#if current_turn == 0:
+		## tweening doesn't matter here since the thing isn't visible yet
+		#TurnOrderPointMaster.global_position.y = temp_turn_order_point.global_position.y
+		#print('tweened to first position')
+	#elif current_turn < turn_order_data.size():
+		#tween.tween_property(TurnOrderPointMaster, "global_position:y", temp_turn_order_point.global_position.y, 0.19)
+	#else:
+		#tween.tween_property(TurnOrderPointMaster, "position:x", 167.0, 0.19) #tweens it out of the screen space
+		#
+	pass
+func add_turn_order_point(point) -> void:
+	var now_mark = TurnOrder.get_child(point)
+	var new_turn_order_point = TURN_ORDER_POINT.instantiate()
+	now_mark.add_child(new_turn_order_point)
+	temp_turn_order_point = new_turn_order_point
 
 func select_enemy() -> void:
 	
@@ -193,8 +214,6 @@ func remove_dead_actions(dead: Node) -> void:
 		if turn_order_data[num][2].action_victim == dead:
 			if turn_order_data[num][2].action_victim is Node:
 				turn_order_data.remove_at(num)
-				# you know, this never actually seems to happen...
-				print('removed dead victim action')
 				continue
 			elif turn_order_data[num][2].action_victim is Array:
 				print('action_victim is array but I havent done that yet')
@@ -222,7 +241,6 @@ func remove_dead_actions(dead: Node) -> void:
 				print("successfully made them begone of this world")
 				get_tree().quit()
 			
-			print(current_enemy.name + " is the new current enemy")
 		dead.CHARACTER_TYPE.PLAYER:
 			
 			var total_party_kill = true
@@ -237,8 +255,6 @@ func remove_dead_actions(dead: Node) -> void:
 				print("The entire party lost the will to continue.")
 				get_tree().quit()
 			
-			print(current_player.name + "is the new current player")
-	print("-----------------------")
 
 ## turn focussed functions
 func middle_animation_constant() -> void:
@@ -254,9 +270,8 @@ func middle_round_loop() -> void:
 	if current_turn < turn_order_data.size():
 		
 		# different from prev_mark, cuz we changed the turn
-		if current_turn < turn_order_data.size():
-			var now_mark = TurnOrder.get_child(current_turn)
-			now_mark.add_child(TURN_ORDER_POINT.instantiate())
+		if current_turn < turn_order_data.size() and current_turn != 0:
+			add_turn_order_point(current_turn)
 		
 		mid_animation_action = turn_order_data[current_turn][3]
 		current_turn += 1
@@ -265,7 +280,8 @@ func middle_round_loop() -> void:
 			var prev_mark = TurnOrder.get_child(current_turn - 2)
 			
 			if current_turn != 0:
-				prev_mark.remove_child(prev_mark.get_child(-1))
+				if prev_mark.get_child_count() > 0:
+					prev_mark.remove_child(prev_mark.get_child(-1))
 		
 		
 		Animate.play("middle_round")
@@ -277,7 +293,8 @@ func final_pass_turn() -> void:
 	
 	# removes the turn order point from the last child of the last npc in turn order
 	var last_npc = TurnOrder.get_child(-1)
-	last_npc.remove_child(last_npc.get_child(-1))
+	if last_npc.get_child_count() > 0:
+		last_npc.remove_child(last_npc.get_child(-1))
 	
 	for num in range(0, Charas.get_child_count()):
 		if Charas.get_child(num).is_dead == false:
@@ -322,6 +339,10 @@ func player_pass_turn() -> void:
 	# else: go to the next player and get their action
 	
 	if current_player == Charas.get_child(-1):
+		# sets the TurnOrderPointMaster to the correct y position for the first point
+		add_turn_order_point(0)
+		
+		# the actual setting it all in motion part
 		Animate.play("playerPassTurn")
 	else:
 		turn = TURN_TYPE.PLAYER

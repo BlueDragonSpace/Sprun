@@ -2,8 +2,8 @@
 Forking forks of frok fkro frok amok bok
 
 1:
-	Pointer on timeline for current action
 	Player Moveset -> UI Buttons
+	Randomize Enemy Attack direction
 2:
 	Enemy Waves
 	TPK (total party kill)
@@ -17,7 +17,8 @@ Forking forks of frok fkro frok amok bok
 	Right-click to tab (when in mouse mode)
 	Litle dialogue things
 4: 
-	Top Level UI Tweening (TurnMarker)
+	Every time an enemy dies, the TurnOrderPoint is off on which turn it really is
+	
 	art and music lol
 	https://lonebot.itch.io/make-it-juicy
 
@@ -53,5 +54,4 @@ Bugs:
 Noot noot
 
 Currently finished:
-	Sprun sizing
-	TurnOrderMarker (for current turn in the timeline)
+	unsuccessful tweening of the turnOrderPoint

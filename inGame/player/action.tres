@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="action" load_steps=2 format=3 uid="uid://c0f7kbcssl6jc"]
+
+[sub_resource type="GDScript" id="GDScript_pt6cm"]
+script/source = "class_name action
+extends Resource
+
+@export var name: String = \"default name\"
+@export var damage_mult: int = 4
+@export var function_thing: Callable = thing
+
+func thing() -> void:
+	print('wow did that thing')
+"
+
+[resource]
+script = SubResource("GDScript_pt6cm")
+function_thing = null

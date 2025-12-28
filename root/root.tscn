@@ -8,11 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://cmoedndryju2o" path="res://inGame/enemy/enemy.tscn" id="4_y5gj7"]
 [ext_resource type="Texture2D" uid="uid://b535plvyviqhb" path="res://placeholderArt/ChoosyCorners-1.png (1).png" id="5_0n2s5"]
 [ext_resource type="Texture2D" uid="uid://co7fnqru8dy5r" path="res://placeholderArt/Xi.png" id="5_y3dhr"]
+[ext_resource type="PackedScene" uid="uid://cm4voswejvugr" path="res://inGame/player/playerTypes/wizerd.tscn" id="6_m38np"]
 [ext_resource type="Shader" uid="uid://ddycup0alwvnl" path="res://shaders/chromaticAberation.gdshader" id="7_e2nrw"]
 [ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="7_th5d7"]
 [ext_resource type="Shader" uid="uid://dftiegl3xn8fh" path="res://shaders/pixelizer.gdshader" id="8_gj8ci"]
 [ext_resource type="Shader" uid="uid://bo0lvrtc1mrha" path="res://shaders/rainbows.gdshader" id="10_b1gtb"]
-[ext_resource type="PackedScene" uid="uid://dim074qeqwx6x" path="res://inGame/battleUI/turnOrderMarker.tscn" id="10_m38np"]
 [ext_resource type="PackedScene" uid="uid://drtw4kuprkapi" path="res://inGame/battleUI/ActionButton/action_button.tscn" id="10_th5d7"]
 [ext_resource type="PackedScene" uid="uid://kbdvggtyupd2" path="res://inGame/battleUI/turn_order_point.tscn" id="11_bbrdx"]
 
@@ -73,6 +73,17 @@ tracks/1/keys = {
 "points": PackedFloat32Array(0.25, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RootGame/BattleScreen/TurnOrder/TurnOrderPointMaster:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(167, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_y3dhr"]
 resource_name = "middle_round"
@@ -83,11 +94,14 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
 "method": &"middle_animation_constant"
+}, {
+"args": [],
+"method": &"tween_turn_order_point"
 }, {
 "args": [],
 "method": &"middle_round_loop"
@@ -118,6 +132,31 @@ tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 2),
 "points": PackedFloat32Array(0.25, -0.25, 0, 0.25, 0, 0.01, -0.16666667, 0.04, 0, 0),
 "times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RootGame/BattleScreen/TurnOrder/TurnOrderPointMaster:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(167, -0.25, 0, 0.25, 0, 88, -0.050000004, 13.166667, 0, 0),
+"times": PackedFloat32Array(0.7, 1)
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"tween_turn_order_point"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_0n2s5"]
@@ -241,6 +280,17 @@ icon = ExtResource("4_y3dhr")
 max_hp = 30
 attackStat = 7
 
+[node name="Wizerd" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_m38np")]
+layout_mode = 2
+sprun_slots = null
+sprun_container_angle = null
+sprun_distance = null
+sprun_active = null
+defendStat = null
+speedStat = null
+max_hp = null
+attackStat = null
+
 [node name="VSeparator2" type="VSeparator" parent="RootGame/BattleScreen"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
@@ -290,40 +340,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TurnOrderMarker" parent="RootGame/BattleScreen/TurnOrder/TurnOrder" instance=ExtResource("10_m38np")]
-layout_mode = 2
-
-[node name="TurnOrderPoint" parent="RootGame/BattleScreen/TurnOrder/TurnOrder/TurnOrderMarker" instance=ExtResource("11_bbrdx")]
-layout_mode = 0
-anchors_preset = 0
-
-[node name="TurnOrderMarker3" parent="RootGame/BattleScreen/TurnOrder/TurnOrder" instance=ExtResource("10_m38np")]
-layout_mode = 2
-
-[node name="TurnOrderPoint" parent="RootGame/BattleScreen/TurnOrder/TurnOrder/TurnOrderMarker3" instance=ExtResource("11_bbrdx")]
+[node name="TurnOrderPointMaster" parent="RootGame/BattleScreen/TurnOrder" instance=ExtResource("11_bbrdx")]
+visible = false
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 0.0
+offset_left = 167.0
 offset_top = 0.0
-offset_right = 40.0
+offset_right = 207.0
 offset_bottom = 68.57143
 grow_horizontal = 1
 grow_vertical = 1
-
-[node name="TurnOrderMarker4" parent="RootGame/BattleScreen/TurnOrder/TurnOrder" instance=ExtResource("10_m38np")]
-layout_mode = 2
-
-[node name="TurnOrderMarker2" parent="RootGame/BattleScreen/TurnOrder/TurnOrder" instance=ExtResource("10_m38np")]
-layout_mode = 2
-
-[node name="TurnOrderPoint" parent="RootGame/BattleScreen/TurnOrder/TurnOrder/TurnOrderMarker2" instance=ExtResource("11_bbrdx")]
-layout_mode = 1
-offset_left = -27.708332
-offset_bottom = 0.0
 
 [node name="VSeparator4" type="VSeparator" parent="RootGame/BattleScreen"]
 modulate = Color(1, 1, 1, 0)
@@ -370,7 +400,7 @@ vertical_alignment = 1
 [node name="Actions" type="TabContainer" parent="RootGame/LowerBar/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 3
+current_tab = 4
 
 [node name="BackButton" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
 visible = false
@@ -409,9 +439,19 @@ layout_mode = 2
 text = "DFD"
 info = "Unpunch ur self"
 
-[node name="Other" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
+[node name="Sprun" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
+
+[node name="FOCUS" parent="RootGame/LowerBar/VBoxContainer/Actions/Sprun" instance=ExtResource("10_th5d7")]
+layout_mode = 2
+text = "FOCUS"
+info = "Create 1 Sprun."
+
+[node name="Other" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
+layout_mode = 2
+metadata/_tab_index = 4
 
 [node name="ITM" parent="RootGame/LowerBar/VBoxContainer/Actions/Other" instance=ExtResource("10_th5d7")]
 layout_mode = 2

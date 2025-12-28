@@ -10,6 +10,7 @@ const SPRUN = preload("uid://b6wgjet502thq")
 
 @onready var SprunContainer: Control = $VBoxContainer/Icon/SprunContainer
 
+const ACTION_BUTTON = preload("uid://drtw4kuprkapi")
  
 func add_ready() -> void:
 	npc_type = CHARACTER_TYPE.PLAYER
@@ -31,6 +32,24 @@ func add_ready() -> void:
 		@warning_ignore("integer_division")
 		sprun.visual_rotation += deg_to_rad(slot * sprun_container_angle / (sprun_slots - 1))
 	set_sprun(sprun_active)
+
+func set_action_ui() -> void:
+	# for every individual character, their individual actions need to be shown by the UI
+	# Back Button will always remain the same, and the actions contained inside of 
+	# - this script are available to every character
+	# Once we figure out what every action needed for the UI is, we need to add them to UI,
+	# then add the signals and connections for them, as if manually, but through code (duh)
+	pass
+
+func add_actions(actions : Array) -> void:
+	# required in this format:
+	# [name: String, Callable, signal, folder_num (like which folder under the Actions Tab thing) starts at 1 cuz back is in a class of it's own, action_button.info]
+	for action in actions:
+		var new_button = ACTION_BUTTON.instantiate()
+		Root.Actions.get_child()
+		# set signal
+		# connect signal
+		# add button
 
 func set_sprun(new_sprun_count):
 	## I *would* set this as the set(new) method for active_sprun, but then it calls before ready and gives me an error
@@ -62,7 +81,6 @@ func big_attack():
 	
 	action_victim.take_damage(int(attackStat * 2.5))
 	Animate.play("attack")
-
 
 func defend():
 	self.current_defense += defendStat
