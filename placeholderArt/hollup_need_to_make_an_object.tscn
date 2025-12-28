@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://ercjh4um8nap"]
-
-[ext_resource type="Script" uid="uid://ddpwg8q2flygh" path="res://placeholderArt/hollup_need_to_make_an_object.gd" id="1_xxqh5"]
-[ext_resource type="Resource" uid="uid://c0f7kbcssl6jc" path="res://inGame/player/action.tres" id="2_e5nr6"]
-
-[node name="hollupNeedToMakeAnObject" type="Node"]
-script = ExtResource("1_xxqh5")
-import_thing = ExtResource("2_e5nr6")

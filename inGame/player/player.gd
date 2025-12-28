@@ -5,8 +5,9 @@ extends "res://inGame/npc/npc.gd"
 @export var sprun_distance = 0 ## wow that's pretty cool
 const SPRUN = preload("uid://b6wgjet502thq")
 @export var sprun_active: int = 0 # ONLY CHANGE WITH set_sprun(new_sprun_count)!!!!!!!!!!
-
 @export var defendStat = 6
+
+@export var new_actions: Array[Resource]
 
 @onready var SprunContainer: Control = $VBoxContainer/Icon/SprunContainer
 
@@ -41,15 +42,26 @@ func set_action_ui() -> void:
 	# then add the signals and connections for them, as if manually, but through code (duh)
 	pass
 
-func add_actions(actions : Array) -> void:
+func add_actions(custom_actions : Array) -> void:
 	# required in this format:
 	# [name: String, Callable, signal, folder_num (like which folder under the Actions Tab thing) starts at 1 cuz back is in a class of it's own, action_button.info]
-	for action in actions:
+	for this_action in custom_actions:
 		var new_button = ACTION_BUTTON.instantiate()
-		Root.Actions.get_child()
+		new_button.info = this_action.button_info
+		new_button.sprun_cost = this_action.sprun_necessary
+		
+		Root.Actions.get_child(this_action.action_type + 1).add_child(new_button)
+		
+		# every player has basics:
+			# attack, defend, focus, pass
+			# they also all have back button but that isn't controlled here
+		
 		# set signal
 		# connect signal
 		# add button
+		
+		# hide unnessary tabs also
+
 
 func set_sprun(new_sprun_count):
 	## I *would* set this as the set(new) method for active_sprun, but then it calls before ready and gives me an error
