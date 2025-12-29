@@ -1,25 +1,24 @@
 
 Forking forks of frok fkro frok amok bok
 
+
 1:
-	Player Moveset -> UI Buttons:
-		Boom! Hardest part is already done
-		Button appears for characters that don't have the move (can fix with either):
-			Invisible the non-applicable buttons
-			Recreate the UI every single time the player changes (woah that's not a good )
-	Randomize Enemy Attack direction
-2:
-	Add Pass Action
-	Enemy Waves
 	TPK (total party kill)
-	Sprun Invisible Child Linking
+	for the love of code clean up the failed turn marker transition
+	Sort where the button info and select enemy functions should go better (sorting)
+2:
+	Enemy Waves
+	More Enemy Actions (at least start with Defend)
+	Sprun Movement Shifting depending on size (too far when small, to close when big)
+	Animate Smooth adding and subtracting of charas and enemies by adding a VSeparator and making it bigger or smaller upon sliding the npc in
 3:
-	
 	Different kinds of enemy intents (defend, debuff, buff, charge up, unknown)
 	Levelling System
+	Name of attack upon using it (like the notifs from Cascade)
 	Character Select Screen
 	Increase Speed of Play (like Balatro)
 	Aggro Drawing (90% chance or so?)
+	MegaLazer VFX! (Screenshake, line connecting player and enemy, enemy color changing)
 	Right-click to tab (when in mouse mode)
 	Litle dialogue things
 4: 
@@ -28,6 +27,12 @@ Forking forks of frok fkro frok amok bok
 	
 	art and music lol
 	https://lonebot.itch.io/make-it-juicy
+	
+	And create content lol 
+		Actions
+		Characters
+		Enemies
+		Progression(?)
 
 Quirks:
 	Balance the funny and serious (makes both more meaningful)
@@ -69,3 +74,8 @@ Solution! To the resource problem:
 
 Currently finished:
 	Bitwise functions (for the export flags of enabled actions for Player_Types)
+	Invisibilized actions for non-applicable characters
+	Randomized Enemy intended_target (the player they're targeting)
+	Pass action
+	Tweened Background on TPK
+	Properly fixed the lower bar getting completely off-screen when your turn ends

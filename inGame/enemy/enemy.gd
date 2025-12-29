@@ -1,7 +1,8 @@
 extends "res://inGame/npc/npc.gd"
 
-@onready var Intent: TextureRect = $VBoxContainer/Intent
-@onready var IntentLabel: Label = $VBoxContainer/Intent/IntentLabel
+@onready var Intent: TextureRect = $VBoxContainer/IntentBar/Intent
+@onready var IntentLabel: Label = $VBoxContainer/IntentBar/Intent/IntentLabel
+@onready var IntendedTargetIcon: TextureRect = $VBoxContainer/IntentBar/IntendedTargetIcon
 
 var random_offset : int = 0:
 	set(new):
@@ -28,6 +29,7 @@ func set_intended_action(victim: Node) -> void:
 	# where the magic happens
 	# by default, just attack
 	intended_action = Callable(self, "attack")
+	IntendedTargetIcon.texture = victim.icon
 	action_victim = victim
 
 func attack() -> void:

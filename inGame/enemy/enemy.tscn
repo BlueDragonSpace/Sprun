@@ -1,40 +1,52 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmoedndryju2o"]
+[gd_scene load_steps=6 format=3 uid="uid://cmoedndryju2o"]
 
 [ext_resource type="PackedScene" uid="uid://ctlnpeebeoqgd" path="res://inGame/npc/npc.tscn" id="1_y8jsf"]
 [ext_resource type="Script" uid="uid://qk0yaqbhbtaf" path="res://inGame/enemy/enemy.gd" id="2_sumcb"]
 [ext_resource type="Texture2D" uid="uid://cqmahlm6jr7w8" path="res://placeholderArt/Sprun.png" id="3_sumcb"]
 [ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="4_5rpnx"]
+[ext_resource type="Texture2D" uid="uid://cvggsr6dniihs" path="res://placeholderArt/wizerdhat-1.png (1).png" id="5_ocmfa"]
 
 [node name="Enemy" instance=ExtResource("1_y8jsf")]
 script = ExtResource("2_sumcb")
 intent = 5
 icon = ExtResource("3_sumcb")
 
-[node name="Intent" type="TextureRect" parent="VBoxContainer" index="1"]
+[node name="IntentBar" type="HBoxContainer" parent="VBoxContainer" index="1"]
 self_modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.28
+alignment = 1
+
+[node name="Intent" type="TextureRect" parent="VBoxContainer/IntentBar" index="0"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 2
 texture = ExtResource("4_5rpnx")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="IntentLabel" type="Label" parent="VBoxContainer/Intent" index="0"]
+[node name="IntentLabel" type="Label" parent="VBoxContainer/IntentBar/Intent" index="0"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -14.0
+offset_top = -8.0
+offset_right = 14.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="IntendedTargetIcon" type="TextureRect" parent="VBoxContainer/IntentBar" index="1"]
+layout_mode = 2
+texture = ExtResource("5_ocmfa")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="VSeparator4" type="VSeparator" parent="VBoxContainer" index="2"]
 modulate = Color(1, 1, 1, 0)

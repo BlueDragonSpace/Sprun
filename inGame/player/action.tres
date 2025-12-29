@@ -8,4 +8,4 @@ script = ExtResource("1_cky2r")
 name = "dumbass attack imma delete"
 func_name = "failure is a cnaodna"
 player_type = 4
-button_info = "testing testing"
+button_info = ""

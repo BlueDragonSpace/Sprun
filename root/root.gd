@@ -126,8 +126,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			selector.call_deferred("grab_focus")
 			current_enemy.add_child(selector)
 
-# custom functions
+## custom functions (other than signals) below
 
+# helpers? I guess
+func restart_tree() -> void:
+	get_tree().reload_current_scene()
+
+# real-deal hard deez nuts
 func set_enemies_intents() -> void:
 	for enemy in Enemies.get_children():
 		if enemy.is_dead == false:
@@ -138,7 +143,8 @@ func set_enemies_intents() -> void:
 				#I capitalize NodePaths, and make variables lowercase...
 			tween.tween_property(enemy.Intent, "modulate", Color(1.0,1.0,1.0,1.0),1.0)
 			
-			enemy.set_intended_action(current_player)
+			# chooses a random target from all players
+			enemy.set_intended_action(Charas.get_child(randi_range(0, Charas.get_child_count() - 1)))
 
 func set_turn_order() -> void:
 	## sorts the Turn Order
@@ -166,7 +172,6 @@ func set_turn_order() -> void:
 		marker.texture = body[1]
 		TurnOrder.add_child(marker)
 func tween_turn_order_point() -> void:
-	#var tween = create_tween()
 	#
 	#
 	#if current_turn == 0:
@@ -205,19 +210,11 @@ func check_cost_all_actions(sprun: int) -> void:
 
 func check_actions_visible(player_type_bitwise: int) -> void:
 	
-	print(player_type_bitwise)
-	
 	# now, for every action, check if it is available to the character
 	for tab in Actions.get_children():
 		for action in tab.get_children():
 			
 			action.visible = false
-			
-			#print(action.name)
-			#print(action.usable_on_player)
-			#print(action.usable_on_player & 1)
-			#print(action.usable_on_player & 2 and true)
-			#print("---------------------")
 			
 			if action.usable_on_player & 1: # if 'All' is set, it's gonna be visible
 				action.visible = true
@@ -225,8 +222,8 @@ func check_actions_visible(player_type_bitwise: int) -> void:
 			
 			for bit in root_player_type_array.size(): # loops through every player type
 				
+				# if the action and the player have at least one of the same bit type, the action is visible
 				if action.usable_on_player & bit and player_type_bitwise & bit:
-					# if the action and the player have at least one of the same bit type, the action is visible
 					action.visible = true
 					continue
 
@@ -286,8 +283,9 @@ func remove_dead_actions(dead: Node) -> void:
 			
 			if total_party_kill:
 				print("The entire party lost the will to continue.")
-				get_tree().quit()
-			
+				#get_tree().quit()
+				
+				Animate.play("TPK")
 
 ## turn focussed functions
 func middle_animation_constant() -> void:
@@ -390,6 +388,7 @@ func player_pass_turn() -> void:
 		BAK.disabled = true
 
 ## signal functions
+# battle-game-turn-based stuff
 func _on_bak_pressed() -> void:
 	back_action.call()
 func _on_atk_pressed() -> void:
@@ -407,8 +406,15 @@ func _on_itm_pressed() -> void:
 	current_player.intended_action = Callable(current_player, "focus")
 	player_pass_turn()
 func _on_big_atk_pressed() -> void:
-	
-	## ugghghghhghghghghghg big attack is an attack so it needs to select
-	
 	current_player.intended_action = Callable(current_player, "big_attack")
 	initiate_select_enemy()
+func _on_pass_pressed() -> void:
+	player_pass_turn()
+func _on_masochism_pressed() -> void:
+	current_player.current_hp -= 10
+func _on_flash_evily_pressed() -> void:
+	current_enemy.current_hp -= 10
+
+# actual real serious things
+func _on_retry_pressed() -> void:
+	Animate.play('retry')
