@@ -8,7 +8,9 @@ extends Button
 
 @export var info: String = 'default text... uwu'
 @export var sprun_cost = 0
+
 @export_custom(PROPERTY_HINT_FLAGS, Action.PLAYER_TYPE) var usable_on_player: int = 0
+@export var requires_target = false
 
 func check_cost(sprun: int) -> void:
 	if sprun >= sprun_cost:

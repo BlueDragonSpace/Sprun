@@ -31,8 +31,9 @@ func add_ready() -> void:
 		#sprun.visual_rotation += deg_to_rad(45/2)
 		@warning_ignore("integer_division")
 		sprun.visual_rotation += deg_to_rad(-sprun_container_angle/2)
-		@warning_ignore("integer_division")
-		sprun.visual_rotation += deg_to_rad(slot * sprun_container_angle / (sprun_slots - 1))
+		if sprun_slots > 1:
+			@warning_ignore("integer_division")
+			sprun.visual_rotation += deg_to_rad(slot * sprun_container_angle / (sprun_slots - 1))
 	set_sprun(sprun_active)
 	
 	call_deferred("add_actions", new_action)

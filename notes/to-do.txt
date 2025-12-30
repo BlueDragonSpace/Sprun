@@ -3,24 +3,25 @@ Forking forks of frok fkro frok amok bok
 
 
 1:
-	TPK (total party kill)
-	for the love of code clean up the failed turn marker transition
-	Sort where the button info and select enemy functions should go better (sorting)
+	
 2:
 	Enemy Waves
 	More Enemy Actions (at least start with Defend)
-	Sprun Movement Shifting depending on size (too far when small, to close when big)
-	Animate Smooth adding and subtracting of charas and enemies by adding a VSeparator and making it bigger or smaller upon sliding the npc in
+	Aggro Drawing (90% chance or so?)
+	Minion sprun use
+	Different kinds of Sprun (Red used on ATK, so on)
 3:
 	Different kinds of enemy intents (defend, debuff, buff, charge up, unknown)
 	Levelling System
+	Sprun Movement Shifting depending on size (too far when small, to close when big)
+	Animate Smooth adding and subtracting of charas and enemies by adding a VSeparator and making it bigger or smaller upon sliding the npc in
 	Name of attack upon using it (like the notifs from Cascade)
 	Character Select Screen
 	Increase Speed of Play (like Balatro)
-	Aggro Drawing (90% chance or so?)
 	MegaLazer VFX! (Screenshake, line connecting player and enemy, enemy color changing)
 	Right-click to tab (when in mouse mode)
 	Litle dialogue things
+	Full-screen
 4: 
 	Hide unnecessary tabs
 	Every time an enemy dies, the TurnOrderPoint is off on which turn it really is
@@ -73,9 +74,5 @@ Solution! To the resource problem:
 	there
 
 Currently finished:
-	Bitwise functions (for the export flags of enabled actions for Player_Types)
-	Invisibilized actions for non-applicable characters
-	Randomized Enemy intended_target (the player they're targeting)
-	Pass action
-	Tweened Background on TPK
-	Properly fixed the lower bar getting completely off-screen when your turn ends
+	Cleaned up a failed turn-marker tween
+	Cleaned up code

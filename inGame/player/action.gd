@@ -21,4 +21,5 @@ const PLAYER_TYPE = 'All, Wizerd, Pony, Tea, Crumpt'
 #@export var modifier: float = 1 # multiplies by a specific stat
 @export var sprun_necessary: int = 0 # necessary to carry out the action
 @export var sprun_loss: int = 0 #taken away upon use
+@export var requires_target: bool = false # disables upon prep rounds
 @export var button_info: String = 'button info' # hover over button

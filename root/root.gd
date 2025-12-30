@@ -5,6 +5,8 @@ extends Control
 @onready var BAK: Button = $RootGame/LowerBar/VBoxContainer/Actions/BackButton/BAK
 @onready var LittlePlayerIcon: TextureRect = $RootGame/LowerBar/VBoxContainer/InfoBar/LittlePlayerIcon
 @onready var ActionInfo: Label = $RootGame/LowerBar/VBoxContainer/InfoBar/ActionInfo
+@onready var TWKPrepRoundsLabel: Label = $TWK/Labels/VBoxContainer/Num
+@onready var TopBarPrepRoundsLabel: Label = $RootGame/TopBar/HBoxContainer/TextureRect/PrepRoundsLabel
 
 
 @onready var Animate: AnimationPlayer = $Animate
@@ -18,8 +20,6 @@ var current_enemy = null
 @onready var Charas: VBoxContainer = $RootGame/BattleScreen/Charas
 @onready var Enemies: VBoxContainer = $RootGame/BattleScreen/Enemies
 @onready var TurnOrder: VBoxContainer = $RootGame/BattleScreen/TurnOrder/TurnOrder
-@onready var TurnOrderPointMaster: TextureRect = $RootGame/BattleScreen/TurnOrder/TurnOrderPointMaster
-var temp_turn_order_point = null # turns into node which is turned into a tween for the master
 
 const TURN_ORDER_POINT = preload("uid://kbdvggtyupd2") # current turn marker
 const TURN_ORDER_MARKER = preload("uid://dim074qeqwx6x") # character/enemy order
@@ -33,6 +33,8 @@ var mid_animation_action = func() : pass
 var turn_order_data = [] # speed_stat, icon, node_path, action
 var current_turn = 0
 ## end section
+@export var in_prep_round = false
+@export var prep_rounds_remaining = 3
 
 ## In-Battle
 enum TURN_TYPE {PLAYER, SELECT_ENEMY, MIDDLE, END, TRANSITION}
@@ -40,9 +42,13 @@ enum TURN_TYPE {PLAYER, SELECT_ENEMY, MIDDLE, END, TRANSITION}
 	set(new):
 		match(new):
 			TURN_TYPE.PLAYER:
+				# disabling
 				disable_all_actions(false)
 				BAK.disabled = true
 				check_cost_all_actions(current_player.sprun_active)
+				if in_prep_round:
+					disable_all_attacks(true)
+				# visible (-ing)
 				check_actions_visible(current_player.player_type)
 			TURN_TYPE.SELECT_ENEMY:
 				disable_all_actions(true)
@@ -171,24 +177,12 @@ func set_turn_order() -> void:
 		var marker = TURN_ORDER_MARKER.instantiate()
 		marker.texture = body[1]
 		TurnOrder.add_child(marker)
-func tween_turn_order_point() -> void:
-	#
-	#
-	#if current_turn == 0:
-		## tweening doesn't matter here since the thing isn't visible yet
-		#TurnOrderPointMaster.global_position.y = temp_turn_order_point.global_position.y
-		#print('tweened to first position')
-	#elif current_turn < turn_order_data.size():
-		#tween.tween_property(TurnOrderPointMaster, "global_position:y", temp_turn_order_point.global_position.y, 0.19)
-	#else:
-		#tween.tween_property(TurnOrderPointMaster, "position:x", 167.0, 0.19) #tweens it out of the screen space
-		#
-	pass
+
 func add_turn_order_point(point) -> void:
 	var now_mark = TurnOrder.get_child(point)
 	var new_turn_order_point = TURN_ORDER_POINT.instantiate()
 	now_mark.add_child(new_turn_order_point)
-	temp_turn_order_point = new_turn_order_point
+	#temp_turn_order_point = new_turn_order_point
 
 func select_enemy() -> void:
 	
@@ -201,6 +195,12 @@ func disable_all_actions(boolean: bool) -> void:
 	for container in Actions.get_children():
 		for action in container.get_children():
 			action.disabled = boolean
+
+func disable_all_attacks(boolean: bool) -> void:
+	for container in Actions.get_children():
+		for action in container.get_children():
+			if action.requires_target:
+				action.disabled = boolean
 
 func check_cost_all_actions(sprun: int) -> void:
 	
@@ -268,8 +268,11 @@ func remove_dead_actions(dead: Node) -> void:
 					break
 			
 			if total_wave_kill:
-				print("successfully made them begone of this world")
-				get_tree().quit()
+				current_enemy = null
+				TWKPrepRoundsLabel.text = str(prep_rounds_remaining - 1)
+				# the prep_rounds_remaining is off by one at the start, to justify when it gets
+				#-decreased whenever a round ends
+				Animate.play("TWK")
 			
 		dead.CHARACTER_TYPE.PLAYER:
 			
@@ -286,6 +289,49 @@ func remove_dead_actions(dead: Node) -> void:
 				#get_tree().quit()
 				
 				Animate.play("TPK")
+
+# technically a signal function... to change the info when for focus and mouse_entering
+func button_info(new_info: String) -> void:
+	ActionInfo.text = new_info
+
+func initiate_select_enemy() -> void:
+	
+	if Enemies.get_child_count() > 1:
+		var selector = ENEMY_SELECTION.instantiate()
+		selector.text = ''
+		selector.info = current_enemy.name
+		selector.connect("pressed", select_enemy)
+		selector.call_deferred("grab_focus")
+		
+		current_enemy = Enemies.get_child(0)
+		current_enemy.add_child(selector)
+		
+		turn = TURN_TYPE.SELECT_ENEMY
+	else:
+		current_player.action_victim = current_enemy
+		player_pass_turn()
+
+# whenever each character passes their turn (and for the final character pass)
+func player_pass_turn() -> void:
+	
+	# check if the current player is the last in order
+	# if: they are, end the turn
+	# else: go to the next player and get their action
+	
+	if current_player == Charas.get_child(-1):
+		# sets the TurnOrderPointMaster to the correct y position for the first point
+		add_turn_order_point(0)
+		
+		# the actual ending turn part
+		Animate.play("playerPassTurn")
+	else:
+		turn = TURN_TYPE.PLAYER
+		# might be worth making a function for this cuz it gets call on passing turn too
+		current_player = Charas.get_child(current_player.get_index() + 1)
+		check_cost_all_actions(current_player.sprun_active)
+		check_actions_visible(current_player.player_type)
+		button_info(current_player.name + " probably has issues")
+		BAK.disabled = true
 
 ## turn focussed functions
 func middle_animation_constant() -> void:
@@ -341,51 +387,16 @@ func final_pass_turn() -> void:
 	
 	BAK.disabled = true
 	
+	if in_prep_round:
+		prep_rounds_remaining -= 1
+		TopBarPrepRoundsLabel.text = str(prep_rounds_remaining)
+		
+		if prep_rounds_remaining == 0:
+			TopBarPrepRoundsLabel.text = 'X'
+			print('time for the next wave to occur right now')
+	
 	current_turn = 0
 	current_round += 1
-
-# technically a signal function... to change the info when for focus and mouse_entering
-func button_info(new_info: String) -> void:
-	ActionInfo.text = new_info
-
-func initiate_select_enemy() -> void:
-	
-	if Enemies.get_child_count() > 1:
-		var selector = ENEMY_SELECTION.instantiate()
-		selector.text = ''
-		selector.info = current_enemy.name
-		selector.connect("pressed", select_enemy)
-		selector.call_deferred("grab_focus")
-		
-		current_enemy = Enemies.get_child(0)
-		current_enemy.add_child(selector)
-		
-		turn = TURN_TYPE.SELECT_ENEMY
-	else:
-		current_player.action_victim = current_enemy
-		player_pass_turn()
-
-# whenever each character passes their turn (and for the final character pass)
-func player_pass_turn() -> void:
-	
-	# check if the current player is the last in order
-	# if: they are, end the turn
-	# else: go to the next player and get their action
-	
-	if current_player == Charas.get_child(-1):
-		# sets the TurnOrderPointMaster to the correct y position for the first point
-		add_turn_order_point(0)
-		
-		# the actual ending turn part
-		Animate.play("playerPassTurn")
-	else:
-		turn = TURN_TYPE.PLAYER
-		# might be worth making a function for this cuz it gets call on passing turn too
-		current_player = Charas.get_child(current_player.get_index() + 1)
-		check_cost_all_actions(current_player.sprun_active)
-		check_actions_visible(current_player.player_type)
-		button_info(current_player.name + " probably has issues")
-		BAK.disabled = true
 
 ## signal functions
 # battle-game-turn-based stuff
