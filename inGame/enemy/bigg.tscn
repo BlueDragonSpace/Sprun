@@ -4,5 +4,5 @@
 
 [node name="Bigg" instance=ExtResource("1_mbycr")]
 intent = 0
+attack_middle_value = 15
 speed_stat = 5
-attackStat = 15

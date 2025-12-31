@@ -3,9 +3,8 @@ Forking forks of frok fkro frok amok bok
 
 
 1:
-	
+	Hitting space or enter during cutscene breaks game in some way (especialy on to prep)
 2:
-	Enemy Waves
 	More Enemy Actions (at least start with Defend)
 	Intertwine enemy actions with player's action resource?
 	Different kinds of Sprun (Red used on ATK, so on)
@@ -64,6 +63,7 @@ Refactoring
 Tips:
 	Hey you can rearrange the tabs on the Action Bar (thanks Godot!)
 	Beating the final enemy of a wave immediately ends the wave; you can't do actions in the turn past ending the enemy
+	Have prep_rounds_remaining set to at least 3, cuz it -1 when activated, and I'm too lazy to add a "s" on the end for a 1
 
 Bugs:
 	Not initially checking sprun cost? first player first turn (for the custom attack)
@@ -83,8 +83,10 @@ Currently finished:
 	Make player checking actions work on first turn first round
 	Make FOCUS add sprun instead of ITM lol
 	Add Buff and Debuff tabs on actions bar (or remove them from actions) [yeah removed]
+	-----
+	End of Prep is finished, adds a new wave to fight, making the game effectively loop on itself until you die
 
 Github Commit:
-	All but player checking actions work on first turn...
+	The -----
 
 Hey what the heck does requires_target do again? like in code (disables using in prep)

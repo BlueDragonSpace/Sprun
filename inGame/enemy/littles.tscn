@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6qpplfncfiyr"]
+
+[ext_resource type="PackedScene" uid="uid://cmoedndryju2o" path="res://inGame/enemy/enemy.tscn" id="1_hqd7r"]
+[ext_resource type="Texture2D" uid="uid://dyxd4y0ad8jrw" path="res://placeholderArt/computerMouse.png" id="2_6d24w"]
+
+[node name="Littles" instance=ExtResource("1_hqd7r")]
+hp_range = 3
+speed_middle_value = 10
+speed_range = 6
+attack_middle_value = 4
+attack_range = 3
+icon = ExtResource("2_6d24w")
+speed_stat = 8
+max_hp = 9
+attack_stat = 4

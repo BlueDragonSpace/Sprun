@@ -16,9 +16,7 @@ extends Control
 @export var speed_stat : int = 12
 
 @export var max_hp: int = 40
-var current_hp: int = max_hp:
-	set(new):
-		current_hp = new
+var current_hp: int = max_hp
 
 @export var attack_stat : int = 3
 
@@ -38,12 +36,7 @@ var action_victim : Node
 var is_dead = false
 
 func _ready() -> void:
-	current_hp = max_hp
-	visual_hp(current_hp)
-	
-	HP.max_value = max_hp
-	MaxHp.text = str(max_hp)
-	
+	set_max_hp(max_hp)
 	Icon.texture = icon
 	
 	add_ready()
@@ -63,6 +56,12 @@ func visual_hp(new_hp : int) -> void:
 	HP.value = new_hp
 	CurrentHp.text = str(int(HP.value))
 
+func set_max_hp(new_hp : int) -> void:
+	max_hp = new_hp
+	current_hp = new_hp
+	visual_hp(new_hp)
+	HP.max_value = new_hp
+	MaxHp.text = str(new_hp)
 #for some reason, if you call a Callable as a Callable, the function doesn't go through
 func do_intended_action() -> void:
 	current_defense = 0

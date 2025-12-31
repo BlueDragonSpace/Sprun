@@ -24,10 +24,14 @@ enum INTENTS {ATTACK, DEFEND, HEAL, OTHER, UNKNOWN}
 			_:
 				pass
 		intent = new
+
+@export var hp_range = 5
 @export var speed_middle_value = 3
 @export var speed_range = 5
 @export var attack_middle_value = 7
 @export var attack_range = 2
+# randi_range(middle_value + range, middle_value - range)
+
 
 func add_ready() -> void:
 	npc_type = CHARACTER_TYPE.ENEMY
@@ -35,6 +39,8 @@ func add_ready() -> void:
 	
 	IntentLabel.text = str(attack_stat)
 	node_is_ready = true
+	
+	set_max_hp(randi_range(max_hp - hp_range, max_hp + hp_range))
 
 func add_take_damage(attacker) -> void:
 	last_attacker = attacker

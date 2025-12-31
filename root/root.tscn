@@ -779,6 +779,7 @@ size_flags_stretch_ratio = 0.14
 [node name="Charas" type="VBoxContainer" parent="RootGame/BattleScreen"]
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Wizerd" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_m38np")]
@@ -800,7 +801,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.57
 
-[node name="Enemies" type="VBoxContainer" parent="RootGame/BattleScreen"]
+[node name="Enemies" type="GridContainer" parent="RootGame/BattleScreen"]
 layout_mode = 2
 size_flags_horizontal = 3
 metadata/_edit_use_anchors_ = true
@@ -808,7 +809,6 @@ metadata/_edit_use_anchors_ = true
 [node name="Sproo" parent="RootGame/BattleScreen/Enemies" instance=ExtResource("4_y5gj7")]
 layout_mode = 2
 speed_range = 5
-attack_middle_value = 7
 attack_range = 2
 max_hp = 6
 

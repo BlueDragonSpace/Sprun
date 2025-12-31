@@ -18,7 +18,7 @@ var current_player = null:
 var current_enemy = null
 
 @onready var Charas: VBoxContainer = $RootGame/BattleScreen/Charas
-@onready var Enemies: VBoxContainer = $RootGame/BattleScreen/Enemies
+@onready var Enemies: GridContainer = $RootGame/BattleScreen/Enemies
 @onready var TurnOrder: VBoxContainer = $RootGame/BattleScreen/TurnOrder/TurnOrder
 
 const TURN_ORDER_POINT = preload("uid://kbdvggtyupd2") # current turn marker
@@ -26,6 +26,7 @@ const TURN_ORDER_MARKER = preload("uid://dim074qeqwx6x") # character/enemy order
 const ENEMY_SELECTION = preload("uid://c6hsrr8o4xvi3")
 ## ENEMIES
 const BIGG = preload("uid://bs8426h8sndoy")
+const LITTLES = preload("uid://b6qpplfncfiyr")
 
 
 ## player section
@@ -196,13 +197,17 @@ func select_enemy() -> void:
 	player_pass_turn()
 
 func add_enemy_wave() -> void:
-	print('adding wave')
-	match(randi_range(0, 0)):
+	match(randi_range(0, 1)):
 		0:
+			# one big 
 			Enemies.add_child(BIGG.instantiate())
+			Enemies.columns = 1
 		1:
-			# two to three mids
-			pass
+			# many littles (4 - 6)
+			for i in randi_range(4, 6):
+				# randomized stats are handled it its ready
+				Enemies.add_child(LITTLES.instantiate())
+				Enemies.columns = 2
 		2:
 			# many littles
 			pass
@@ -291,6 +296,7 @@ func remove_dead_actions(dead: Node) -> void:
 				TWKPrepRoundsLabel.text = str(prep_rounds_remaining - 1)
 				# the prep_rounds_remaining is off by one at the start, to justify when it gets
 				#-decreased whenever a round ends
+				current_round += 1
 				Animate.play("TWK")
 			
 		dead.CHARACTER_TYPE.PLAYER:
@@ -304,9 +310,6 @@ func remove_dead_actions(dead: Node) -> void:
 					break
 			
 			if total_party_kill:
-				print("The entire party lost the will to continue.")
-				#get_tree().quit()
-				
 				Animate.play("TPK")
 
 # technically a signal function... to change the info when for focus and mouse_entering
@@ -397,6 +400,19 @@ func final_pass_turn() -> void:
 			current_player = Charas.get_child(num) # sets the current_player to be not dead
 		break
 	
+	if in_prep_round:
+		prep_rounds_remaining -= 1
+		TopBarPrepRoundsLabel.text = str(prep_rounds_remaining)
+		
+		if prep_rounds_remaining <= 0:
+			in_prep_round = false
+			
+			TopBarPrepRoundsLabel.text = 'X'
+			disable_all_attacks(false)
+			add_enemy_wave()
+			current_enemy = Enemies.get_child(0)
+			prep_rounds_remaining = randi_range(3, 4) # 2 or 3 prep rounds
+	
 	set_enemies_intents()
 	set_turn_order()
 	Animate.play("to_player")
@@ -405,15 +421,6 @@ func final_pass_turn() -> void:
 		player.intended_action = Callable(Global, "empty_function")
 	
 	BAK.disabled = true
-	
-	if in_prep_round:
-		prep_rounds_remaining -= 1
-		TopBarPrepRoundsLabel.text = str(prep_rounds_remaining)
-		
-		if prep_rounds_remaining == 0:
-			TopBarPrepRoundsLabel.text = 'X'
-			disable_all_attacks(false)
-			add_enemy_wave()
 	
 	current_turn = 0
 	current_round += 1
