@@ -64,6 +64,7 @@ func add_actions(custom_actions : Array) -> void:
 		new_button.sprun_cost = this_action.sprun_necessary
 		new_button.text = this_action.name
 		new_button.usable_on_player = this_action.player_type
+		new_button.requires_target = this_action.requires_target
 		new_button.visible = false # Button needs to be visible for it to be used
 		
 		@warning_ignore("standalone_expression")
@@ -113,7 +114,7 @@ func initiate_attack(action_name: String):
 	Root.initiate_select_enemy()
 
 func attack():
-	action_victim.take_damage(attackStat, self)
+	action_victim.take_damage(attack_stat, self)
 	Animate.play("attack")
 
 func big_attack():
@@ -121,7 +122,7 @@ func big_attack():
 	# plus it opens up the possibility to make a cheaper attack or decrease later on
 	set_sprun(sprun_active - 1)
 	
-	action_victim.take_damage(int(attackStat * 2.5), self)
+	action_victim.take_damage(int(attack_stat * 2.5), self)
 	Animate.play("attack")
 
 func defend():

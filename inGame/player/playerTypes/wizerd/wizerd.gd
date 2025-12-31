@@ -3,7 +3,7 @@ extends "res://inGame/player/player.gd"
 
 func mega_lazer() -> void:
 	
-	action_victim.take_damage(attackStat * 7)
+	action_victim.take_damage(attack_stat * 7)
 	Animate.play("attack")
 	
 	print('That was a mega lazer, imagine the special effects')

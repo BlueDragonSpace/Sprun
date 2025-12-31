@@ -24,6 +24,8 @@ var current_enemy = null
 const TURN_ORDER_POINT = preload("uid://kbdvggtyupd2") # current turn marker
 const TURN_ORDER_MARKER = preload("uid://dim074qeqwx6x") # character/enemy order
 const ENEMY_SELECTION = preload("uid://c6hsrr8o4xvi3")
+## ENEMIES
+const BIGG = preload("uid://bs8426h8sndoy")
 
 
 ## player section
@@ -87,7 +89,6 @@ func _ready() -> void:
 	button_info("A last stand.")
 	current_player = Charas.get_child(0)
 	current_enemy = Enemies.get_child(0)
-	print(current_player.name)
 	
 	BAK.disabled = true
 	
@@ -166,11 +167,11 @@ func set_turn_order() -> void:
 	
 	for enemy in Enemies.get_children():
 		if enemy.is_dead == false:
-			turn_order_data.push_back([enemy.speedStat, enemy.Icon.texture, enemy, Callable(enemy, "do_intended_action")])
+			turn_order_data.push_back([enemy.speed_stat, enemy.Icon.texture, enemy, Callable(enemy, "do_intended_action")])
 	# wonder if there is a such thing as a shared for loop..?
 	for character in Charas.get_children():
 		if character.is_dead == false:
-			turn_order_data.push_back([character.speedStat, character.Icon.texture,character, Callable(character, "do_intended_action")])
+			turn_order_data.push_back([character.speed_stat, character.Icon.texture,character, Callable(character, "do_intended_action")])
 	
 	#as it turns out, Godot's sort method will sort by the first element of each array in a nested array
 	# which makes life a whole lot easier than doing custom_sort()
@@ -194,6 +195,20 @@ func select_enemy() -> void:
 	
 	player_pass_turn()
 
+func add_enemy_wave() -> void:
+	print('adding wave')
+	match(randi_range(0, 0)):
+		0:
+			Enemies.add_child(BIGG.instantiate())
+		1:
+			# two to three mids
+			pass
+		2:
+			# many littles
+			pass
+		_:
+			print('unknown enemy wave value')
+
 func disable_all_actions(boolean: bool) -> void:
 	for container in Actions.get_children():
 		for action in container.get_children():
@@ -211,11 +226,9 @@ func check_cost_all_actions(sprun: int) -> void:
 			action.check_cost(sprun)
 
 func check_actions_visible(player_type_bitwise: int) -> void:
-	print('checking visibility')
 	# now, for every action, check if it is available to the character
 	for tab in Actions.get_children():
 		for action in tab.get_children():
-			print(action.text)
 			
 			action.visible = false
 			
@@ -399,7 +412,8 @@ func final_pass_turn() -> void:
 		
 		if prep_rounds_remaining == 0:
 			TopBarPrepRoundsLabel.text = 'X'
-			print('time for the next wave to occur right now')
+			disable_all_attacks(false)
+			add_enemy_wave()
 	
 	current_turn = 0
 	current_round += 1
@@ -419,9 +433,11 @@ func _on_atk_pressed() -> void:
 func _on_dfd_pressed() -> void:
 	current_player.intended_action = Callable(current_player, "defend")
 	player_pass_turn()
-func _on_itm_pressed() -> void:
+func _on_focus_pressed() -> void:
 	current_player.intended_action = Callable(current_player, "focus")
 	player_pass_turn()
+func _on_itm_pressed() -> void:
+	print("haven't set this up yet")
 func _on_big_atk_pressed() -> void:
 	current_player.intended_action = Callable(current_player, "big_attack")
 	initiate_select_enemy()

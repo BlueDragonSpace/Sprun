@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmoedndryju2o"]
+[gd_scene load_steps=5 format=3 uid="uid://cmoedndryju2o"]
 
 [ext_resource type="PackedScene" uid="uid://ctlnpeebeoqgd" path="res://inGame/npc/npc.tscn" id="1_y8jsf"]
 [ext_resource type="Script" uid="uid://qk0yaqbhbtaf" path="res://inGame/enemy/enemy.gd" id="2_sumcb"]
-[ext_resource type="Texture2D" uid="uid://cqmahlm6jr7w8" path="res://placeholderArt/Sprun.png" id="3_sumcb"]
 [ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="4_5rpnx"]
 [ext_resource type="Texture2D" uid="uid://cvggsr6dniihs" path="res://placeholderArt/wizerdhat-1.png (1).png" id="5_ocmfa"]
 
 [node name="Enemy" instance=ExtResource("1_y8jsf")]
+size_flags_vertical = 3
 script = ExtResource("2_sumcb")
 intent = 5
-icon = ExtResource("3_sumcb")
+speed_middle_value = 3
+speed_range = 2
+attack_range = 5
 
 [node name="IntentBar" type="HBoxContainer" parent="VBoxContainer" index="1"]
 self_modulate = Color(1, 0, 0, 1)

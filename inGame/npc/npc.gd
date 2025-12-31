@@ -13,14 +13,14 @@ extends Control
 @export var icon = Image
 
 # stats
-@export var speedStat : int = 12
+@export var speed_stat : int = 12
 
 @export var max_hp: int = 40
 var current_hp: int = max_hp:
 	set(new):
 		current_hp = new
 
-@export var attackStat : int = 3
+@export var attack_stat : int = 3
 
 # bad code: is it Npc or Character!
 # and worst of all: Characters are contolled by Player, meaning that they are literal PCs instead of NPCs

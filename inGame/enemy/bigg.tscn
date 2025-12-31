@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs8426h8sndoy"]
+
+[ext_resource type="PackedScene" uid="uid://cmoedndryju2o" path="res://inGame/enemy/enemy.tscn" id="1_mbycr"]
+
+[node name="Bigg" instance=ExtResource("1_mbycr")]
+intent = 0
+speed_stat = 5
+attackStat = 15

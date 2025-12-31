@@ -3,13 +3,11 @@ Forking forks of frok fkro frok amok bok
 
 
 1:
-	Add Buff and Debuff tabs on actions bar (or remove them from actions)
-	Make player checking actions work on first turn first round
-	Make FOCUS add sprun instead of ITM lol
+	
 2:
 	Enemy Waves
 	More Enemy Actions (at least start with Defend)
-	Minion sprun use
+	Intertwine enemy actions with player's action resource?
 	Different kinds of Sprun (Red used on ATK, so on)
 3:
 	Different kinds of enemy intents (defend, debuff, buff, charge up, unknown)
@@ -65,7 +63,7 @@ Refactoring
 
 Tips:
 	Hey you can rearrange the tabs on the Action Bar (thanks Godot!)
-
+	Beating the final enemy of a wave immediately ends the wave; you can't do actions in the turn past ending the enemy
 
 Bugs:
 	Not initially checking sprun cost? first player first turn (for the custom attack)
@@ -82,6 +80,11 @@ Rodent Lord Rodents:
 	Flying Squirels, chipmunks, beavers, capybaras, gopher, base squirel
 
 Currently finished:
-	
+	Make player checking actions work on first turn first round
+	Make FOCUS add sprun instead of ITM lol
+	Add Buff and Debuff tabs on actions bar (or remove them from actions) [yeah removed]
 
-Hey what the heck does requires_target do again? like in code 
+Github Commit:
+	All but player checking actions work on first turn...
+
+Hey what the heck does requires_target do again? like in code (disables using in prep)
