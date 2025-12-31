@@ -73,18 +73,19 @@ func add_actions(custom_actions : Array) -> void:
 				lambda = func(): 
 					intended_action = Callable(self, this_action.func_name)
 					Root.initiate_select_enemy()
+			1: ## DEFEND
+				print('no lamda set for custom defend actions in player.gd')
+			2: ## SPRUN
+				lambda = func():
+					intended_action = Callable(self, this_action.func_name)
+					Root.player_pass_turn()
+			_:
+				print('no lambda set in player.gd for action_type, doesn\'t know what to do with the action')
 		
 		new_button.connect("pressed", lambda)
 		
 		# 0 is Back Button, so everything past that is fair game
 		Root.Actions.get_child(this_action.action_type + 1).add_child(new_button)
-		
-		
-		# set signal
-		# connect signal
-		# add button
-		
-		# hide unnessary tabs also
 
 
 func set_sprun(new_sprun_count):
@@ -112,7 +113,7 @@ func initiate_attack(action_name: String):
 	Root.initiate_select_enemy()
 
 func attack():
-	action_victim.take_damage(attackStat)
+	action_victim.take_damage(attackStat, self)
 	Animate.play("attack")
 
 func big_attack():
@@ -120,7 +121,7 @@ func big_attack():
 	# plus it opens up the possibility to make a cheaper attack or decrease later on
 	set_sprun(sprun_active - 1)
 	
-	action_victim.take_damage(int(attackStat * 2.5))
+	action_victim.take_damage(int(attackStat * 2.5), self)
 	Animate.play("attack")
 
 func defend():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d3wbwxma2hkqm"]
+[gd_scene load_steps=33 format=3 uid="uid://d3wbwxma2hkqm"]
 
 [ext_resource type="Theme" uid="uid://cyy1ccrel07nx" path="res://root/root.tres" id="1_vvh5c"]
 [ext_resource type="Script" uid="uid://dpipac1vlx4vl" path="res://root/root.gd" id="2_jnlp7"]
@@ -9,10 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://co7fnqru8dy5r" path="res://placeholderArt/Xi.png" id="5_y3dhr"]
 [ext_resource type="Texture2D" uid="uid://dg1g6fg7u8d4k" path="res://placeholderArt/beedrill.png" id="6_bbrdx"]
 [ext_resource type="PackedScene" uid="uid://cm4voswejvugr" path="res://inGame/player/playerTypes/wizerd/wizerd.tscn" id="6_m38np"]
+[ext_resource type="PackedScene" uid="uid://bhkrj58td4ng7" path="res://inGame/player/playerTypes/ratface/rodent_lord.tscn" id="6_mg5wv"]
 [ext_resource type="Script" uid="uid://diifqu7v6338q" path="res://inGame/player/action.gd" id="7_bbrdx"]
 [ext_resource type="Shader" uid="uid://ddycup0alwvnl" path="res://shaders/chromaticAberation.gdshader" id="7_e2nrw"]
 [ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="7_th5d7"]
 [ext_resource type="Shader" uid="uid://dftiegl3xn8fh" path="res://shaders/pixelizer.gdshader" id="8_gj8ci"]
+[ext_resource type="Resource" uid="uid://d2ing130rolfl" path="res://inGame/player/playerTypes/ratface/RAT.tres" id="9_x1xj5"]
 [ext_resource type="Shader" uid="uid://bo0lvrtc1mrha" path="res://shaders/rainbows.gdshader" id="10_b1gtb"]
 [ext_resource type="PackedScene" uid="uid://drtw4kuprkapi" path="res://inGame/battleUI/ActionButton/action_button.tscn" id="10_th5d7"]
 
@@ -31,12 +33,13 @@ noise = SubResource("FastNoiseLite_ovlcs")
 color_ramp = SubResource("Gradient_ovlcs")
 in_3d_space = true
 
-[sub_resource type="Resource" id="Resource_mg5wv"]
+[sub_resource type="Resource" id="Resource_esawj"]
 resource_local_to_scene = true
 script = ExtResource("7_bbrdx")
 name = "Mega Lazer"
 func_name = "mega_lazer"
 player_type = 2
+requires_target = true
 button_info = "I simply cannot decide."
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gj8ci"]
@@ -284,113 +287,6 @@ tracks/19/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_y3dhr"]
-resource_name = "middle_round"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"middle_animation_constant"
-}, {
-"args": [],
-"method": &"middle_round_loop"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_gj8ci"]
-resource_name = "playerPassTurn"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:turn")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [4, 2]
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("RootGame/LowerBar:size_flags_stretch_ratio")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(0.25, -0.25, 0, 0.25, 0, 0.01, -0.16666667, 0.04, 0, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("RootGame/LowerBar:size_flags_vertical")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [3, 1]
-}
-
-[sub_resource type="Animation" id="Animation_0n2s5"]
-resource_name = "to_player"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:turn")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [3, 0]
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("RootGame/LowerBar:size_flags_stretch_ratio")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(0.01, -0.25, 0, 0.25, 0, 0.25, -0.16666667, -0.04, 0, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("RootGame/LowerBar:size_flags_vertical")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [3, 3]
-}
-
 [sub_resource type="Animation" id="Animation_ep6pg"]
 resource_name = "TPK"
 length = 2.0
@@ -461,6 +357,127 @@ tracks/5/keys = {
 "handle_modes": PackedInt32Array(0, 2),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.47058824, -0.24166667, -0.07843137, 0, 0),
 "times": PackedFloat32Array(0.55, 2)
+}
+
+[sub_resource type="Animation" id="Animation_bbrdx"]
+resource_name = "TWK"
+length = 4.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TWK:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1200, -0.25, 0, 0.25, 0, -207.89291, -0.08, 258.4072, 0.016666666, -53.834827, -673.452, -0.096666664, 366.1733, 0.07000001, -265.16003, -2588, -0.16666667, 631.3334, 0, 0),
+"times": PackedFloat32Array(0, 0.43333334, 3.5, 3.9333334)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TWK:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 408.839, -0.08, -75.03904, 0.016666666, 15.633132, 544.033, -0.096666664, -106.33333, 0.07000001, 77.00001, 1100, -0.16666667, -183.33334, 0, 0),
+"times": PackedFloat32Array(0, 0.43333334, 3.5, 3.9333334)
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.9818),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"final_pass_turn"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:in_prep_round")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.9621),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_y3dhr"]
+resource_name = "middle_round"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"middle_animation_constant"
+}, {
+"args": [],
+"method": &"middle_round_loop"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_gj8ci"]
+resource_name = "playerPassTurn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:turn")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 2]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RootGame/LowerBar:size_flags_stretch_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.25, -0.25, 0, 0.25, 0, 0.01, -0.16666667, 0.04, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RootGame/LowerBar:size_flags_vertical")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 1]
 }
 
 [sub_resource type="Animation" id="Animation_m38np"]
@@ -613,56 +630,42 @@ tracks/12/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_bbrdx"]
-resource_name = "TWK"
-length = 4.0
-tracks/0/type = "bezier"
+[sub_resource type="Animation" id="Animation_0n2s5"]
+resource_name = "to_player"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TWK:position:x")
+tracks/0/path = NodePath(".:turn")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(1200, -0.25, 0, 0.25, 0, -207.89291, -0.08, 258.4072, 0.016666666, -53.834827, -673.452, -0.096666664, 366.1733, 0.07000001, -265.16003, -2588, -0.16666667, 631.3334, 0, 0),
-"times": PackedFloat32Array(0, 0.43333334, 3.5, 3.9333334)
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 0]
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TWK:position:y")
+tracks/1/path = NodePath("RootGame/LowerBar:size_flags_stretch_ratio")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 408.839, -0.08, -75.03904, 0.016666666, 15.633132, 544.033, -0.096666664, -106.33333, 0.07000001, 77.00001, 1100, -0.16666667, -183.33334, 0, 0),
-"times": PackedFloat32Array(0, 0.43333334, 3.5, 3.9333334)
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.01, -0.25, 0, 0.25, 0, 0.25, -0.16666667, -0.04, 0, 0),
+"times": PackedFloat32Array(0, 1)
 }
-tracks/2/type = "method"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("RootGame/LowerBar:size_flags_vertical")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(3.9818),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"final_pass_turn"
-}]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:in_prep_round")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(3.9621),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [3, 3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y3dhr"]
@@ -769,16 +772,18 @@ layout_mode = 2
 size_flags_horizontal = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="Player" parent="RootGame/BattleScreen/Charas" instance=ExtResource("3_gj8ci")]
+[node name="Wizerd" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_m38np")]
+layout_mode = 2
+new_action = Array[Resource]([SubResource("Resource_esawj")])
+
+[node name="Bee" parent="RootGame/BattleScreen/Charas" instance=ExtResource("3_gj8ci")]
 layout_mode = 2
 sprun_slots = 1
 icon = ExtResource("6_bbrdx")
-max_hp = 15
 
-[node name="Wizerd" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_m38np")]
+[node name="Rodent Lord" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_mg5wv")]
 layout_mode = 2
-new_action = Array[Resource]([SubResource("Resource_mg5wv")])
-max_hp = 11
+new_action = Array[Resource]([ExtResource("9_x1xj5")])
 
 [node name="VSeparator2" type="VSeparator" parent="RootGame/BattleScreen"]
 modulate = Color(1, 1, 1, 0)
@@ -791,11 +796,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="goodoo" parent="RootGame/BattleScreen/Enemies" instance=ExtResource("4_y5gj7")]
+[node name="Goodoo" parent="RootGame/BattleScreen/Enemies" instance=ExtResource("4_y5gj7")]
 layout_mode = 2
 size_flags_vertical = 3
 icon = ExtResource("7_th5d7")
-max_hp = 6
+max_hp = 30
+
+[node name="Sproo" parent="RootGame/BattleScreen/Enemies" instance=ExtResource("4_y5gj7")]
+layout_mode = 2
+size_flags_vertical = 3
+max_hp = 30
 
 [node name="VSeparator" type="VSeparator" parent="RootGame/BattleScreen"]
 modulate = Color(1, 1, 1, 0)

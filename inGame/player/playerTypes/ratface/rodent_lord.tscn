@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhkrj58td4ng7"]
+
+[ext_resource type="PackedScene" uid="uid://bd0auisdvfagw" path="res://inGame/player/player.tscn" id="1_ra5ly"]
+[ext_resource type="Script" uid="uid://c2yhgf20ky871" path="res://inGame/player/playerTypes/ratface/rodent_lord.gd" id="2_8x0pt"]
+[ext_resource type="Texture2D" uid="uid://c3lfkqfcsjsc4" path="res://placeholderArt/mouseOrRat.png" id="3_8x0pt"]
+[ext_resource type="Resource" uid="uid://d2ing130rolfl" path="res://inGame/player/playerTypes/ratface/RAT.tres" id="3_jl2p5"]
+
+[node name="Rodent Lord" instance=ExtResource("1_ra5ly")]
+script = ExtResource("2_8x0pt")
+new_action = Array[Resource]([ExtResource("3_jl2p5")])
+player_type = 4
+icon = ExtResource("3_8x0pt")
+speedStat = 12

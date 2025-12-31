@@ -5,7 +5,10 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_cky2r")
-name = "dumbass attack imma delete"
-func_name = "failure is a cnaodna"
+name = "RAT"
+func_name = "call_rat"
+action_type = 5
 player_type = 4
-button_info = ""
+sprun_necessary = 1
+sprun_loss = 1
+button_info = "Makes rat become existed"

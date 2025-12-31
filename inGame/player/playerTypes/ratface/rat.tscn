@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c02utralqt5h"]
+
+[ext_resource type="PackedScene" uid="uid://bd0auisdvfagw" path="res://inGame/player/player.tscn" id="1_6hdn5"]
+[ext_resource type="Texture2D" uid="uid://bnvnxoddtaevo" path="res://placeholderArt/squeezeRat-removebg-preview.png" id="2_37008"]
+
+[node name="Rat" instance=ExtResource("1_6hdn5")]
+sprun_slots = 0
+icon = ExtResource("2_37008")
+max_hp = 4

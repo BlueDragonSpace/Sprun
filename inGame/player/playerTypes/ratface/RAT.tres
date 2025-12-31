@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Action" load_steps=2 format=3 uid="uid://d2ing130rolfl"]
+
+[ext_resource type="Script" uid="uid://diifqu7v6338q" path="res://inGame/player/action.gd" id="1_qbmnl"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_qbmnl")
+name = "RAT"
+func_name = "call_rat"
+action_type = 2
+player_type = 4
+sprun_necessary = 1
+sprun_loss = 1
+button_info = "Makes rat become existed"

@@ -69,7 +69,7 @@ func do_intended_action() -> void:
 	
 	intended_action.call()
  
-func take_damage(damage) -> void:
+func take_damage(damage, attacker = null) -> void:
 	if current_defense > 0:
 		var undefended_damage = damage - current_defense
 		current_defense = clamp(current_defense - damage, 0, INF)
@@ -82,7 +82,12 @@ func take_damage(damage) -> void:
 		if current_hp <= 0:
 			die()
 		Animate.play("take_hit")
+	
+	if attacker != null:
+		add_take_damage(attacker)
 
+func add_take_damage(_attacker): # additional stuff I add to take_damage() in other classes (like enemy)
+	pass
 
 func die() -> void:
 	# you can only die once

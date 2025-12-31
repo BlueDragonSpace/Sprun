@@ -87,13 +87,16 @@ func _ready() -> void:
 	button_info("A last stand.")
 	current_player = Charas.get_child(0)
 	current_enemy = Enemies.get_child(0)
-	check_cost_all_actions(current_player.sprun_active)
-	check_actions_visible(current_player.player_type)
+	print(current_player.name)
 	
 	BAK.disabled = true
 	
 	NoiseBackground.texture.noise.seed = randi()
 	call_deferred("set_turn_order")
+	#check_cost_all_actions(current_player.sprun_active)
+	call_deferred("check_cost_all_actions", current_player.sprun_active)
+	#check_actions_visible(current_player.player_type)
+	call_deferred("check_actions_visible", current_player.player_type)
 	set_enemies_intents()
 	
 
@@ -203,16 +206,16 @@ func disable_all_attacks(boolean: bool) -> void:
 				action.disabled = boolean
 
 func check_cost_all_actions(sprun: int) -> void:
-	
 	for container in Actions.get_children():
 		for action in container.get_children():
 			action.check_cost(sprun)
 
 func check_actions_visible(player_type_bitwise: int) -> void:
-	
+	print('checking visibility')
 	# now, for every action, check if it is available to the character
 	for tab in Actions.get_children():
 		for action in tab.get_children():
+			print(action.text)
 			
 			action.visible = false
 			
@@ -220,12 +223,15 @@ func check_actions_visible(player_type_bitwise: int) -> void:
 				action.visible = true
 				continue
 			
-			for bit in root_player_type_array.size(): # loops through every player type
-				
-				# if the action and the player have at least one of the same bit type, the action is visible
-				if action.usable_on_player & bit and player_type_bitwise & bit:
-					action.visible = true
-					continue
+			#for bit in root_player_type_array.size(): # loops through every player type
+				## if the action and the player have at least one of the same bit type, the action is visible (doesn't go through all bits?)
+				#if action.usable_on_player & bit and player_type_bitwise & bit:
+				## compares the two bit flags to each other,
+				## potential downfall, when a character has two flags, would it mess up this system? idk
+			if action.usable_on_player & player_type_bitwise != 0: 
+				action.visible = true
+				continue
+			#print("----------")
 
 func remove_dead_actions(dead: Node) -> void:
 	# gets called by npc whenever it dies
@@ -325,11 +331,11 @@ func player_pass_turn() -> void:
 		# the actual ending turn part
 		Animate.play("playerPassTurn")
 	else:
-		turn = TURN_TYPE.PLAYER
-		# might be worth making a function for this cuz it gets call on passing turn too
+		
 		current_player = Charas.get_child(current_player.get_index() + 1)
-		check_cost_all_actions(current_player.sprun_active)
-		check_actions_visible(current_player.player_type)
+		turn = TURN_TYPE.PLAYER
+		#check_cost_all_actions(current_player.sprun_active)
+		#check_actions_visible(current_player.player_type)
 		button_info(current_player.name + " probably has issues")
 		BAK.disabled = true
 
