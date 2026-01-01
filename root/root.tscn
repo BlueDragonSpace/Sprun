@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://d3wbwxma2hkqm"]
+[gd_scene load_steps=34 format=3 uid="uid://d3wbwxma2hkqm"]
 
 [ext_resource type="Theme" uid="uid://cyy1ccrel07nx" path="res://root/root.tres" id="1_vvh5c"]
 [ext_resource type="Script" uid="uid://dpipac1vlx4vl" path="res://root/root.gd" id="2_jnlp7"]
@@ -15,6 +15,8 @@
 [ext_resource type="Shader" uid="uid://dftiegl3xn8fh" path="res://shaders/pixelizer.gdshader" id="8_gj8ci"]
 [ext_resource type="Shader" uid="uid://bo0lvrtc1mrha" path="res://shaders/rainbows.gdshader" id="10_b1gtb"]
 [ext_resource type="PackedScene" uid="uid://drtw4kuprkapi" path="res://inGame/battleUI/ActionButton/action_button.tscn" id="10_th5d7"]
+[ext_resource type="Texture2D" uid="uid://cl4v4yeo1gn2m" path="res://placeholderArt/SwordCarrot-1.png.png" id="13_mg5wv"]
+[ext_resource type="Texture2D" uid="uid://bvhkmrse4oqmm" path="res://placeholderArt/ShieldBadArt-1.png.png" id="14_x1xj5"]
 
 [sub_resource type="Gradient" id="Gradient_ovlcs"]
 colors = PackedColorArray(0.8590829, 0.7058417, 0, 1, 0, 0.3835572, 0.75477016, 1)
@@ -810,6 +812,8 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 speed_range = 5
 attack_range = 2
+defend_middle_value = 5
+defend_range = 3
 max_hp = 6
 
 [node name="VSeparator" type="VSeparator" parent="RootGame/BattleScreen"]
@@ -901,6 +905,8 @@ metadata/_tab_index = 1
 [node name="ATK" parent="RootGame/LowerBar/VBoxContainer/Actions/Attack" instance=ExtResource("10_th5d7")]
 layout_mode = 2
 text = "ATK"
+icon = ExtResource("13_mg5wv")
+expand_icon = true
 info = "Not a friendly"
 requires_target = true
 
@@ -919,6 +925,8 @@ metadata/_tab_index = 2
 [node name="DFD" parent="RootGame/LowerBar/VBoxContainer/Actions/Defend" instance=ExtResource("10_th5d7")]
 layout_mode = 2
 text = "DFD"
+icon = ExtResource("14_x1xj5")
+expand_icon = true
 info = "Unpunch ur self"
 
 [node name="Sprun" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
@@ -929,6 +937,8 @@ metadata/_tab_index = 3
 [node name="FOCUS" parent="RootGame/LowerBar/VBoxContainer/Actions/Sprun" instance=ExtResource("10_th5d7")]
 layout_mode = 2
 text = "FOCUS"
+icon = ExtResource("3_jnlp7")
+expand_icon = true
 info = "Create 1 Sprun."
 
 [node name="Other" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]

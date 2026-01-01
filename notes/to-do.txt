@@ -3,7 +3,8 @@ Forking forks of frok fkro frok amok bok
 
 
 1:
-	Hitting space or enter during cutscene breaks game in some way (especialy on to prep)
+	Defend stat gets re rolls
+	Fix the awful code in enemy
 2:
 	More Enemy Actions (at least start with Defend)
 	Intertwine enemy actions with player's action resource?
@@ -26,6 +27,7 @@ Forking forks of frok fkro frok amok bok
 	Attack all enemies attack (bandit blade guy) - note that attacks make you select an enemy
 		-by default in player.gd. To reset, make sure to configure requires_target for all actions,
 		-then change select_enemy to be conditional upon requires_target
+	Final hit on enemy grants a sprun?
 4: 
 	Hide unnecessary tabs
 	Every time an enemy dies, the TurnOrderPoint is off on which turn it really is
@@ -83,10 +85,12 @@ Currently finished:
 	Make player checking actions work on first turn first round
 	Make FOCUS add sprun instead of ITM lol
 	Add Buff and Debuff tabs on actions bar (or remove them from actions) [yeah removed]
-	-----
+	-------
 	End of Prep is finished, adds a new wave to fight, making the game effectively loop on itself until you die
-
+	Set up randomized enemy hp
+	------
+	Fixed a bug where pressing Enter or Space during watching battle would press the button
 Github Commit:
-	The -----
+	
 
 Hey what the heck does requires_target do again? like in code (disables using in prep)

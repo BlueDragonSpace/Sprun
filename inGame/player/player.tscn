@@ -10,11 +10,9 @@ sprun_slots = 3
 sprun_container_angle = 135
 sprun_distance = 75
 sprun_active = 0
-defendStat = 6
 new_action = Array[Resource]([])
 player_type = 0
 icon = null
-speedStat = 5
 
 [node name="Icon" parent="VBoxContainer" index="1"]
 expand_mode = 2

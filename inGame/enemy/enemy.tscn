@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ctlnpeebeoqgd" path="res://inGame/npc/npc.tscn" id="1_y8jsf"]
 [ext_resource type="Script" uid="uid://qk0yaqbhbtaf" path="res://inGame/enemy/enemy.gd" id="2_sumcb"]
-[ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="4_5rpnx"]
+[ext_resource type="Texture2D" uid="uid://cl4v4yeo1gn2m" path="res://placeholderArt/SwordCarrot-1.png.png" id="3_5rpnx"]
 [ext_resource type="Texture2D" uid="uid://cvggsr6dniihs" path="res://placeholderArt/wizerdhat-1.png (1).png" id="5_ocmfa"]
 
 [node name="Enemy" instance=ExtResource("1_y8jsf")]
@@ -14,6 +14,8 @@ speed_middle_value = 3
 speed_range = 2
 attack_middle_value = 7
 attack_range = 5
+defend_middle_value = 5
+defend_range = 3
 
 [node name="IntentBar" type="HBoxContainer" parent="VBoxContainer" index="1"]
 self_modulate = Color(1, 0, 0, 1)
@@ -23,9 +25,8 @@ size_flags_stretch_ratio = 0.28
 alignment = 1
 
 [node name="Intent" type="TextureRect" parent="VBoxContainer/IntentBar" index="0"]
-self_modulate = Color(1, 0, 0, 1)
 layout_mode = 2
-texture = ExtResource("4_5rpnx")
+texture = ExtResource("3_5rpnx")
 expand_mode = 3
 stretch_mode = 5
 

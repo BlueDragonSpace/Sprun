@@ -5,7 +5,6 @@ extends "res://inGame/npc/npc.gd"
 @export var sprun_distance = 0 ## wow that's pretty cool
 const SPRUN = preload("uid://b6wgjet502thq")
 @export var sprun_active: int = 0 # ONLY CHANGE WITH set_sprun(new_sprun_count)!!!!!!!!!!
-@export var defendStat = 6
 
 @export var new_action: Array[Resource]
 @export_custom(PROPERTY_HINT_FLAGS, Action.PLAYER_TYPE) var player_type : int = 0
@@ -126,7 +125,7 @@ func big_attack():
 	Animate.play("attack")
 
 func defend():
-	self.current_defense += defendStat
+	self.current_defense += defend_stat
 	Animate.play("defend")
 
 func focus():

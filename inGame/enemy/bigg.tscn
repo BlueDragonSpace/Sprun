@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cmoedndryju2o" path="res://inGame/enemy/enemy.tscn" id="1_mbycr"]
 
 [node name="Bigg" instance=ExtResource("1_mbycr")]
-intent = 0
+intent = 1
 attack_middle_value = 15
 speed_stat = 5
+defend_stat = 12

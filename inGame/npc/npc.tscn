@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctlnpeebeoqgd"]
+[gd_scene load_steps=13 format=3 uid="uid://ctlnpeebeoqgd"]
 
 [ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="1_2jrf3"]
 [ext_resource type="Script" uid="uid://cdbuic4bcd67n" path="res://inGame/npc/npc.gd" id="1_3atjd"]
 [ext_resource type="Texture2D" uid="uid://cqmahlm6jr7w8" path="res://placeholderArt/Sprun.png" id="2_3atjd"]
+[ext_resource type="Texture2D" uid="uid://bvhkmrse4oqmm" path="res://placeholderArt/ShieldBadArt-1.png.png" id="4_wk2dw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bleps"]
 font_color = Color(0, 0, 0, 1)
@@ -161,31 +162,6 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4, 1)
 }
 
-[sub_resource type="Animation" id="Animation_a1cnd"]
-resource_name = "take_hit"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/Icon:self_modulate:g")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.06666667, 0.16666667, 0, 0, 1, -0.10000001, -0.16666667, 0, 0),
-"times": PackedFloat32Array(0, 0.4, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer/Icon:self_modulate:b")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.06666667, 0.16666667, 0, 0, 1, -0.10000001, -0.16666667, 0, 0),
-"times": PackedFloat32Array(0, 0.4, 1)
-}
-
 [sub_resource type="Animation" id="Animation_wk2dw"]
 resource_name = "die"
 tracks/0/type = "bezier"
@@ -234,6 +210,31 @@ tracks/3/keys = {
 "args": [],
 "method": &"queue_free"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_a1cnd"]
+resource_name = "take_hit"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/Icon:self_modulate:g")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.06666667, 0.16666667, 0, 0, 1, -0.10000001, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.4, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/Icon:self_modulate:b")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.06666667, 0.16666667, 0, 0, 1, -0.10000001, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.4, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eymni"]
@@ -347,11 +348,10 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.08
 
 [node name="Shield" type="TextureRect" parent="VBoxContainer/LowerBar"]
-self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.05
-texture = ExtResource("1_2jrf3")
+texture = ExtResource("4_wk2dw")
 expand_mode = 5
 stretch_mode = 5
 

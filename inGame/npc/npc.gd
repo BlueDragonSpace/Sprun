@@ -19,6 +19,7 @@ extends Control
 var current_hp: int = max_hp
 
 @export var attack_stat : int = 3
+@export var defend_stat : int = 5
 
 # bad code: is it Npc or Character!
 # and worst of all: Characters are contolled by Player, meaning that they are literal PCs instead of NPCs
@@ -27,6 +28,10 @@ var npc_type = CHARACTER_TYPE.NUHUH # this class isn't intended to be used on it
 
 var current_defense : int = 0:
 	set(new):
+		if new <= 0:
+			$VBoxContainer/LowerBar/Shield.visible = false
+		else:
+			$VBoxContainer/LowerBar/Shield.visible = true
 		$VBoxContainer/LowerBar/Shield/ShieldNum.text = str(new)
 		current_defense = new
 

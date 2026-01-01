@@ -62,16 +62,16 @@ enum TURN_TYPE {PLAYER, SELECT_ENEMY, MIDDLE, END, TRANSITION}
 					BAK.disabled = true
 					# may be worth turning the back_action to be the empty function
 			TURN_TYPE.MIDDLE:
-				middle_round_loop() # could just call this method in Animate...
+				middle_round_loop()
 			TURN_TYPE.END:
 				BAK.disabled = true
 				back_action = func(): Callable(Global, "empty_function")
 				
 			TURN_TYPE.TRANSITION:
-				# this type is more like an empty function than anything else
-				# it means that the Animate is going to another type, and right now
-				# -it doesn't need to do anything
-				pass
+				disable_all_actions(true)
+				# it means that the Animate is going to middle, and right now
+				# -it doesn't need to do anything else
+		#print(new)
 		turn = new
 
 var back_action = Callable(Global, "empty_function")
