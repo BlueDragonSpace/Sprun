@@ -348,6 +348,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.08
 
 [node name="Shield" type="TextureRect" parent="VBoxContainer/LowerBar"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.05

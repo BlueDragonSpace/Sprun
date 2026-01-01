@@ -3,11 +3,9 @@ Forking forks of frok fkro frok amok bok
 
 
 1:
-	Defend stat gets re rolls
-	Fix the awful code in enemy
+	
 2:
-	More Enemy Actions (at least start with Defend)
-	Intertwine enemy actions with player's action resource?
+	Tweening for background (without animation player, to prep, and back)
 	Different kinds of Sprun (Red used on ATK, so on)
 3:
 	Different kinds of enemy intents (defend, debuff, buff, charge up, unknown)

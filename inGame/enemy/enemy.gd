@@ -9,27 +9,7 @@ extends "res://inGame/npc/npc.gd"
 var node_is_ready = false # a small get around for INTENTS.ATTACK
 var last_attacker : Node = null # remembers the last player to attack it
 
-#var random_offset : int = 0:
-	#set(new):
-		#IntentLabel.text = str(attack_stat + random_offset)
-		#random_offset = new
-
-enum INTENTS {ATTACK, DEFEND, HEAL, OTHER, UNKNOWN}
-@export var intent: INTENTS:
-	set(new):
-		match(new):
-			INTENTS.ATTACK:
-				#set new art for attack (a sword, duh)
-				attack_stat = randi_range(attack_middle_value - attack_range, attack_middle_value + attack_range)
-				if node_is_ready:
-					IntentLabel.text = str(attack_stat)
-			INTENTS.DEFEND:
-				defend_stat = randi_range(defend_middle_value - defend_range, defend_middle_value + defend_range)
-				if node_is_ready:
-					IntentLabel.text = str(defend_stat)
-			_:
-				pass
-		intent = new
+@export var intent: Action.ACTION_TYPE
 # intent textures
 const SWORD_ART = preload("uid://cl4v4yeo1gn2m")
 const SHIELD_ART = preload("uid://bvhkmrse4oqmm")
@@ -41,16 +21,12 @@ const SHIELD_ART = preload("uid://bvhkmrse4oqmm")
 @export var attack_range = 2
 @export var defend_middle_value = 5
 @export var defend_range = 3
-# randi_range(middle_value + range, middle_value - range)
+# REFERENCE: randi_range(middle_value + range, middle_value - range)
 
 
 func add_ready() -> void:
 	npc_type = CHARACTER_TYPE.ENEMY
-	intent = INTENTS.ATTACK
-	IntentLabel.text = str(attack_stat)
-	
 	node_is_ready = true
-	
 	set_max_hp(randi_range(max_hp - hp_range, max_hp + hp_range))
 
 func add_take_damage(attacker) -> void:
@@ -64,12 +40,16 @@ func set_intended_action(victim: Node) -> void:
 			intended_action = Callable(self, "attack")
 			IntendedTargetIcon.visible = true
 			Intent.texture = SWORD_ART
-			intent = INTENTS.ATTACK
+			intent = Action.ACTION_TYPE.ATTACK
+			attack_stat = randi_range(attack_middle_value - attack_range, attack_middle_value + attack_range)
+			IntentLabel.text = str(attack_stat)
 		1:
 			intended_action = Callable(self, "defend")
 			IntendedTargetIcon.visible = false
 			Intent.texture = SHIELD_ART
-			intent = INTENTS.DEFEND
+			intent = Action.ACTION_TYPE.DEFEND
+			defend_stat = randi_range(defend_middle_value - defend_range, defend_middle_value + defend_range)
+			IntentLabel.text = str(defend_stat)
 		_:
 			print('unknown  (liek for realz) enemy attack type ')
 	
