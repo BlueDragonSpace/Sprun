@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://d3wbwxma2hkqm"]
+[gd_scene load_steps=35 format=3 uid="uid://d3wbwxma2hkqm"]
 
 [ext_resource type="Theme" uid="uid://cyy1ccrel07nx" path="res://root/root.tres" id="1_vvh5c"]
 [ext_resource type="Script" uid="uid://dpipac1vlx4vl" path="res://root/root.gd" id="2_jnlp7"]
@@ -33,7 +33,7 @@ noise = SubResource("FastNoiseLite_ovlcs")
 color_ramp = SubResource("Gradient_ovlcs")
 in_3d_space = true
 
-[sub_resource type="Resource" id="Resource_m38np"]
+[sub_resource type="Resource" id="Resource_qd0xu"]
 resource_local_to_scene = true
 script = ExtResource("7_bbrdx")
 name = "Mega Lazer"
@@ -42,7 +42,7 @@ player_type = 2
 requires_target = true
 button_info = "I simply cannot decide."
 
-[sub_resource type="Resource" id="Resource_bbrdx"]
+[sub_resource type="Resource" id="Resource_lh5hl"]
 resource_local_to_scene = true
 script = ExtResource("7_bbrdx")
 name = "RAT"
@@ -421,6 +421,33 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("NoiseBackground:texture:color_ramp:colors")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.8333333, 3.9333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedColorArray(0.8590829, 0.7058417, 0, 1, 0, 0.3835572, 0.75477016, 1), PackedColorArray(1.4920532e-06, 0.5304824, 0.2201744, 1, 0.72519064, 0.00041941137, 0.7291304, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mg5wv"]
+resource_name = "exiting_TWK"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NoiseBackground:texture:color_ramp:colors")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedColorArray(1.4920532e-06, 0.5304824, 0.2201744, 1, 0.72519064, 0.00041941137, 0.7291304, 1), PackedColorArray(0.8590829, 0.7058417, 0, 1, 0, 0.3835572, 0.75477016, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_y3dhr"]
 resource_name = "middle_round"
@@ -684,6 +711,7 @@ _data = {
 &"RESET": SubResource("Animation_5jge4"),
 &"TPK": SubResource("Animation_ep6pg"),
 &"TWK": SubResource("Animation_bbrdx"),
+&"exiting_TWK": SubResource("Animation_mg5wv"),
 &"middle_round": SubResource("Animation_y3dhr"),
 &"playerPassTurn": SubResource("Animation_gj8ci"),
 &"retry": SubResource("Animation_m38np"),
@@ -786,7 +814,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Wizerd" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_m38np")]
 layout_mode = 2
-new_action = Array[Resource]([SubResource("Resource_m38np")])
+new_action = Array[Resource]([SubResource("Resource_qd0xu")])
 
 [node name="Bee" parent="RootGame/BattleScreen/Charas" instance=ExtResource("3_gj8ci")]
 layout_mode = 2
@@ -795,7 +823,7 @@ icon = ExtResource("6_bbrdx")
 
 [node name="Rodent Lord" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_mg5wv")]
 layout_mode = 2
-new_action = Array[Resource]([SubResource("Resource_bbrdx")])
+new_action = Array[Resource]([SubResource("Resource_lh5hl")])
 
 [node name="VSeparator2" type="VSeparator" parent="RootGame/BattleScreen"]
 modulate = Color(1, 1, 1, 0)
@@ -812,8 +840,6 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 speed_range = 5
 attack_range = 2
-defend_middle_value = 5
-defend_range = 3
 max_hp = 6
 
 [node name="VSeparator" type="VSeparator" parent="RootGame/BattleScreen"]
@@ -1012,8 +1038,8 @@ info = "Don't do it..."
 [node name="TWK" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 1200.0
-offset_right = 3199.998
-offset_bottom = 99.99988
+offset_right = 3199.9983
+offset_bottom = 100.000244
 rotation = -0.27925268
 color = Color(0.2, 0.2, 0.2, 0.42745098)
 

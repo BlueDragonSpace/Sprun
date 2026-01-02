@@ -412,6 +412,7 @@ func final_pass_turn() -> void:
 			add_enemy_wave()
 			current_enemy = Enemies.get_child(0)
 			prep_rounds_remaining = randi_range(3, 4) # 2 or 3 prep rounds
+			Animate.play("exiting_TWK")
 	
 	set_enemies_intents()
 	set_turn_order()

@@ -39,10 +39,19 @@ var intended_action = Callable(Global, "empty_function")
 var action_victim : Node
 
 var is_dead = false
+var size_transition = 0.0:
+	set(new):
+		size_transition = new
+		size_flags_stretch_ratio = size_transition
+		set_deferred("HP.size_flags_stretch_ratio", size_transition)
 
 func _ready() -> void:
 	set_max_hp(max_hp)
 	Icon.texture = icon
+	
+	#size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	size_flags_stretch_ratio = size_transition
+	HP.size_flags_stretch_ratio = size_transition
 	
 	add_ready()
 # this function is meant to be added on to the ready function, by children, so they don't have to redefine ready
