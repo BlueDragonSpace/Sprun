@@ -2,13 +2,14 @@
 Shipping to Shiba (with a goal of a black hole):
 	Make own art:
 		Turn Order thing
-		Icons of enemies and Players
+		Icons of enemies and Players:
+			Littles (like, 5)
+			Bigg
+			Rodent Lord
+			Rat
+			(one more chara)
 		HP Bar
-	Add a few missing animations (mega lazer)
-	Fix up the button text 
-	Fix the Sprun Costs
 	Give each player at least one interesting unique attack (RAT, MEGA LAZER)
-	Increase Speed of play (time_scale)
 	SFX
 
 1 (core mechanics):
@@ -17,6 +18,10 @@ Shipping to Shiba (with a goal of a black hole):
 2 (more mechanics):
 	More enemy intents (debuff, buff, charge up, unknown)
 	Different kinds of Sprun (Red used on ATK, so on)
+	
+	Buggy:
+		Names are improper when spawned from code (rats, littles)
+		Enemy at 0 hp doesn't die when they defend
 3:
 	Poison Debuff (for Rat and beyond)
 	Sprun Movement Shifting depending on size (too far when small, to close when big)
@@ -24,10 +29,9 @@ Shipping to Shiba (with a goal of a black hole):
 	Show Player Intent Upon choosing their action
 	Go backward in players choosing actions with Back Button
 	Character Select Screen
-	Increase Speed of Play (like Balatro)
 	MegaLazer VFX! (Screenshake, line connecting player and enemy, enemy color changing)
 	Right-click to tab (when in mouse mode)
-	Litle dialogue things
+	Litle dialogue things (but even more, like character-to-character interaction, and in the middle of battle...)
 	Full-screen
 	Attack all enemies attack (bandit blade guy) - note that attacks make you select an enemy
 		-by default in player.gd. To reset, make sure to configure requires_target for all actions,
@@ -35,6 +39,8 @@ Shipping to Shiba (with a goal of a black hole):
 	Final hit on enemy grants a sprun?
 	Cat Battle! (don't actually hit the cat, or bad stuff happens)
 	Turn Limit til next wave (prevent hold onto one enemy to increase Sprun stats)
+	Actually make the BAK button function as I originally intended for it
+	Create Custom Theme (buttons, sliders, the whole shebang)
 4: 
 	Death saves? (Deltarune, DnD, revival at all?)
 	Kitty's 6 Lives (the 7th I don't talk about)
@@ -89,9 +95,7 @@ Rodent Lord Rodents:
 	Flying Squirels, chipmunks, beavers, capybaras, gopher, base squirel
 
 Currently finished:
-	Transition in for new npcs
-	Exiing TWK changing background
-	Set TurnOrderMarker to "Fit Width Proportional" to keep size in check for large amounts of npcs (6+)
-	Added a few more stats at the top
-	Added (albeit basic) Intro Sequence
-	Working on Speed of Play Slider
+	Fixed up action text
+	Randomized to_player_text and passing player text
+	Tried to fix up the stats a little so the game is more balanced
+	Enemies scale based on the wave count

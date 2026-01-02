@@ -11,4 +11,4 @@ action_type = 3
 player_type = 4
 sprun_necessary = 1
 sprun_loss = 1
-button_info = "Makes rat become existed"
+button_info = "Costs 1 sprun. Calls a rat."

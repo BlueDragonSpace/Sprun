@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://d25w6c0hemmxn"]
+
+[ext_resource type="PackedScene" uid="uid://bd0auisdvfagw" path="res://inGame/player/player.tscn" id="1_ceooe"]
+[ext_resource type="Script" uid="uid://dxc2eww7oejej" path="res://inGame/player/playerTypes/kitty/kitty.gd" id="2_u7gom"]
+[ext_resource type="Resource" uid="uid://d21q8e62mtv0h" path="res://inGame/player/playerTypes/kitty/reflection.tres" id="3_ceooe"]
+
+[node name="Kitty" instance=ExtResource("1_ceooe")]
+script = ExtResource("2_u7gom")
+sprun_slots = 9
+new_action = Array[Resource]([ExtResource("3_ceooe")])
+player_type = 8
+speed_stat = 3
+max_hp = 12
+attack_stat = 2
+defend_stat = 3

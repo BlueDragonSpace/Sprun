@@ -5,10 +5,10 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_cky2r")
-name = "RAT"
-func_name = "call_rat"
-action_type = 5
-player_type = 4
-sprun_necessary = 1
-sprun_loss = 1
-button_info = "Makes rat become existed"
+name = "Reflection"
+func_name = "reflection"
+action_type = 3
+player_type = 8
+sprun_necessary = 9
+sprun_loss = 9
+button_info = "Become what you were born to be."

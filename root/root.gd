@@ -91,6 +91,9 @@ var current_round = 0:
 # the player types, for use within the root, as an array rather than one string
 var root_player_type_array = Action.PLAYER_TYPE.split(', ')
 
+const to_player_text = ['Continue.', 'Escape.', 'Worth.', 'Catastrophe.', 'Perpetual.', 'Cycles.', 'The Hazy Abyss. They are there.']
+const player_pass_text = [' looks a little agitated', ' probably needs some coffee', ' wonders why they are in the abyss', ' whistles', ' is quite tired of this nonsense', '.', ' doesn\'t really like all the rats']
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	button_info("A last stand.")
@@ -111,7 +114,6 @@ func _ready() -> void:
 		$RootGame.visible = true
 		$RootGame.modulate.a = 1.0
 		$IntroSequence.visible = false
-		print("Reset is probably overriding this isn't it")
 	else:
 		$RootGame.visible = false
 		$RootGame.modulate.a = 0.0
@@ -233,6 +235,16 @@ func add_enemy_wave() -> void:
 			pass
 		_:
 			print('unknown enemy wave value')
+	
+	# increases stats based on the wave number
+	for enemy in Enemies.get_children():
+		var mult = pow(1.3, current_wave - 1)
+		enemy.max_hp *= mult
+		enemy.attack_middle_value *= mult
+		enemy.attack_stat *= mult
+		enemy.defend_middle_value *= mult
+		enemy.defend_stat *= mult
+		
 
 func disable_all_actions(boolean: bool) -> void:
 	for container in Actions.get_children():
@@ -371,9 +383,9 @@ func player_pass_turn() -> void:
 		
 		current_player = Charas.get_child(current_player.get_index() + 1)
 		turn = TURN_TYPE.PLAYER
-		#check_cost_all_actions(current_player.sprun_active)
-		#check_actions_visible(current_player.player_type)
-		button_info(current_player.name + " probably has issues")
+		
+		# chooses a random text from all player_pass_text's, and puts the current player's name in front of it
+		button_info(current_player.name + player_pass_text[randi_range(0, player_pass_text.size() - 1)])
 		BAK.disabled = true
 
 ## turn focussed functions
@@ -409,7 +421,9 @@ func middle_round_loop() -> void:
 		final_pass_turn()
 
 func final_pass_turn() -> void:
-	button_info("wow it's ur turn nerd")
+	
+	# chooses a random text from all the to_player_text's
+	button_info(to_player_text[randi_range(0, to_player_text.size() - 1)])
 	
 	# removes the turn order point from the last child of the last npc in turn order
 	var last_npc = TurnOrder.get_child(-1)
@@ -483,3 +497,7 @@ func _on_retry_pressed() -> void:
 
 func _on_start_button_pressed() -> void:
 	Animate.play("start")
+
+
+func _on_play_speed_slider_value_changed(value: float) -> void:
+	Engine.time_scale = value

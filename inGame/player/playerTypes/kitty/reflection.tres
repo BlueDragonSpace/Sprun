@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Action" load_steps=2 format=3 uid="uid://d21q8e62mtv0h"]
+
+[ext_resource type="Script" uid="uid://diifqu7v6338q" path="res://inGame/player/action.gd" id="1_kijxa"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_kijxa")
+name = "Reflection"
+func_name = "reflection"
+action_type = 3
+player_type = 8
+sprun_necessary = 9
+sprun_loss = 9
+button_info = "Become what you were born to be."

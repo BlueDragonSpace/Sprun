@@ -1,9 +1,10 @@
 extends "res://inGame/player/player.gd"
 
+@onready var WizerdAnimate: AnimationPlayer = $WizerdAnimate
 
 func mega_lazer() -> void:
 	
 	action_victim.take_damage(attack_stat * 7)
-	Animate.play("attack")
+	WizerdAnimate.play("mega_lazer")
 	
-	print('That was a mega lazer, imagine the special effects')
+	set_sprun(sprun_active - 2) # ? blunder, this should be set inside of the action...

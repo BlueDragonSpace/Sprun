@@ -5,6 +5,8 @@
 
 [node name="Rat" instance=ExtResource("1_6hdn5")]
 sprun_slots = 0
-defendStat = 2
 icon = ExtResource("2_37008")
+speed_stat = 6
 max_hp = 4
+attack_stat = 3
+defend_stat = 2
