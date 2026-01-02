@@ -7,10 +7,22 @@ Shipping to Shiba (with a goal of a black hole):
 			Bigg
 			Rodent Lord
 			Rat
-			(one more chara)
+			Kitty
 		HP Bar
 	Give each player at least one interesting unique attack (RAT, MEGA LAZER)
-	SFX
+	SFX:
+		Attack
+		Big Attack
+		Defend
+		Rat
+		Mega Lazer
+		Reflection
+		Death
+		TPK
+		TWK
+		Start
+	Music
+	Mute Button
 
 1 (core mechanics):
 	Sprun Upgrade system (increase Sprun slots, ATK, DFD, SPD):

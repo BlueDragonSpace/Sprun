@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8l8w4n02trfl"]
+
+[ext_resource type="Texture2D" uid="uid://c25ehsvb06pmv" path="res://placeholderArt/SoundOn-1.png.png" id="1_vcwrs"]
+[ext_resource type="Script" uid="uid://m86f1gnh056y" path="res://inGame/mute_button.gd" id="2_uoyxl"]
+
+[node name="MuteButton" type="Button"]
+size_flags_horizontal = 3
+icon = ExtResource("1_vcwrs")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_uoyxl")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

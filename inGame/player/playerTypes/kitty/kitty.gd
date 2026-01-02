@@ -4,4 +4,11 @@ func reflection() -> void:
 	
 	# the dream that started it all
 	
-	pass
+	set_max_hp(84)
+	attack_stat = 12
+	defend_stat = 10
+	speed_stat = 1 # fastest possible
+	
+	# No, you aren't going to go for a second stat boost. I refuse to let this happen
+	set_sprun_slots(1)
+	set_sprun(0)

@@ -16,24 +16,7 @@ const ACTION_BUTTON = preload("uid://drtw4kuprkapi")
 func add_ready() -> void:
 	npc_type = CHARACTER_TYPE.PLAYER
 	
-	for slot in range(0, sprun_slots):
-		var sprun = SPRUN.instantiate()
-		
-		SprunContainer.add_child(sprun)
-		sprun.pivot_offset.y += sprun_distance
-		sprun.position.y -= sprun_distance
-		@warning_ignore("integer_division")
-		#sprun.position -= Vector2(128 / 2, 128 / 2) # 128 comes from the Godot Sprite's original dimensions
-		
-		
-		@warning_ignore("integer_division")
-		#sprun.visual_rotation += deg_to_rad(45/2)
-		@warning_ignore("integer_division")
-		sprun.visual_rotation += deg_to_rad(-sprun_container_angle/2)
-		if sprun_slots > 1:
-			@warning_ignore("integer_division")
-			sprun.visual_rotation += deg_to_rad(slot * sprun_container_angle / (sprun_slots - 1))
-	set_sprun(sprun_active)
+	set_sprun_slots(sprun_slots)
 	
 	call_deferred("add_actions", new_action)
 	
@@ -107,6 +90,33 @@ func set_sprun(new_sprun_count):
 		
 	sprun_active = clamp(sprun_active, 0, sprun_slots)
 
+func set_sprun_slots(slots) -> void:
+	
+	sprun_slots = slots
+	
+	# delete all intial sprun container children
+	for child in SprunContainer.get_children():
+		child.queue_free()
+	
+	for slot in range(0, slots):
+		var sprun = SPRUN.instantiate()
+		
+		
+		SprunContainer.add_child(sprun)
+		sprun.pivot_offset.y += sprun_distance
+		sprun.position.y -= sprun_distance
+		@warning_ignore("integer_division")
+		#sprun.position -= Vector2(128 / 2, 128 / 2) # 128 comes from the Godot Sprite's original dimensions
+		
+		
+		@warning_ignore("integer_division")
+		#sprun.visual_rotation += deg_to_rad(45/2)
+		@warning_ignore("integer_division")
+		sprun.visual_rotation += deg_to_rad(-sprun_container_angle/2)
+		if sprun_slots > 1:
+			@warning_ignore("integer_division")
+			sprun.visual_rotation += deg_to_rad(slot * sprun_container_angle / (sprun_slots - 1))
+	set_sprun(sprun_active)
 # player has it's intended actions set by the Root (because it's from input from the UI)
 
 func initiate_attack(action_name: String):

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2nk51jmcg81m"]
+
+[ext_resource type="PackedScene" uid="uid://cmoedndryju2o" path="res://inGame/enemy/enemy.tscn" id="1_rk0pp"]
+
+[node name="Mea" instance=ExtResource("1_rk0pp")]
+attack_range = 4
+max_hp = 25
+attack_stat = 7
