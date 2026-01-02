@@ -10,4 +10,3 @@ script = ExtResource("2_8x0pt")
 new_action = Array[Resource]([ExtResource("3_jl2p5")])
 player_type = 4
 icon = ExtResource("3_8x0pt")
-speedStat = 12

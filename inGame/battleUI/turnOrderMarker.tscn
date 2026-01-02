@@ -16,5 +16,5 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 texture = ExtResource("1_1u8fv")
-expand_mode = 4
+expand_mode = 3
 stretch_mode = 5

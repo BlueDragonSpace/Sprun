@@ -28,6 +28,7 @@ const ENEMY_SELECTION = preload("uid://c6hsrr8o4xvi3")
 const BIGG = preload("uid://bs8426h8sndoy")
 const LITTLES = preload("uid://b6qpplfncfiyr")
 
+@export var started : bool = false
 
 ## player section
 var player_actions = []
@@ -35,6 +36,7 @@ var player_actions = []
 var mid_animation_action = func() : pass
 var turn_order_data = [] # speed_stat, icon, node_path, action
 var current_turn = 0
+var current_wave = 0
 ## end section
 @export var in_prep_round = false
 @export var prep_rounds_remaining = 3
@@ -74,6 +76,10 @@ enum TURN_TYPE {PLAYER, SELECT_ENEMY, MIDDLE, END, TRANSITION}
 		#print(new)
 		turn = new
 
+
+## Stats?
+var enemies_slain = 0
+
 var back_action = Callable(Global, "empty_function")
 
 var in_transition = false
@@ -101,6 +107,16 @@ func _ready() -> void:
 	call_deferred("check_actions_visible", current_player.player_type)
 	set_enemies_intents()
 	
+	if started: 
+		$RootGame.visible = true
+		$RootGame.modulate.a = 1.0
+		$IntroSequence.visible = false
+		print("Reset is probably overriding this isn't it")
+	else:
+		$RootGame.visible = false
+		$RootGame.modulate.a = 0.0
+		$IntroSequence.visible = true
+		$IntroSequence.modulate.a = 1.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -197,6 +213,10 @@ func select_enemy() -> void:
 	player_pass_turn()
 
 func add_enemy_wave() -> void:
+	
+	current_wave += 1
+	$RootGame/TopBar/HBoxContainer/WaveNum.text = str(current_wave)
+	
 	match(randi_range(0, 1)):
 		0:
 			# one big 
@@ -281,7 +301,8 @@ func remove_dead_actions(dead: Node) -> void:
 	
 	match(dead.npc_type):
 		dead.CHARACTER_TYPE.ENEMY:
-			# solves the error that the current_enemy is freed on next read tho
+			enemies_slain += 1
+			$RootGame/TopBar/HBoxContainer/EnemiesSlainNum.text = str(enemies_slain)
 			
 			var total_wave_kill = true
 			
@@ -412,7 +433,7 @@ func final_pass_turn() -> void:
 			add_enemy_wave()
 			current_enemy = Enemies.get_child(0)
 			prep_rounds_remaining = randi_range(3, 4) # 2 or 3 prep rounds
-			Animate.play("exiting_TWK")
+			Animate.call_deferred("queue", "exiting_TWK")
 	
 	set_enemies_intents()
 	set_turn_order()
@@ -459,3 +480,6 @@ func _on_flash_evily_pressed() -> void:
 # actual real serious things
 func _on_retry_pressed() -> void:
 	Animate.play('retry')
+
+func _on_start_button_pressed() -> void:
+	Animate.play("start")

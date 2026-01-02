@@ -75,13 +75,15 @@ func add_actions(custom_actions : Array) -> void:
 					Root.initiate_select_enemy()
 			1: ## DEFEND
 				print('no lamda set for custom defend actions in player.gd')
-			2: ## SPRUN
+			#2: ## SPRUN
+				#lambda = func():
+					#intended_action = Callable(self, this_action.func_name)
+					#Root.player_pass_turn()
+			_:
 				lambda = func():
 					intended_action = Callable(self, this_action.func_name)
 					Root.player_pass_turn()
-			_:
-				print('no lambda set in player.gd for action_type, doesn\'t know what to do with the action')
-		
+				
 		new_button.connect("pressed", lambda)
 		
 		# 0 is Back Button, so everything past that is fair game
