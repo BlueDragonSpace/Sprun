@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://drtw4kuprkapi"]
+[gd_scene load_steps=5 format=3 uid="uid://drtw4kuprkapi"]
 
 [ext_resource type="Script" uid="uid://bcwc4u3784pa6" path="res://inGame/battleUI/ActionButton/action_button.gd" id="1_mhj1r"]
+[ext_resource type="PackedScene" uid="uid://c3e3n4jvt2s4t" path="res://inGame/random_pitch.tscn" id="2_6v1u0"]
+[ext_resource type="AudioStream" uid="uid://kjux3skw6qo4" path="res://placeholderArt/sfx/woW.wav" id="3_a5fwh"]
+[ext_resource type="AudioStream" uid="uid://c46ekwwfk3ei2" path="res://placeholderArt/sfx/focus.wav" id="4_u2mfk"]
 
 [node name="ActionButton" type="Button"]
 offset_right = 8.0
@@ -10,5 +13,12 @@ text = "owo"
 script = ExtResource("1_mhj1r")
 usable_on_player = 1
 
+[node name="Click" parent="." instance=ExtResource("2_6v1u0")]
+stream = ExtResource("3_a5fwh")
+
+[node name="Focus" parent="." instance=ExtResource("2_6v1u0")]
+stream = ExtResource("4_u2mfk")
+
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl4v4yeo1gn2m"
-path="res://.godot/imported/SwordCarrot-1.png.png-faf755a3a36b1940203520d3ccd32fa8.ctex"
+uid="uid://vn78vumn6uw7"
+path="res://.godot/imported/KittyButLyin-1.png (1).png-819edd40b69bbab4592276c28a01bce7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://placeholderArt/SwordCarrot-1.png.png"
-dest_files=["res://.godot/imported/SwordCarrot-1.png.png-faf755a3a36b1940203520d3ccd32fa8.ctex"]
+source_file="res://placeholderArt/myPixelArt/KittyButLyin-1.png (1).png"
+dest_files=["res://.godot/imported/KittyButLyin-1.png (1).png-819edd40b69bbab4592276c28a01bce7.ctex"]
 
 [params]
 

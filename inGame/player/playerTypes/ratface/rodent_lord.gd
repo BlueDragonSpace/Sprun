@@ -13,3 +13,5 @@ func call_rat() -> void:
 	Root.Charas.add_child(RAT.instantiate())
 	set_sprun(sprun_active - 1)
 	# poison damage?
+	
+	$RatSpawning.play()

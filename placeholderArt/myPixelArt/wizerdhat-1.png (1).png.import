@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cvggsr6dniihs"
-path="res://.godot/imported/wizerdhat-1.png (1).png-2b85a12450fb501695541303632e8f9f.ctex"
+path="res://.godot/imported/wizerdhat-1.png (1).png-9cd1d065b0d0c7847eecab77afcdf780.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://placeholderArt/wizerdhat-1.png (1).png"
-dest_files=["res://.godot/imported/wizerdhat-1.png (1).png-2b85a12450fb501695541303632e8f9f.ctex"]
+source_file="res://placeholderArt/myPixelArt/wizerdhat-1.png (1).png"
+dest_files=["res://.godot/imported/wizerdhat-1.png (1).png-9cd1d065b0d0c7847eecab77afcdf780.ctex"]
 
 [params]
 

@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bd0auisdvfagw"]
+[gd_scene load_steps=6 format=3 uid="uid://bd0auisdvfagw"]
 
 [ext_resource type="PackedScene" uid="uid://ctlnpeebeoqgd" path="res://inGame/npc/npc.tscn" id="1_kfrmh"]
 [ext_resource type="Script" uid="uid://sj0wnis8wnpb" path="res://inGame/player/player.gd" id="2_v55o0"]
+[ext_resource type="PackedScene" uid="uid://c3e3n4jvt2s4t" path="res://inGame/random_pitch.tscn" id="3_eymni"]
+[ext_resource type="AudioStream" uid="uid://jxg26yncsnmv" path="res://placeholderArt/sfx/attackPlus.wav" id="4_gtbgf"]
+[ext_resource type="AudioStream" uid="uid://bug0c63f6jtmr" path="res://placeholderArt/sfx/sprun_get.wav" id="5_gtbgf"]
 
 [node name="Player" instance=ExtResource("1_kfrmh")]
 size_flags_vertical = 3
@@ -37,3 +40,9 @@ size_flags_stretch_ratio = 0.13
 
 [node name="VSeparator3" parent="VBoxContainer" index="4"]
 size_flags_stretch_ratio = 0.05
+
+[node name="BigAttack" parent="." index="5" instance=ExtResource("3_eymni")]
+stream = ExtResource("4_gtbgf")
+
+[node name="SprunGet" parent="." index="6" instance=ExtResource("3_eymni")]
+stream = ExtResource("5_gtbgf")

@@ -1,14 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhkrj58td4ng7"]
+[gd_scene load_steps=9 format=3 uid="uid://bhkrj58td4ng7"]
 
 [ext_resource type="PackedScene" uid="uid://bd0auisdvfagw" path="res://inGame/player/player.tscn" id="1_ra5ly"]
 [ext_resource type="Script" uid="uid://c2yhgf20ky871" path="res://inGame/player/playerTypes/ratface/rodent_lord.gd" id="2_8x0pt"]
-[ext_resource type="Texture2D" uid="uid://c3lfkqfcsjsc4" path="res://placeholderArt/mouseOrRat.png" id="3_8x0pt"]
 [ext_resource type="Resource" uid="uid://d2ing130rolfl" path="res://inGame/player/playerTypes/ratface/RAT.tres" id="3_jl2p5"]
+[ext_resource type="Texture2D" uid="uid://bs2vr1mqvjcph" path="res://placeholderArt/myPixelArt/RodentLordRn-1.png.png" id="4_wjvg3"]
+[ext_resource type="PackedScene" uid="uid://c3e3n4jvt2s4t" path="res://inGame/random_pitch.tscn" id="5_5hico"]
+[ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="5_nhjtf"]
+[ext_resource type="Texture2D" uid="uid://cqmahlm6jr7w8" path="res://placeholderArt/Sprun.png" id="6_c5slj"]
+[ext_resource type="AudioStream" uid="uid://dhbp5gli5socg" path="res://placeholderArt/sfx/ratNoise.wav" id="6_m8o4b"]
 
 [node name="Rodent Lord" instance=ExtResource("1_ra5ly")]
 script = ExtResource("2_8x0pt")
 new_action = Array[Resource]([ExtResource("3_jl2p5")])
 player_type = 4
-icon = ExtResource("3_8x0pt")
+icon = ExtResource("4_wjvg3")
 speed_stat = 8
 max_hp = 38
+
+[node name="HP" parent="VBoxContainer/LowerBar" index="1"]
+texture_under = ExtResource("5_nhjtf")
+texture_over = null
+texture_progress = ExtResource("6_c5slj")
+
+[node name="RatSpawning" parent="." index="7" instance=ExtResource("5_5hico")]
+stream = ExtResource("6_m8o4b")

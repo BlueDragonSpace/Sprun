@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bs8426h8sndoy"]
+[gd_scene load_steps=3 format=3 uid="uid://bs8426h8sndoy"]
 
 [ext_resource type="PackedScene" uid="uid://cmoedndryju2o" path="res://inGame/enemy/enemy.tscn" id="1_mbycr"]
+[ext_resource type="Texture2D" uid="uid://cw68irnmtoprl" path="res://placeholderArt/myPixelArt/Bigg-1.png.png" id="2_kxph8"]
 
 [node name="Bigg" instance=ExtResource("1_mbycr")]
 intent = 1
 attack_middle_value = 15
+icon = ExtResource("2_kxph8")
 speed_stat = 5
 defend_stat = 12

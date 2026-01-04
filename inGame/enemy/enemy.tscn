@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://ctlnpeebeoqgd" path="res://inGame/npc/npc.tscn" id="1_y8jsf"]
 [ext_resource type="Script" uid="uid://qk0yaqbhbtaf" path="res://inGame/enemy/enemy.gd" id="2_sumcb"]
-[ext_resource type="Texture2D" uid="uid://cl4v4yeo1gn2m" path="res://placeholderArt/SwordCarrot-1.png.png" id="3_5rpnx"]
-[ext_resource type="Texture2D" uid="uid://cvggsr6dniihs" path="res://placeholderArt/wizerdhat-1.png (1).png" id="5_ocmfa"]
+[ext_resource type="Texture2D" uid="uid://cl4v4yeo1gn2m" path="res://placeholderArt/myPixelArt/SwordCarrot-1.png.png" id="3_5rpnx"]
+[ext_resource type="Texture2D" uid="uid://cvggsr6dniihs" path="res://placeholderArt/myPixelArt/wizerdhat-1.png (1).png" id="5_ocmfa"]
 
 [node name="Enemy" instance=ExtResource("1_y8jsf")]
 size_flags_vertical = 3

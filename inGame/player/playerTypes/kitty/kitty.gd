@@ -12,3 +12,5 @@ func reflection() -> void:
 	# No, you aren't going to go for a second stat boost. I refuse to let this happen
 	set_sprun_slots(1)
 	set_sprun(0)
+	
+	$Reflecting.play()

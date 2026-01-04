@@ -124,9 +124,6 @@ func initiate_attack(action_name: String):
 	self.intended_action = Callable(self, action_name)
 	Root.initiate_select_enemy()
 
-func attack():
-	action_victim.take_damage(attack_stat, self)
-	Animate.play("attack")
 
 func big_attack():
 	# now, I could check here to make sure the player has the sprun needed to attack... but I'm gonna rely on the button to disable it'self instead 
@@ -135,10 +132,8 @@ func big_attack():
 	
 	action_victim.take_damage(int(attack_stat * 2.5), self)
 	Animate.play("attack")
-
-func defend():
-	self.current_defense += defend_stat
-	Animate.play("defend")
+	$BigAttack.play()
 
 func focus():
 	set_sprun(sprun_active + 1)
+	$SprunGet.play()

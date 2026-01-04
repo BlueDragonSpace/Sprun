@@ -331,6 +331,7 @@ func remove_dead_actions(dead: Node) -> void:
 				#-decreased whenever a round ends
 				current_round += 1
 				Animate.play("TWK")
+				$TWK/Sounddddd.play()
 			
 		dead.CHARACTER_TYPE.PLAYER:
 			
@@ -344,6 +345,7 @@ func remove_dead_actions(dead: Node) -> void:
 			
 			if total_party_kill:
 				Animate.play("TPK")
+				$TPK/Soundd.play()
 
 # technically a signal function... to change the info when for focus and mouse_entering
 func button_info(new_info: String) -> void:
@@ -456,6 +458,8 @@ func final_pass_turn() -> void:
 	for player in Charas.get_children():
 		player.intended_action = Callable(Global, "empty_function")
 	
+	$RootGame/NextRound.play()
+	
 	BAK.disabled = true
 	
 	current_turn = 0
@@ -497,6 +501,7 @@ func _on_retry_pressed() -> void:
 
 func _on_start_button_pressed() -> void:
 	Animate.play("start")
+	$IntroSequence/AudioStreamPlayer.play()
 
 
 func _on_play_speed_slider_value_changed(value: float) -> void:

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3e3n4jvt2s4t"]
+
+[ext_resource type="Script" uid="uid://ccfu3vvaydt2i" path="res://inGame/random_pitch.gd" id="1_nc3tv"]
+
+[node name="RandomPitch" type="AudioStreamPlayer"]
+script = ExtResource("1_nc3tv")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://d3wbwxma2hkqm"]
+[gd_scene load_steps=44 format=3 uid="uid://d3wbwxma2hkqm"]
 
 [ext_resource type="Theme" uid="uid://cyy1ccrel07nx" path="res://root/root.tres" id="1_vvh5c"]
 [ext_resource type="Script" uid="uid://dpipac1vlx4vl" path="res://root/root.gd" id="2_jnlp7"]
@@ -13,10 +13,17 @@
 [ext_resource type="Script" uid="uid://diifqu7v6338q" path="res://inGame/player/action.gd" id="7_bbrdx"]
 [ext_resource type="Shader" uid="uid://ddycup0alwvnl" path="res://shaders/chromaticAberation.gdshader" id="7_e2nrw"]
 [ext_resource type="Shader" uid="uid://dftiegl3xn8fh" path="res://shaders/pixelizer.gdshader" id="8_gj8ci"]
+[ext_resource type="Texture2D" uid="uid://docng28uw84fm" path="res://placeholderArt/myPixelArt/Ooohhhhhhh-1.png.png" id="10_6qrul"]
 [ext_resource type="Shader" uid="uid://bo0lvrtc1mrha" path="res://shaders/rainbows.gdshader" id="10_b1gtb"]
 [ext_resource type="PackedScene" uid="uid://drtw4kuprkapi" path="res://inGame/battleUI/ActionButton/action_button.tscn" id="10_th5d7"]
-[ext_resource type="Texture2D" uid="uid://cl4v4yeo1gn2m" path="res://placeholderArt/SwordCarrot-1.png.png" id="13_mg5wv"]
-[ext_resource type="Texture2D" uid="uid://bvhkmrse4oqmm" path="res://placeholderArt/ShieldBadArt-1.png.png" id="14_x1xj5"]
+[ext_resource type="Texture2D" uid="uid://bpyet5t7bpkww" path="res://placeholderArt/myPixelArt/BiggBlue-1.png.png" id="10_vmoya"]
+[ext_resource type="Texture2D" uid="uid://cl4v4yeo1gn2m" path="res://placeholderArt/myPixelArt/SwordCarrot-1.png.png" id="13_mg5wv"]
+[ext_resource type="Texture2D" uid="uid://bvhkmrse4oqmm" path="res://placeholderArt/myPixelArt/ShieldBadArt-1.png.png" id="14_x1xj5"]
+[ext_resource type="PackedScene" uid="uid://c3e3n4jvt2s4t" path="res://inGame/random_pitch.tscn" id="15_3ud1x"]
+[ext_resource type="AudioStream" uid="uid://cnnno1v7nqa7f" path="res://placeholderArt/sfx/start.wav" id="15_x1xj5"]
+[ext_resource type="AudioStream" uid="uid://cj7ql8evoa5yw" path="res://placeholderArt/sfx/nextRound.wav" id="16_lh5hl"]
+[ext_resource type="AudioStream" uid="uid://brilchhialjul" path="res://placeholderArt/sfx/TPK.wav" id="16_qd0xu"]
+[ext_resource type="AudioStream" uid="uid://c1hfdtenc3114" path="res://placeholderArt/sfx/TWK.wav" id="17_qd0xu"]
 
 [sub_resource type="Gradient" id="Gradient_ovlcs"]
 colors = PackedColorArray(0.8590829, 0.7058417, 0, 1, 0, 0.3835572, 0.75477016, 1)
@@ -33,7 +40,7 @@ noise = SubResource("FastNoiseLite_ovlcs")
 color_ramp = SubResource("Gradient_ovlcs")
 in_3d_space = true
 
-[sub_resource type="Resource" id="Resource_mg5wv"]
+[sub_resource type="Resource" id="Resource_lgq8l"]
 resource_local_to_scene = true
 script = ExtResource("7_bbrdx")
 name = "Mega Lazer"
@@ -44,7 +51,7 @@ sprun_loss = 2
 requires_target = true
 button_info = "Costs 3 sprun, but only takes away 2. Tremendous damage."
 
-[sub_resource type="Resource" id="Resource_x1xj5"]
+[sub_resource type="Resource" id="Resource_5cox1"]
 resource_local_to_scene = true
 script = ExtResource("7_bbrdx")
 name = "Reflection"
@@ -55,7 +62,7 @@ sprun_necessary = 9
 sprun_loss = 9
 button_info = "Become what you were born to be."
 
-[sub_resource type="Resource" id="Resource_esawj"]
+[sub_resource type="Resource" id="Resource_8bkhf"]
 resource_local_to_scene = true
 script = ExtResource("7_bbrdx")
 name = "RAT"
@@ -849,7 +856,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_vvh5c")
 script = ExtResource("2_jnlp7")
-started = true
 
 [node name="NoiseBackground" type="TextureRect" parent="."]
 layout_mode = 1
@@ -1006,19 +1012,18 @@ metadata/_edit_use_anchors_ = true
 [node name="Wizerd" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_m38np")]
 layout_mode = 2
 sprun_distance = 75
-new_action = Array[Resource]([SubResource("Resource_mg5wv")])
+new_action = Array[Resource]([SubResource("Resource_lgq8l")])
 attack_stat = 3
 
 [node name="Kitty" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_bbrdx")]
 layout_mode = 2
 sprun_distance = 75
-sprun_active = 9
-new_action = Array[Resource]([SubResource("Resource_x1xj5")])
+new_action = Array[Resource]([SubResource("Resource_5cox1")])
 
 [node name="Rodent Lord" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_mg5wv")]
 layout_mode = 2
 sprun_distance = 75
-new_action = Array[Resource]([SubResource("Resource_esawj")])
+new_action = Array[Resource]([SubResource("Resource_8bkhf")])
 speed_stat = 12
 attack_stat = 3
 
@@ -1037,14 +1042,16 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 speed_range = 5
 attack_range = 2
-max_hp = 6
+icon = ExtResource("10_vmoya")
+max_hp = 8
 
 [node name="Keykeeper" parent="RootGame/BattleScreen/Enemies" instance=ExtResource("4_y5gj7")]
 layout_mode = 2
 speed_middle_value = 4
 speed_range = 3
 attack_range = 2
-max_hp = 6
+icon = ExtResource("10_vmoya")
+max_hp = 8
 
 [node name="VSeparator" type="VSeparator" parent="RootGame/BattleScreen"]
 modulate = Color(1, 1, 1, 0)
@@ -1056,7 +1063,7 @@ size_flags_stretch_ratio = 0.14
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.24
-texture = ExtResource("3_jnlp7")
+texture = ExtResource("10_6qrul")
 
 [node name="TurnOrder" type="VBoxContainer" parent="RootGame/BattleScreen/TurnOrder"]
 layout_mode = 1
@@ -1203,6 +1210,10 @@ text = "Evil Flash"
 info = "DEv tOOl: 10 damage to current enemy, immediately"
 requires_target = true
 
+[node name="NextRound" parent="RootGame" instance=ExtResource("15_3ud1x")]
+stream = ExtResource("16_lh5hl")
+volume_db = -3.714
+
 [node name="TPK" type="ColorRect" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0)
@@ -1238,6 +1249,9 @@ layout_mode = 2
 layout_mode = 2
 text = "Git gud"
 info = "Don't do it..."
+
+[node name="Soundd" parent="TPK" instance=ExtResource("15_3ud1x")]
+stream = ExtResource("16_qd0xu")
 
 [node name="TWK" type="ColorRect" parent="."]
 layout_mode = 0
@@ -1282,6 +1296,9 @@ layout_mode = 2
 text = "rounds to prepare"
 horizontal_alignment = 1
 
+[node name="Sounddddd" parent="TWK" instance=ExtResource("15_3ud1x")]
+stream = ExtResource("17_qd0xu")
+
 [node name="IntroSequence" type="ColorRect" parent="."]
 visible = false
 layout_mode = 1
@@ -1318,6 +1335,10 @@ layout_mode = 2
 [node name="StartButton" type="Button" parent="IntroSequence/VBoxContainer"]
 layout_mode = 2
 text = "Bring it on."
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="IntroSequence"]
+stream = ExtResource("15_x1xj5")
+bus = &"SFX"
 
 [node name="Shaders" type="Control" parent="."]
 visible = false

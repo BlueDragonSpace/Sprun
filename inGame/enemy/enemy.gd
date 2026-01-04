@@ -14,6 +14,11 @@ var last_attacker : Node = null # remembers the last player to attack it
 const SWORD_ART = preload("uid://cl4v4yeo1gn2m")
 const SHIELD_ART = preload("uid://bvhkmrse4oqmm")
 
+# random other icons
+const BIGG_BLUE_1_PNG = preload("uid://bpyet5t7bpkww")
+const LITTLE_BLUE_1_PNG = preload("uid://dtkrx4fskgr5r")
+const RATTTTTTT_1_PNG = preload("uid://dmidkhslqal7n")
+
 @export var hp_range = 5
 @export var speed_middle_value = 3
 @export var speed_range = 5
@@ -28,12 +33,26 @@ func add_ready() -> void:
 	npc_type = CHARACTER_TYPE.ENEMY
 	node_is_ready = true
 	set_max_hp(randi_range(max_hp - hp_range, max_hp + hp_range))
+	
+	# a really not good way to check which enemy type this is
+	if randi_range(0, 3) > 2:
+		if max_hp < 25:
+			icon = LITTLE_BLUE_1_PNG
+			
+			if randi_range(0, 3) == 2:
+				icon = RATTTTTTT_1_PNG # like, 1 in 16 chance of this happening. Funny times. Yes this is a joke
+				Icon.modulate.g = 0.2
+				Icon.modulate.b = 0.2
+		else:
+			icon = BIGG_BLUE_1_PNG
 
 func add_take_damage(attacker) -> void:
 	last_attacker = attacker
 
 func set_intended_action(victim: Node) -> void:
 	# where the magic happens
+	
+	speed_stat = randi_range(speed_middle_value - speed_range, speed_middle_value + speed_range)
 	
 	match(randi_range(0,1)):
 		0:
@@ -60,12 +79,3 @@ func set_intended_action(victim: Node) -> void:
 	IntendedTargetIcon.texture = victim.icon
 	action_victim = victim
 	
-
-func attack() -> void:
-	action_victim.take_damage(attack_stat, self)
-	speed_stat = randi_range(speed_middle_value - speed_range, speed_middle_value + speed_range)
-	Animate.play("attack")
-
-func defend() -> void:
-	self.current_defense += defend_stat
-	Animate.play("defend")

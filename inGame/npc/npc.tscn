@@ -1,12 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctlnpeebeoqgd"]
+[gd_scene load_steps=20 format=3 uid="uid://ctlnpeebeoqgd"]
 
 [ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="1_2jrf3"]
 [ext_resource type="Script" uid="uid://cdbuic4bcd67n" path="res://inGame/npc/npc.gd" id="1_3atjd"]
-[ext_resource type="Texture2D" uid="uid://cqmahlm6jr7w8" path="res://placeholderArt/Sprun.png" id="2_3atjd"]
-[ext_resource type="Texture2D" uid="uid://bvhkmrse4oqmm" path="res://placeholderArt/ShieldBadArt-1.png.png" id="4_wk2dw"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_bleps"]
-font_color = Color(0, 0, 0, 1)
+[ext_resource type="Texture2D" uid="uid://skl6oj4btwmf" path="res://placeholderArt/myPixelArt/HPBar (1)/hp2.png" id="3_bj2b7"]
+[ext_resource type="Texture2D" uid="uid://cfkr8gbn4j4sj" path="res://placeholderArt/myPixelArt/HPBar (1)/hp0.png" id="4_hhgrb"]
+[ext_resource type="Texture2D" uid="uid://bvhkmrse4oqmm" path="res://placeholderArt/myPixelArt/ShieldBadArt-1.png.png" id="4_wk2dw"]
+[ext_resource type="PackedScene" uid="uid://c3e3n4jvt2s4t" path="res://inGame/random_pitch.tscn" id="5_dvc8s"]
+[ext_resource type="Texture2D" uid="uid://pdjsmweiu7br" path="res://placeholderArt/myPixelArt/HPBar (1)/hp1.png" id="5_fq4yk"]
+[ext_resource type="AudioStream" uid="uid://bgm5xr0twjahx" path="res://placeholderArt/sfx/attack.wav" id="5_np5c4"]
+[ext_resource type="AudioStream" uid="uid://qwvtdoovi5il" path="res://placeholderArt/sfx/shieldMaybeCloth.wav" id="6_dvc8s"]
+[ext_resource type="AudioStream" uid="uid://cvxoanu0qn6i8" path="res://placeholderArt/sfx/shieldBetter.wav" id="7_7swic"]
+[ext_resource type="AudioStream" uid="uid://c6a7y511mjrn3" path="res://placeholderArt/sfx/death.wav" id="8_yjg3n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ak11v"]
 
@@ -193,9 +197,9 @@ tracks/0/path = NodePath(".:modulate:g")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2),
+"handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.16666667, 0.16666667, 0, 0),
-"times": PackedFloat32Array(0, 1)
+"times": PackedFloat32Array(0, 0.9)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -204,9 +208,9 @@ tracks/1/path = NodePath(".:modulate:b")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 2),
+"handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.16666667, 0.16666667, 0, 0),
-"times": PackedFloat32Array(0, 1)
+"times": PackedFloat32Array(0, 0.9)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -215,9 +219,9 @@ tracks/2/path = NodePath(".:modulate:a")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 2),
+"handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.16666667, 0.16666667, 0, 0),
-"times": PackedFloat32Array(0, 1)
+"times": PackedFloat32Array(0, 0.9)
 }
 tracks/3/type = "method"
 tracks/3/imported = false
@@ -226,37 +230,12 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.93333334),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"queue_free"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_a1cnd"]
-resource_name = "take_hit"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/Icon:self_modulate:g")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.06666667, 0.16666667, 0, 0, 1, -0.10000001, -0.16666667, 0, 0),
-"times": PackedFloat32Array(0, 0.4, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer/Icon:self_modulate:b")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.06666667, 0.16666667, 0, 0, 1, -0.10000001, -0.16666667, 0, 0),
-"times": PackedFloat32Array(0, 0.4, 1)
 }
 
 [sub_resource type="Animation" id="Animation_np5c4"]
@@ -293,6 +272,31 @@ tracks/2/keys = {
 "handle_modes": PackedInt32Array(2, 0),
 "points": PackedFloat32Array(0, 0, 0, 0.16666667, 0.12666667, 0.76, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_a1cnd"]
+resource_name = "take_hit"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/Icon:self_modulate:g")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.06666667, 0.16666667, 0, 0, 1, -0.10000001, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.4, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/Icon:self_modulate:b")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.06666667, 0.16666667, 0, 0, 1, -0.10000001, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.4, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eymni"]
@@ -362,8 +366,9 @@ max_value = 40.0
 value = 40.0
 rounded = true
 nine_patch_stretch = true
-texture_under = ExtResource("1_2jrf3")
-texture_progress = ExtResource("2_3atjd")
+texture_under = ExtResource("3_bj2b7")
+texture_over = ExtResource("4_hhgrb")
+texture_progress = ExtResource("5_fq4yk")
 
 [node name="HPBar" type="HBoxContainer" parent="VBoxContainer/LowerBar/HP"]
 layout_direction = 2
@@ -379,7 +384,6 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 text = "40"
-label_settings = SubResource("LabelSettings_bleps")
 horizontal_alignment = 2
 vertical_alignment = 1
 clip_text = true
@@ -389,7 +393,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.02
 text = "/"
-label_settings = SubResource("LabelSettings_bleps")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
@@ -398,7 +401,6 @@ clip_text = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "40"
-label_settings = SubResource("LabelSettings_bleps")
 vertical_alignment = 1
 clip_text = true
 
@@ -446,3 +448,16 @@ libraries = {
 &"": SubResource("AnimationLibrary_eymni")
 }
 autoplay = "pop_in"
+
+[node name="Attack" parent="." instance=ExtResource("5_dvc8s")]
+stream = ExtResource("5_np5c4")
+
+[node name="DefendAttack" parent="." instance=ExtResource("5_dvc8s")]
+stream = ExtResource("6_dvc8s")
+
+[node name="Death" parent="." instance=ExtResource("5_dvc8s")]
+stream = ExtResource("8_yjg3n")
+
+[node name="DoDefend" parent="." instance=ExtResource("5_dvc8s")]
+stream = ExtResource("7_7swic")
+volume_db = -4.643

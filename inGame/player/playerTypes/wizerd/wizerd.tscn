@@ -1,56 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cm4voswejvugr"]
+[gd_scene load_steps=11 format=3 uid="uid://cm4voswejvugr"]
 
 [ext_resource type="PackedScene" uid="uid://bd0auisdvfagw" path="res://inGame/player/player.tscn" id="1_n4oco"]
 [ext_resource type="Script" uid="uid://c22h5dc4inak1" path="res://inGame/player/playerTypes/wizerd/wizerd.gd" id="2_n4oco"]
-[ext_resource type="Texture2D" uid="uid://cvggsr6dniihs" path="res://placeholderArt/wizerdhat-1.png (1).png" id="2_whysk"]
+[ext_resource type="Texture2D" uid="uid://cvggsr6dniihs" path="res://placeholderArt/myPixelArt/wizerdhat-1.png (1).png" id="2_whysk"]
 [ext_resource type="Resource" uid="uid://c3a14axpyy1n0" path="res://inGame/player/playerTypes/wizerd/mega_lazer.tres" id="3_i643x"]
-
-[sub_resource type="Animation" id="Animation_07c0a"]
-resource_name = "mega_lazer"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/Icon:size_flags_stretch_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2),
-"points": PackedFloat32Array(0.76, -0.25, 0, 0.25, 0, 2.06, -0.033333335, 0, 0.13333334, 0, 0.76, -0.16666667, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer/Icon:self_modulate:r")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(0.32165256, -0.25, 0, 0.25, 0, 0, -0.023333332, 0.05360876, 0, 0, 0, -0.016666671, 0, 0, 0, 0.62291473, -0.024999997, -0.10381913, 0, 0, 0.8328905, -0.011666666, -0.034995966, 0, 0, 0.9624911, -0.015000006, -0.0216001, 0, 0, 0.85094124, -0.014999996, 0.018591642, 0, 0, 1, -0.010000001, -0.024843127, 0, 0),
-"times": PackedFloat32Array(0.09333336, 0.23333335, 0.33333337, 0.48333335, 0.55333334, 0.6433334, 0.73333335, 0.79333335)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("VBoxContainer/Icon:self_modulate:g")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(0.4594614, -0.25, 0, 0.25, 0, 0.5886059, -0.023333332, -0.021524083, 0, 0, 0.6229189, -0.016666671, -0.0057188375, 0, 0, 0.50544304, -0.024999997, 0.019579312, 0, 0, 0.35028234, -0.011666666, 0.025860116, 0, 0, 0, -0.015000006, 0.05838039, 0, 0, 0.0003153527, -0.014999996, -5.2558782e-05, 0, 0, 1, -0.010000001, -0.1666141, 0, 0),
-"times": PackedFloat32Array(0.09333336, 0.23333335, 0.33333337, 0.48333335, 0.55333334, 0.6433334, 0.73333335, 0.79333335)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("VBoxContainer/Icon:self_modulate:b")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.6233291, -0.023333332, 0.06277849, 0, 0, 0.26491043, -0.016666671, 0.059736446, 0, 0, 0, -0.024999997, 0.04415174, 0, 0, 0, -0.011666666, 0, 0, 0, 0.19577917, -0.015000006, -0.032629862, 0, 0, 0.7893618, -0.014999996, -0.09893044, 0, 0, 1, -0.010000001, -0.035106372, 0, 0),
-"times": PackedFloat32Array(0.09333336, 0.23333335, 0.33333337, 0.48333335, 0.55333334, 0.6433334, 0.73333335, 0.79333335)
-}
+[ext_resource type="PackedScene" uid="uid://c3e3n4jvt2s4t" path="res://inGame/random_pitch.tscn" id="5_qfx5e"]
+[ext_resource type="AudioStream" uid="uid://cnevvu2dnjofy" path="res://placeholderArt/sfx/mega_lazer.wav" id="6_k0qa8"]
+[ext_resource type="AudioStream" uid="uid://ks16o6i7ojav" path="res://placeholderArt/sfx/wawawawawaCondescending.wav" id="7_k0qa8"]
 
 [sub_resource type="Animation" id="Animation_i643x"]
 length = 0.001
@@ -99,6 +55,53 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0)
 }
 
+[sub_resource type="Animation" id="Animation_07c0a"]
+resource_name = "mega_lazer"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/Icon:size_flags_stretch_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0.76, -0.25, 0, 0.25, 0, 2.06, -0.033333335, 0, 0.13333334, 0, 0.76, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/Icon:self_modulate:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.32165256, -0.25, 0, 0.25, 0, 0, -0.023333332, 0.05360876, 0, 0, 0, -0.016666671, 0, 0, 0, 0.62291473, -0.024999997, -0.10381913, 0, 0, 0.8328905, -0.011666666, -0.034995966, 0, 0, 0.9624911, -0.015000006, -0.0216001, 0, 0, 0.85094124, -0.014999996, 0.018591642, 0, 0, 1, -0.010000001, -0.024843127, 0, 0),
+"times": PackedFloat32Array(0.09333336, 0.23333335, 0.33333337, 0.48333335, 0.55333334, 0.6433334, 0.73333335, 0.79333335)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/Icon:self_modulate:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.4594614, -0.25, 0, 0.25, 0, 0.5886059, -0.023333332, -0.021524083, 0, 0, 0.6229189, -0.016666671, -0.0057188375, 0, 0, 0.50544304, -0.024999997, 0.019579312, 0, 0, 0.35028234, -0.011666666, 0.025860116, 0, 0, 0, -0.015000006, 0.05838039, 0, 0, 0.0003153527, -0.014999996, -5.2558782e-05, 0, 0, 1, -0.010000001, -0.1666141, 0, 0),
+"times": PackedFloat32Array(0.09333336, 0.23333335, 0.33333337, 0.48333335, 0.55333334, 0.6433334, 0.73333335, 0.79333335)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer/Icon:self_modulate:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.6233291, -0.023333332, 0.06277849, 0, 0, 0.26491043, -0.016666671, 0.059736446, 0, 0, 0, -0.024999997, 0.04415174, 0, 0, 0, -0.011666666, 0, 0, 0, 0.19577917, -0.015000006, -0.032629862, 0, 0, 0.7893618, -0.014999996, -0.09893044, 0, 0, 1, -0.010000001, -0.035106372, 0, 0),
+"times": PackedFloat32Array(0.09333336, 0.23333335, 0.33333337, 0.48333335, 0.55333334, 0.6433334, 0.73333335, 0.79333335)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qfx5e"]
 _data = {
 &"RESET": SubResource("Animation_i643x"),
@@ -119,3 +122,9 @@ max_hp = 29
 libraries = {
 &"": SubResource("AnimationLibrary_qfx5e")
 }
+
+[node name="MegaLazer" parent="." index="8" instance=ExtResource("5_qfx5e")]
+stream = ExtResource("6_k0qa8")
+
+[node name="wawaawawawa" parent="." index="9" instance=ExtResource("5_qfx5e")]
+stream = ExtResource("7_k0qa8")

@@ -9,20 +9,20 @@ Shipping to Shiba (with a goal of a black hole):
 			Rat
 			Kitty
 		HP Bar
-	Give each player at least one interesting unique attack (RAT, MEGA LAZER)
 	SFX:
-		Attack
-		Big Attack
-		Defend
-		Rat
-		Mega Lazer
-		Reflection
-		Death
-		TPK
-		TWK
-		Start
+		Attack -
+		Big Attack -
+		Defend -
+		Rat -
+		Mega Lazer -
+		Reflection -
+		Death -
+		TPK -
+		TWK -
+		Start -
+		Death -
+		Sprun get - 
 	Music
-	Mute Button
 
 1 (core mechanics):
 	Sprun Upgrade system (increase Sprun slots, ATK, DFD, SPD):
@@ -53,6 +53,7 @@ Shipping to Shiba (with a goal of a black hole):
 	Turn Limit til next wave (prevent hold onto one enemy to increase Sprun stats)
 	Actually make the BAK button function as I originally intended for it
 	Create Custom Theme (buttons, sliders, the whole shebang)
+	Differentiate between similar enemies and rats
 4: 
 	Death saves? (Deltarune, DnD, revival at all?)
 	Kitty's 6 Lives (the 7th I don't talk about)
@@ -107,7 +108,3 @@ Rodent Lord Rodents:
 	Flying Squirels, chipmunks, beavers, capybaras, gopher, base squirel
 
 Currently finished:
-	Fixed up action text
-	Randomized to_player_text and passing player text
-	Tried to fix up the stats a little so the game is more balanced
-	Enemies scale based on the wave count

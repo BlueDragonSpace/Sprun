@@ -19,9 +19,14 @@ func check_cost(sprun: int) -> void:
 		disabled = true
 
 func send_info() -> void:
+	$Focus.play()
 	Root.button_info(info)
 
 func _on_focus_entered() -> void:
 	send_info()
 func _on_mouse_entered() -> void:
 	send_info()
+
+
+func _on_pressed() -> void:
+	$Click.play()

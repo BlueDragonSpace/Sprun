@@ -86,15 +86,18 @@ func take_damage(damage, attacker = null) -> void:
 	if current_defense > 0:
 		var undefended_damage = damage - current_defense
 		current_defense = clamp(current_defense - damage, 0, INF)
+		
 		if undefended_damage > 0:
 			current_hp -= undefended_damage
 			Animate.play("take_hit")
+		else:
+			$DefendAttack.play()
 	else:
 		current_hp -= damage
 		
-		if current_hp <= 0:
-			die()
-		Animate.play("take_hit")
+	if current_hp <= 0:
+		die()
+	Animate.play("take_hit")
 	
 	if attacker != null:
 		add_take_damage(attacker)
@@ -102,9 +105,25 @@ func take_damage(damage, attacker = null) -> void:
 func add_take_damage(_attacker): # additional stuff I add to take_damage() in other classes (like enemy)
 	pass
 
+func defend():
+	self.current_defense += defend_stat
+	Animate.play("defend")
+	$DoDefend.play()
+
+func attack() -> void:
+	action_victim.take_damage(attack_stat, self)
+	Animate.play("attack")
+	$Attack.play()
+
+
 func die() -> void:
+	# lol keep in mind the wizard's death is unique
+	# just because I wanted to add a dumb sound
+	
 	# you can only die once
 	if is_dead == false:
 		is_dead = true
 		Root.remove_dead_actions(self)
 		Animate.call_deferred("play", "die")
+	
+	$Death.play()
