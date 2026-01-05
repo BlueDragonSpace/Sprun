@@ -8,10 +8,17 @@ extends "res://inGame/player/player.gd"
 	## chunky
 	#pass
 
+var rat_count = 1
+
 const RAT = preload("uid://c02utralqt5h")
+
 func call_rat() -> void:
-	Root.Charas.add_child(RAT.instantiate())
+	
+	var rat = RAT.instantiate()
+	rat.name = "Rat " + str(rat_count)
+	Root.Charas.add_child(rat)
 	set_sprun(sprun_active - 1)
 	# poison damage?
 	
+	rat_count += 1
 	$RatSpawning.play()

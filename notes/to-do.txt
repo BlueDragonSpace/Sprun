@@ -1,28 +1,8 @@
 
-Shipping to Shiba (with a goal of a black hole):
-	Make own art:
-		Turn Order thing
-		Icons of enemies and Players:
-			Littles (like, 5)
-			Bigg
-			Rodent Lord
-			Rat
-			Kitty
-		HP Bar
-	SFX:
-		Attack -
-		Big Attack -
-		Defend -
-		Rat -
-		Mega Lazer -
-		Reflection -
-		Death -
-		TPK -
-		TWK -
-		Start -
-		Death -
-		Sprun get - 
-	Music
+Last things before ship:
+	Attack then pass leads to error
+	
+	... now to ship...
 
 1 (core mechanics):
 	Sprun Upgrade system (increase Sprun slots, ATK, DFD, SPD):
@@ -108,3 +88,5 @@ Rodent Lord Rodents:
 	Flying Squirels, chipmunks, beavers, capybaras, gopher, base squirel
 
 Currently finished:
+	... I miss the Milkyway Devlogging
+	Even if nobody read it

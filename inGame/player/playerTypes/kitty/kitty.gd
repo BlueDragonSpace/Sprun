@@ -4,7 +4,7 @@ func reflection() -> void:
 	
 	# the dream that started it all
 	
-	set_max_hp(84)
+	set_max_hp(64) # minecraft stack!!
 	attack_stat = 12
 	defend_stat = 10
 	speed_stat = 1 # fastest possible

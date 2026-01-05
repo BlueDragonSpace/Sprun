@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://d3wbwxma2hkqm"]
+[gd_scene load_steps=45 format=3 uid="uid://d3wbwxma2hkqm"]
 
 [ext_resource type="Theme" uid="uid://cyy1ccrel07nx" path="res://root/root.tres" id="1_vvh5c"]
 [ext_resource type="Script" uid="uid://dpipac1vlx4vl" path="res://root/root.gd" id="2_jnlp7"]
@@ -17,6 +17,7 @@
 [ext_resource type="Shader" uid="uid://bo0lvrtc1mrha" path="res://shaders/rainbows.gdshader" id="10_b1gtb"]
 [ext_resource type="PackedScene" uid="uid://drtw4kuprkapi" path="res://inGame/battleUI/ActionButton/action_button.tscn" id="10_th5d7"]
 [ext_resource type="Texture2D" uid="uid://bpyet5t7bpkww" path="res://placeholderArt/myPixelArt/BiggBlue-1.png.png" id="10_vmoya"]
+[ext_resource type="Texture2D" uid="uid://dtkrx4fskgr5r" path="res://placeholderArt/myPixelArt/littleBlue-1.png.png" id="11_lgq8l"]
 [ext_resource type="Texture2D" uid="uid://cl4v4yeo1gn2m" path="res://placeholderArt/myPixelArt/SwordCarrot-1.png.png" id="13_mg5wv"]
 [ext_resource type="Texture2D" uid="uid://bvhkmrse4oqmm" path="res://placeholderArt/myPixelArt/ShieldBadArt-1.png.png" id="14_x1xj5"]
 [ext_resource type="PackedScene" uid="uid://c3e3n4jvt2s4t" path="res://inGame/random_pitch.tscn" id="15_3ud1x"]
@@ -26,7 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://c1hfdtenc3114" path="res://placeholderArt/sfx/TWK.wav" id="17_qd0xu"]
 
 [sub_resource type="Gradient" id="Gradient_ovlcs"]
-colors = PackedColorArray(0.8590829, 0.7058417, 0, 1, 0, 0.3835572, 0.75477016, 1)
+colors = PackedColorArray(1.4920532e-06, 0.5304824, 0.2201744, 1, 0.72519064, 0.00041941137, 0.7291304, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ovlcs"]
 offset = Vector3(0, 0, 313.73)
@@ -40,7 +41,7 @@ noise = SubResource("FastNoiseLite_ovlcs")
 color_ramp = SubResource("Gradient_ovlcs")
 in_3d_space = true
 
-[sub_resource type="Resource" id="Resource_lgq8l"]
+[sub_resource type="Resource" id="Resource_5cox1"]
 resource_local_to_scene = true
 script = ExtResource("7_bbrdx")
 name = "Mega Lazer"
@@ -51,7 +52,7 @@ sprun_loss = 2
 requires_target = true
 button_info = "Costs 3 sprun, but only takes away 2. Tremendous damage."
 
-[sub_resource type="Resource" id="Resource_5cox1"]
+[sub_resource type="Resource" id="Resource_8bkhf"]
 resource_local_to_scene = true
 script = ExtResource("7_bbrdx")
 name = "Reflection"
@@ -62,16 +63,16 @@ sprun_necessary = 9
 sprun_loss = 9
 button_info = "Become what you were born to be."
 
-[sub_resource type="Resource" id="Resource_8bkhf"]
+[sub_resource type="Resource" id="Resource_pyluh"]
 resource_local_to_scene = true
 script = ExtResource("7_bbrdx")
 name = "RAT"
 func_name = "call_rat"
 action_type = 3
 player_type = 4
-sprun_necessary = 1
-sprun_loss = 1
-button_info = "Costs 1 sprun. Calls a rat."
+sprun_necessary = 2
+sprun_loss = 2
+button_info = "Costs 2 sprun. Calls a rat."
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gj8ci"]
 shader = ExtResource("7_e2nrw")
@@ -118,43 +119,42 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("NoiseBackground:texture:color_ramp:colors")
+tracks/2/path = NodePath("RootGame/LowerBar:size_flags_vertical")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.0009999999),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [PackedColorArray(0.8590829, 0.7058417, 0, 1, 0, 0.3835572, 0.75477016, 1)]
+"update": 1,
+"values": [3]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("RootGame/LowerBar:size_flags_vertical")
+tracks/3/path = NodePath("TPK:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3]
+"values": [false]
 }
-tracks/4/type = "value"
+tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("TPK:visible")
+tracks/4/path = NodePath("TPK:modulate:r")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("TPK:modulate:r")
+tracks/5/path = NodePath("TPK:modulate:g")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -165,7 +165,7 @@ tracks/5/keys = {
 tracks/6/type = "bezier"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("TPK:modulate:g")
+tracks/6/path = NodePath("TPK:modulate:b")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -176,18 +176,18 @@ tracks/6/keys = {
 tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("TPK:modulate:b")
+tracks/7/path = NodePath("TPK:modulate:a")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/8/type = "bezier"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("TPK:modulate:a")
+tracks/8/path = NodePath("TPK:color:r")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -198,7 +198,7 @@ tracks/8/keys = {
 tracks/9/type = "bezier"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("TPK:color:r")
+tracks/9/path = NodePath("TPK:color:g")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -209,7 +209,7 @@ tracks/9/keys = {
 tracks/10/type = "bezier"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("TPK:color:g")
+tracks/10/path = NodePath("TPK:color:b")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -220,18 +220,18 @@ tracks/10/keys = {
 tracks/11/type = "bezier"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("TPK:color:b")
+tracks/11/path = NodePath("TPK:color:a")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/12/type = "bezier"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("TPK:color:a")
+tracks/12/path = NodePath("TPK/CenterBox/Retry:modulate:r")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -242,7 +242,7 @@ tracks/12/keys = {
 tracks/13/type = "bezier"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("TPK/CenterBox/Retry:modulate:r")
+tracks/13/path = NodePath("TPK/CenterBox/Retry:modulate:g")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -253,7 +253,7 @@ tracks/13/keys = {
 tracks/14/type = "bezier"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("TPK/CenterBox/Retry:modulate:g")
+tracks/14/path = NodePath("TPK/CenterBox/Retry:modulate:b")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -264,7 +264,7 @@ tracks/14/keys = {
 tracks/15/type = "bezier"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("TPK/CenterBox/Retry:modulate:b")
+tracks/15/path = NodePath("TPK/CenterBox/Retry:modulate:a")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -275,40 +275,41 @@ tracks/15/keys = {
 tracks/16/type = "bezier"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("TPK/CenterBox/Retry:modulate:a")
+tracks/16/path = NodePath("TWK:position:x")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(1200, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/17/type = "bezier"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("TWK:position:x")
+tracks/17/path = NodePath("TWK:position:y")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1200, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/18/type = "bezier"
+tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("TWK:position:y")
+tracks/18/path = NodePath(".:in_prep_round")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath(".:in_prep_round")
+tracks/19/path = NodePath("IntroSequence:visible")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
@@ -317,51 +318,51 @@ tracks/19/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/20/type = "value"
+tracks/20/type = "bezier"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("IntroSequence:visible")
+tracks/20/path = NodePath("IntroSequence:modulate:a")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/21/type = "bezier"
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/path = NodePath("IntroSequence:modulate:a")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/22/type = "value"
-tracks/22/imported = false
-tracks/22/enabled = true
-tracks/22/path = NodePath("RootGame:visible")
-tracks/22/interp = 1
-tracks/22/loop_wrap = true
-tracks/22/keys = {
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("RootGame:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
-tracks/23/type = "bezier"
-tracks/23/imported = false
-tracks/23/enabled = true
-tracks/23/path = NodePath("RootGame:modulate:a")
-tracks/23/interp = 1
-tracks/23/loop_wrap = true
-tracks/23/keys = {
+tracks/22/type = "bezier"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("RootGame:modulate:a")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("NoiseBackground:texture:color_ramp:colors")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedColorArray(1.4920532e-06, 0.5304824, 0.2201744, 1, 0.72519064, 0.00041941137, 0.7291304, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ep6pg"]
@@ -795,6 +796,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("NoiseBackground:texture:color_ramp:colors")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedColorArray(1.4920532e-06, 0.5304824, 0.2201744, 1, 0.72519064, 0.00041941137, 0.7291304, 1), PackedColorArray(0.8590829, 0.7058417, 0, 1, 0, 0.3835572, 0.75477016, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_0n2s5"]
 resource_name = "to_player"
@@ -856,6 +869,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_vvh5c")
 script = ExtResource("2_jnlp7")
+started = true
 
 [node name="NoiseBackground" type="TextureRect" parent="."]
 layout_mode = 1
@@ -1012,18 +1026,18 @@ metadata/_edit_use_anchors_ = true
 [node name="Wizerd" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_m38np")]
 layout_mode = 2
 sprun_distance = 75
-new_action = Array[Resource]([SubResource("Resource_lgq8l")])
+new_action = Array[Resource]([SubResource("Resource_5cox1")])
 attack_stat = 3
 
 [node name="Kitty" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_bbrdx")]
 layout_mode = 2
 sprun_distance = 75
-new_action = Array[Resource]([SubResource("Resource_5cox1")])
+new_action = Array[Resource]([SubResource("Resource_8bkhf")])
 
 [node name="Rodent Lord" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_mg5wv")]
 layout_mode = 2
 sprun_distance = 75
-new_action = Array[Resource]([SubResource("Resource_8bkhf")])
+new_action = Array[Resource]([SubResource("Resource_pyluh")])
 speed_stat = 12
 attack_stat = 3
 
@@ -1050,7 +1064,7 @@ layout_mode = 2
 speed_middle_value = 4
 speed_range = 3
 attack_range = 2
-icon = ExtResource("10_vmoya")
+icon = ExtResource("11_lgq8l")
 max_hp = 8
 
 [node name="VSeparator" type="VSeparator" parent="RootGame/BattleScreen"]
@@ -1060,6 +1074,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.14
 
 [node name="TurnOrder" type="TextureRect" parent="RootGame/BattleScreen"]
+self_modulate = Color(0.4249623, 0.4249623, 0.4249623, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.24
@@ -1257,7 +1272,7 @@ stream = ExtResource("16_qd0xu")
 layout_mode = 0
 offset_left = 1200.0
 offset_right = 3199.9983
-offset_bottom = 100.000244
+offset_bottom = 100.00037
 rotation = -0.27925268
 color = Color(0.2, 0.2, 0.2, 0.42745098)
 

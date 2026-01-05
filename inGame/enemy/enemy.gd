@@ -6,6 +6,7 @@ extends "res://inGame/npc/npc.gd"
 @onready var IntentLabel: Label = $VBoxContainer/IntentBar/Intent/IntentLabel
 @onready var IntendedTargetIcon: TextureRect = $VBoxContainer/IntentBar/IntendedTargetIcon
 
+
 var node_is_ready = false # a small get around for INTENTS.ATTACK
 var last_attacker : Node = null # remembers the last player to attack it
 
@@ -32,7 +33,7 @@ const RATTTTTTT_1_PNG = preload("uid://dmidkhslqal7n")
 func add_ready() -> void:
 	npc_type = CHARACTER_TYPE.ENEMY
 	node_is_ready = true
-	set_max_hp(randi_range(max_hp - hp_range, max_hp + hp_range))
+	#set_max_hp(randi_range(max_hp - hp_range, max_hp + hp_range))
 	
 	# a really not good way to check which enemy type this is
 	if randi_range(0, 3) > 2:

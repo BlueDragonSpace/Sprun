@@ -37,9 +37,9 @@ var mid_animation_action = func() : pass
 var turn_order_data = [] # speed_stat, icon, node_path, action
 var current_turn = 0
 var current_wave = 0
-## end section
-@export var in_prep_round = false
-@export var prep_rounds_remaining = 3
+## prep section
+var in_prep_round = false
+var prep_rounds_remaining = 3
 
 ## In-Battle
 enum TURN_TYPE {PLAYER, SELECT_ENEMY, MIDDLE, END, TRANSITION}
@@ -109,6 +109,8 @@ func _ready() -> void:
 	#check_actions_visible(current_player.player_type)
 	call_deferred("check_actions_visible", current_player.player_type)
 	set_enemies_intents()
+	
+	Engine.time_scale = 1.0 # restarts for the top-right scale thing
 	
 	if started: 
 		$RootGame.visible = true
@@ -199,6 +201,7 @@ func set_turn_order() -> void:
 	for body in turn_order_data:
 		var marker = TURN_ORDER_MARKER.instantiate()
 		marker.texture = body[1]
+		marker.self_modulate = body[2].Icon.self_modulate
 		TurnOrder.add_child(marker)
 
 func add_turn_order_point(point) -> void:
@@ -219,16 +222,30 @@ func add_enemy_wave() -> void:
 	current_wave += 1
 	$RootGame/TopBar/HBoxContainer/WaveNum.text = str(current_wave)
 	
-	match(randi_range(0, 1)):
+	
+	
+	
+	########################### AAAAAAAAAAAAAAAAAAAAAAAAA
+	
+	
+	match(randi_range(1, 1)):
 		0:
 			# one big 
-			Enemies.add_child(BIGG.instantiate())
+			var big_boi = BIGG.instantiate()
+			big_boi.name = 'BIGG'
+			Enemies.add_child(big_boi)
 			Enemies.columns = 1
 		1:
 			# many littles (4 - 6)
 			for i in randi_range(4, 6):
+				
+				var little = LITTLES.instantiate()
+				little.name = "Lytle " + str(i)
 				# randomized stats are handled it its ready
-				Enemies.add_child(LITTLES.instantiate())
+				Enemies.add_child(little)
+				
+				little.Icon.self_modulate = Color(1 - i * 0.15, 1 - i * 0.15, 1 - i * 0.15) # makes each enemy darker
+				
 				Enemies.columns = 2
 		2:
 			# many littles
@@ -239,7 +256,8 @@ func add_enemy_wave() -> void:
 	# increases stats based on the wave number
 	for enemy in Enemies.get_children():
 		var mult = pow(1.3, current_wave - 1)
-		enemy.max_hp *= mult
+		#enemy.max_hp *= mult
+		enemy.set_max_hp(enemy.max_hp * mult)
 		enemy.attack_middle_value *= mult
 		enemy.attack_stat *= mult
 		enemy.defend_middle_value *= mult
@@ -281,7 +299,6 @@ func check_actions_visible(player_type_bitwise: int) -> void:
 			if action.usable_on_player & player_type_bitwise != 0: 
 				action.visible = true
 				continue
-			#print("----------")
 
 func remove_dead_actions(dead: Node) -> void:
 	# gets called by npc whenever it dies

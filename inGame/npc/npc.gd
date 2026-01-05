@@ -71,6 +71,7 @@ func visual_hp(new_hp : int) -> void:
 	CurrentHp.text = str(int(HP.value))
 
 func set_max_hp(new_hp : int) -> void:
+	
 	max_hp = new_hp
 	current_hp = new_hp
 	visual_hp(new_hp)
@@ -111,9 +112,10 @@ func defend():
 	$DoDefend.play()
 
 func attack() -> void:
-	action_victim.take_damage(attack_stat, self)
-	Animate.play("attack")
-	$Attack.play()
+	if action_victim:
+		action_victim.take_damage(attack_stat, self)
+		Animate.play("attack")
+		$Attack.play()
 
 
 func die() -> void:
