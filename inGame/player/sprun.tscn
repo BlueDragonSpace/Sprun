@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b6wgjet502thq"]
 
 [ext_resource type="Script" uid="uid://m4lpc8h8xs5" path="res://inGame/player/sprun.gd" id="1_i2nwe"]
-[ext_resource type="Texture2D" uid="uid://c8n0k3x2k67si" path="res://placeholderArt/NewSprun-1.png.png" id="2_i2nwe"]
+[ext_resource type="Texture2D" uid="uid://c8n0k3x2k67si" path="res://placeholderArt/myPixelArt/NewSprun-1.png.png" id="2_i2nwe"]
 
 [node name="Sprun" type="Control"]
 modulate = Color(1, 1, 1, 0.3137255)

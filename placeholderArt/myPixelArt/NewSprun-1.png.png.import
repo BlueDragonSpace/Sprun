@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8n0k3x2k67si"
-path="res://.godot/imported/NewSprun-1.png.png-b72b6486f86c39d977b50540d8d07f79.ctex"
+path="res://.godot/imported/NewSprun-1.png.png-59721f75488ce8fcd6919255a207f685.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://placeholderArt/NewSprun-1.png.png"
-dest_files=["res://.godot/imported/NewSprun-1.png.png-b72b6486f86c39d977b50540d8d07f79.ctex"]
+source_file="res://placeholderArt/myPixelArt/NewSprun-1.png.png"
+dest_files=["res://.godot/imported/NewSprun-1.png.png-59721f75488ce8fcd6919255a207f685.ctex"]
 
 [params]
 

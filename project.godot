@@ -19,8 +19,8 @@ config/description="Turn-based thing (I just really wanted to make a turn based)
 config/version="0.0.0"
 run/main_scene="uid://d3wbwxma2hkqm"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-boot_splash/image="uid://cqmahlm6jr7w8"
-config/icon="uid://cqmahlm6jr7w8"
+boot_splash/image="uid://dbpy4cytd2toj"
+config/icon="uid://c8n0k3x2k67si"
 
 [autoload]
 
