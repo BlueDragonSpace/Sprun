@@ -17,7 +17,7 @@ func call_rat() -> void:
 	var rat = RAT.instantiate()
 	rat.name = "Rat " + str(rat_count)
 	Root.Charas.add_child(rat)
-	set_sprun(sprun_active - 1)
+	set_sprun(sprun_active - 2)
 	# poison damage?
 	
 	rat_count += 1

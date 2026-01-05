@@ -2,7 +2,6 @@
 
 [ext_resource type="Theme" uid="uid://cyy1ccrel07nx" path="res://root/root.tres" id="1_vvh5c"]
 [ext_resource type="Script" uid="uid://dpipac1vlx4vl" path="res://root/root.gd" id="2_jnlp7"]
-[ext_resource type="Texture2D" uid="uid://cqmahlm6jr7w8" path="res://placeholderArt/Sprun.png" id="3_jnlp7"]
 [ext_resource type="PackedScene" uid="uid://c8l8w4n02trfl" path="res://inGame/mute_button.tscn" id="4_mg5wv"]
 [ext_resource type="PackedScene" uid="uid://cmoedndryju2o" path="res://inGame/enemy/enemy.tscn" id="4_y5gj7"]
 [ext_resource type="Texture2D" uid="uid://b535plvyviqhb" path="res://placeholderArt/ChoosyCorners-1.png (1).png" id="5_0n2s5"]
@@ -25,6 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://cj7ql8evoa5yw" path="res://placeholderArt/sfx/nextRound.wav" id="16_lh5hl"]
 [ext_resource type="AudioStream" uid="uid://brilchhialjul" path="res://placeholderArt/sfx/TPK.wav" id="16_qd0xu"]
 [ext_resource type="AudioStream" uid="uid://c1hfdtenc3114" path="res://placeholderArt/sfx/TWK.wav" id="17_qd0xu"]
+[ext_resource type="Texture2D" uid="uid://c8n0k3x2k67si" path="res://placeholderArt/NewSprun-1.png.png" id="26_5cox1"]
 
 [sub_resource type="Gradient" id="Gradient_ovlcs"]
 colors = PackedColorArray(1.4920532e-06, 0.5304824, 0.2201744, 1, 0.72519064, 0.00041941137, 0.7291304, 1)
@@ -41,7 +41,7 @@ noise = SubResource("FastNoiseLite_ovlcs")
 color_ramp = SubResource("Gradient_ovlcs")
 in_3d_space = true
 
-[sub_resource type="Resource" id="Resource_5cox1"]
+[sub_resource type="Resource" id="Resource_8bkhf"]
 resource_local_to_scene = true
 script = ExtResource("7_bbrdx")
 name = "Mega Lazer"
@@ -52,7 +52,7 @@ sprun_loss = 2
 requires_target = true
 button_info = "Costs 3 sprun, but only takes away 2. Tremendous damage."
 
-[sub_resource type="Resource" id="Resource_8bkhf"]
+[sub_resource type="Resource" id="Resource_pyluh"]
 resource_local_to_scene = true
 script = ExtResource("7_bbrdx")
 name = "Reflection"
@@ -63,7 +63,7 @@ sprun_necessary = 9
 sprun_loss = 9
 button_info = "Become what you were born to be."
 
-[sub_resource type="Resource" id="Resource_pyluh"]
+[sub_resource type="Resource" id="Resource_7w5jm"]
 resource_local_to_scene = true
 script = ExtResource("7_bbrdx")
 name = "RAT"
@@ -869,7 +869,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_vvh5c")
 script = ExtResource("2_jnlp7")
-started = true
 
 [node name="NoiseBackground" type="TextureRect" parent="."]
 layout_mode = 1
@@ -1026,18 +1025,18 @@ metadata/_edit_use_anchors_ = true
 [node name="Wizerd" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_m38np")]
 layout_mode = 2
 sprun_distance = 75
-new_action = Array[Resource]([SubResource("Resource_5cox1")])
+new_action = Array[Resource]([SubResource("Resource_8bkhf")])
 attack_stat = 3
 
 [node name="Kitty" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_bbrdx")]
 layout_mode = 2
 sprun_distance = 75
-new_action = Array[Resource]([SubResource("Resource_8bkhf")])
+new_action = Array[Resource]([SubResource("Resource_pyluh")])
 
 [node name="Rodent Lord" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_mg5wv")]
 layout_mode = 2
 sprun_distance = 75
-new_action = Array[Resource]([SubResource("Resource_pyluh")])
+new_action = Array[Resource]([SubResource("Resource_7w5jm")])
 speed_stat = 12
 attack_stat = 3
 
@@ -1190,7 +1189,7 @@ metadata/_tab_index = 3
 [node name="FOCUS" parent="RootGame/LowerBar/VBoxContainer/Actions/Sprun" instance=ExtResource("10_th5d7")]
 layout_mode = 2
 text = "FOCUS"
-icon = ExtResource("3_jnlp7")
+icon = ExtResource("26_5cox1")
 expand_icon = true
 info = "Create 1 Sprun."
 
@@ -1399,6 +1398,12 @@ grow_vertical = 2
 libraries = {
 &"": SubResource("AnimationLibrary_y3dhr")
 }
+
+[node name="Sprun" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(606, 315.00003)
+scale = Vector2(11.041668, 11.041668)
+texture = ExtResource("26_5cox1")
 
 [connection signal="value_changed" from="RootGame/TopBar/HBoxContainer/PlaySpeedSlider" to="." method="_on_play_speed_slider_value_changed"]
 [connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/BackButton/BAK" to="." method="_on_bak_pressed"]

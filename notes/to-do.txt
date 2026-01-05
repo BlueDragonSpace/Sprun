@@ -1,7 +1,5 @@
 
 Last things before ship:
-	Attack then pass leads to error
-	
 	... now to ship...
 
 1 (core mechanics):
