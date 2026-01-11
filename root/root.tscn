@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://d3wbwxma2hkqm"]
+[gd_scene load_steps=42 format=3 uid="uid://d3wbwxma2hkqm"]
 
 [ext_resource type="Theme" uid="uid://cyy1ccrel07nx" path="res://root/root.tres" id="1_vvh5c"]
 [ext_resource type="Script" uid="uid://dpipac1vlx4vl" path="res://root/root.gd" id="2_jnlp7"]
@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://d25w6c0hemmxn" path="res://inGame/player/playerTypes/kitty/kitty.tscn" id="6_bbrdx"]
 [ext_resource type="PackedScene" uid="uid://cm4voswejvugr" path="res://inGame/player/playerTypes/wizerd/wizerd.tscn" id="6_m38np"]
 [ext_resource type="PackedScene" uid="uid://bhkrj58td4ng7" path="res://inGame/player/playerTypes/ratface/rodent_lord.tscn" id="6_mg5wv"]
-[ext_resource type="Script" uid="uid://diifqu7v6338q" path="res://inGame/player/action.gd" id="7_bbrdx"]
 [ext_resource type="Shader" uid="uid://ddycup0alwvnl" path="res://shaders/chromaticAberation.gdshader" id="7_e2nrw"]
 [ext_resource type="Shader" uid="uid://dftiegl3xn8fh" path="res://shaders/pixelizer.gdshader" id="8_gj8ci"]
+[ext_resource type="PackedScene" uid="uid://c02utralqt5h" path="res://inGame/player/playerTypes/ratface/rat.tscn" id="9_5cox1"]
 [ext_resource type="Texture2D" uid="uid://docng28uw84fm" path="res://placeholderArt/myPixelArt/Ooohhhhhhh-1.png.png" id="10_6qrul"]
 [ext_resource type="Shader" uid="uid://bo0lvrtc1mrha" path="res://shaders/rainbows.gdshader" id="10_b1gtb"]
 [ext_resource type="PackedScene" uid="uid://drtw4kuprkapi" path="res://inGame/battleUI/ActionButton/action_button.tscn" id="10_th5d7"]
@@ -42,39 +42,6 @@ height = 256
 noise = SubResource("FastNoiseLite_ovlcs")
 color_ramp = SubResource("Gradient_ovlcs")
 in_3d_space = true
-
-[sub_resource type="Resource" id="Resource_lgq8l"]
-resource_local_to_scene = true
-script = ExtResource("7_bbrdx")
-name = "Mega Lazer"
-func_name = "mega_lazer"
-player_type = 2
-sprun_necessary = 3
-sprun_loss = 2
-requires_target = true
-button_info = "Costs 3 sprun, but only takes away 2. Tremendous damage."
-
-[sub_resource type="Resource" id="Resource_5cox1"]
-resource_local_to_scene = true
-script = ExtResource("7_bbrdx")
-name = "Reflection"
-func_name = "reflection"
-action_type = 3
-player_type = 8
-sprun_necessary = 9
-sprun_loss = 9
-button_info = "Become what you were born to be."
-
-[sub_resource type="Resource" id="Resource_8bkhf"]
-resource_local_to_scene = true
-script = ExtResource("7_bbrdx")
-name = "RAT"
-func_name = "call_rat"
-action_type = 3
-player_type = 4
-sprun_necessary = 2
-sprun_loss = 2
-button_info = "Costs 2 sprun. Calls a rat."
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gj8ci"]
 shader = ExtResource("7_e2nrw")
@@ -871,6 +838,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_vvh5c")
 script = ExtResource("2_jnlp7")
+started = true
 
 [node name="NoiseBackground" type="TextureRect" parent="."]
 layout_mode = 1
@@ -1026,21 +994,16 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Wizerd" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_m38np")]
 layout_mode = 2
-sprun_distance = 75
-new_action = Array[Resource]([SubResource("Resource_lgq8l")])
-attack_stat = 3
 
 [node name="Kitty" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_bbrdx")]
 layout_mode = 2
 sprun_distance = 75
-new_action = Array[Resource]([SubResource("Resource_5cox1")])
 
 [node name="Rodent Lord" parent="RootGame/BattleScreen/Charas" instance=ExtResource("6_mg5wv")]
 layout_mode = 2
-sprun_distance = 75
-new_action = Array[Resource]([SubResource("Resource_8bkhf")])
-speed_stat = 12
-attack_stat = 3
+
+[node name="Rat" parent="RootGame/BattleScreen/Charas" instance=ExtResource("9_5cox1")]
+layout_mode = 2
 
 [node name="VSeparator2" type="VSeparator" parent="RootGame/BattleScreen"]
 modulate = Color(1, 1, 1, 0)
@@ -1112,9 +1075,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 1.5258789e-05
+offset_top = -3.9999924
+offset_bottom = 4.0000076
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="InfoBar" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer"]
 layout_mode = 2
@@ -1129,9 +1094,9 @@ expand_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Shipping to Milkyway!!! Except this text is only ever visible to me soooooooooooooo
-I wonder if anyone else will ever see this 
-waaaaaaaaaaaaaaaaaaaaaaaa"
+text = "so much is out there...
+so many more people more capable than me
+must become them..."
 vertical_alignment = 1
 
 [node name="Actions" type="TabContainer" parent="RootGame/LowerBar/VBoxContainer"]
@@ -1162,6 +1127,7 @@ text = "ATK"
 icon = ExtResource("13_mg5wv")
 expand_icon = true
 info = "Attack 1 target."
+usable_on_player = 33
 requires_target = true
 
 [node name="BigATK" parent="RootGame/LowerBar/VBoxContainer/Actions/Attack" instance=ExtResource("10_th5d7")]
@@ -1169,6 +1135,7 @@ layout_mode = 2
 text = "ATK+"
 info = " Costs 1 Sprun. A more damaging attack."
 sprun_cost = 1
+usable_on_player = 2
 requires_target = true
 
 [node name="Defend" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
@@ -1182,6 +1149,7 @@ text = "DFD"
 icon = ExtResource("14_x1xj5")
 expand_icon = true
 info = "Defend from attacks."
+usable_on_player = 2
 
 [node name="Sprun" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
 visible = false
@@ -1194,6 +1162,7 @@ text = "FOCUS"
 icon = ExtResource("26_5cox1")
 expand_icon = true
 info = "Create 1 Sprun."
+usable_on_player = 2
 
 [node name="Other" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
 layout_mode = 2
@@ -1204,23 +1173,24 @@ visible = false
 layout_mode = 2
 text = "ITM"
 info = "Do an item uwu (no inventory yet lol)"
-usable_on_player = 0
+usable_on_player = 2
 
 [node name="PASS" parent="RootGame/LowerBar/VBoxContainer/Actions/Other" instance=ExtResource("10_th5d7")]
 layout_mode = 2
 text = "PASS"
 info = "Pass this character's turn."
 
-[node name="DevTools" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer"]
+[node name="DevTools" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 5
 
-[node name="Masochism" parent="RootGame/LowerBar/VBoxContainer/DevTools" instance=ExtResource("10_th5d7")]
+[node name="Masochism" parent="RootGame/LowerBar/VBoxContainer/Actions/DevTools" instance=ExtResource("10_th5d7")]
 layout_mode = 2
 text = "Masochism"
 info = "Dev tool lol: 10 damage to self, immediately"
 
-[node name="FlashEvily" parent="RootGame/LowerBar/VBoxContainer/DevTools" instance=ExtResource("10_th5d7")]
+[node name="FlashEvily" parent="RootGame/LowerBar/VBoxContainer/Actions/DevTools" instance=ExtResource("10_th5d7")]
 layout_mode = 2
 text = "Evil Flash"
 info = "DEv tOOl: 10 damage to current enemy, immediately"
@@ -1415,7 +1385,7 @@ libraries = {
 [connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/Sprun/FOCUS" to="." method="_on_focus_pressed"]
 [connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/Other/ITM" to="." method="_on_itm_pressed"]
 [connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/Other/PASS" to="." method="_on_pass_pressed"]
-[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/DevTools/Masochism" to="." method="_on_masochism_pressed"]
-[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/DevTools/FlashEvily" to="." method="_on_flash_evily_pressed"]
+[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/DevTools/Masochism" to="." method="_on_masochism_pressed"]
+[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/DevTools/FlashEvily" to="." method="_on_flash_evily_pressed"]
 [connection signal="pressed" from="TPK/CenterBox/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="IntroSequence/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

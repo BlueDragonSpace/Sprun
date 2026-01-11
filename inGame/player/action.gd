@@ -14,8 +14,7 @@ extends Resource
 enum ACTION_TYPE {ATTACK, DEFEND, SPRUN, OTHER}
 @export var action_type = ACTION_TYPE.ATTACK
 # must be one of these players to see the ability (also if used illegitamitely, does the empty function)
-#const PLAYER_TYPE = ['All', 'Wizerd', 'Pony', 'Tea', 'Crumpet']
-const PLAYER_TYPE = 'All, Wizerd, Rodent Lord, Kitty'
+const PLAYER_TYPE = 'All, Basic, Wizerd, Kitty, Rodent Lord, Rat, Mouse, Hamster'
 #@export_flags(PLAYER_TYPE) var player_type : int = 0
 @export_custom(PROPERTY_HINT_FLAGS, PLAYER_TYPE) var player_type : int = 0
 #@export var modifier: float = 1 # multiplies by a specific stat

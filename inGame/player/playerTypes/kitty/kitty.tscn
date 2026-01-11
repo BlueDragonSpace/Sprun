@@ -11,7 +11,7 @@
 script = ExtResource("2_u7gom")
 sprun_slots = 9
 new_action = Array[Resource]([ExtResource("3_ceooe")])
-player_type = 8
+player_type = 10
 icon = ExtResource("4_uii87")
 speed_stat = 3
 max_hp = 12

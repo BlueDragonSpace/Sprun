@@ -12,7 +12,7 @@
 [node name="Rodent Lord" instance=ExtResource("1_ra5ly")]
 script = ExtResource("2_8x0pt")
 new_action = Array[Resource]([ExtResource("3_jl2p5")])
-player_type = 4
+player_type = 18
 icon = ExtResource("4_wjvg3")
 speed_stat = 8
 max_hp = 38

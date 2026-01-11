@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://diifqu7v6338q" path="res://inGame/player/action.gd" id="1_kijxa"]
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("1_kijxa")
 name = "Reflection"
 func_name = "reflection"

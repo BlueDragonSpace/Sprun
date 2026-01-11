@@ -1,17 +1,17 @@
 
-Last things before ship:
-	... now to ship...
-
 1 (core mechanics):
+	
+	Connect to 2D, 3D (Amalgame!)... when?
+	
 	Sprun Upgrade system (increase Sprun slots, ATK, DFD, SPD):
 		Starts at 1, to 3, to 5, to 7... (1 -> 1.5 -> 2 -> 3 -> 5?)
+	
 2 (more mechanics):
 	More enemy intents (debuff, buff, charge up, unknown)
 	Different kinds of Sprun (Red used on ATK, so on)
-	
-	Buggy:
-		Names are improper when spawned from code (rats, littles)
-		Enemy at 0 hp doesn't die when they defend
+	add_lambda() -> Notif, subtracting sprun_cost
+	All enemies have a button on them (instead of tabbing to choose a different one)
+	Basic Chara class (a mouse cannot attack, nor sprun)
 3:
 	Poison Debuff (for Rat and beyond)
 	Sprun Movement Shifting depending on size (too far when small, to close when big)
@@ -32,6 +32,8 @@ Last things before ship:
 	Actually make the BAK button function as I originally intended for it
 	Create Custom Theme (buttons, sliders, the whole shebang)
 	Differentiate between similar enemies and rats
+	(Kitty, the Sun Robot thing) Gaining new attacks in new form
+		Resizing Actions Tabs (think about when I played my own game on mobile) - Only changed by font_size, or perhaps add code..?
 4: 
 	Death saves? (Deltarune, DnD, revival at all?)
 	Kitty's 6 Lives (the 7th I don't talk about)
@@ -60,8 +62,6 @@ Turn sections:
 		The Rest (by the timeline)
 	End
 
-Test the selection system a little longer (add multiple enemies)
-
 Refactoring
 	Animation tracks don't worry about unresolvable tracks (the NPC's animate node has a track for Enemy intent, but Player doesn't have intent and doesn't need the track)
 	Make HP changing set by a tween
@@ -77,6 +77,7 @@ Bugs:
 	On the animation to the first player (after a round), last player's actions show up (but aren't clickable, thankfully)
 
 Noot noot
+Holy carp the game works on mobile by accident!!!!
 
 Rodent Lord Rodents:
 	Rats (poison + bite)
@@ -88,3 +89,7 @@ Rodent Lord Rodents:
 Currently finished:
 	... I miss the Milkyway Devlogging
 	Even if nobody read it
+	
+	Set Actions as NOT Local to Scene
+	Fixed "All" and "Basic" Player classes
+	Rat can only ATK and PASS
