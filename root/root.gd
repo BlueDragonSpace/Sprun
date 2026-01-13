@@ -1,13 +1,24 @@
 extends Control
 
+# NodePathssssss
 @onready var NoiseBackground: TextureRect = $NoiseBackground
+
+@onready var Charas: VBoxContainer = $RootGame/BattleScreen/Charas
+@onready var Enemies: GridContainer = $RootGame/BattleScreen/Enemies
+@onready var TurnOrder: VBoxContainer = $RootGame/BattleScreen/TurnOrder/TurnOrder
+
 @onready var Actions: TabContainer = $RootGame/LowerBar/VBoxContainer/Actions
+@onready var IncreaseSprunSlots: Button = $RootGame/LowerBar/VBoxContainer/Actions/Sprun/IncreaseSprunSlots
+@onready var ATKUp: Button = $RootGame/LowerBar/VBoxContainer/Actions/Sprun/ATKUp
+@onready var DFDUp: Button = $RootGame/LowerBar/VBoxContainer/Actions/Sprun/DFDUp
+@onready var SPDUp: Button = $RootGame/LowerBar/VBoxContainer/Actions/Sprun/SPDUp
+
 @onready var BAK: Button = $RootGame/LowerBar/VBoxContainer/Actions/BackButton/BAK
+
 @onready var LittlePlayerIcon: TextureRect = $RootGame/LowerBar/VBoxContainer/InfoBar/LittlePlayerIcon
 @onready var ActionInfo: Label = $RootGame/LowerBar/VBoxContainer/InfoBar/ActionInfo
 @onready var TWKPrepRoundsLabel: Label = $TWK/Labels/VBoxContainer/Num
 @onready var TopBarPrepRoundsLabel: Label = $RootGame/TopBar/HBoxContainer/TextureRect/PrepRoundsLabel
-
 
 @onready var Animate: AnimationPlayer = $Animate
 
@@ -16,10 +27,6 @@ var current_player = null:
 		LittlePlayerIcon.texture = new.icon
 		current_player = new
 var current_enemy = null
-
-@onready var Charas: VBoxContainer = $RootGame/BattleScreen/Charas
-@onready var Enemies: GridContainer = $RootGame/BattleScreen/Enemies
-@onready var TurnOrder: VBoxContainer = $RootGame/BattleScreen/TurnOrder/TurnOrder
 
 const TURN_ORDER_POINT = preload("uid://kbdvggtyupd2") # current turn marker
 const TURN_ORDER_MARKER = preload("uid://dim074qeqwx6x") # character/enemy order
@@ -50,6 +57,7 @@ enum TURN_TYPE {PLAYER, SELECT_ENEMY, MIDDLE, END, TRANSITION}
 				# disabling
 				disable_all_actions(false)
 				BAK.disabled = true
+				check_upgrade_cost_actions(current_player)
 				check_cost_all_actions(current_player.sprun_active)
 				if in_prep_round:
 					disable_all_attacks(true)
@@ -103,6 +111,10 @@ func _ready() -> void:
 	BAK.disabled = true
 	
 	NoiseBackground.texture.noise.seed = randi()
+	
+	#IncreaseSprunSlots.sprun_cost = current_player.sprun_slots
+	check_upgrade_cost_actions(current_player)
+	
 	call_deferred("set_turn_order")
 	#check_cost_all_actions(current_player.sprun_active)
 	call_deferred("check_cost_all_actions", current_player.sprun_active)
@@ -275,7 +287,15 @@ func disable_all_attacks(boolean: bool) -> void:
 			if action.requires_target:
 				action.disabled = boolean
 
+func check_upgrade_cost_actions(character: Node) -> void:
+	# intended for player, changes the cost of upgrade actions to be specific to player
+	IncreaseSprunSlots.sprun_cost = character.sprun_slots
+	ATKUp.sprun_cost = character.atk_upgrade_cost
+	DFDUp.sprun_cost = character.dfd_upgrade_cost
+	SPDUp.sprun_cost = character.spd_upgrade_cost
+
 func check_cost_all_actions(sprun: int) -> void:
+	# ends up disabling each action if you don't have the necessary sprun
 	for container in Actions.get_children():
 		for action in container.get_children():
 			action.check_cost(sprun)
@@ -500,6 +520,19 @@ func _on_dfd_pressed() -> void:
 func _on_focus_pressed() -> void:
 	current_player.intended_action = Callable(current_player, "focus")
 	player_pass_turn()
+func _on_increase_sprun_slots_pressed() -> void:
+	current_player.intended_action = Callable(current_player, "increase_sprun_slots")
+	player_pass_turn()
+func _on_atk_up_pressed() -> void:
+	current_player.intended_action = Callable(current_player, "upgrade_atk")
+	player_pass_turn()
+func _on_dfd_up_pressed() -> void:
+	current_player.intended_action = Callable(current_player, "upgrade_dfd")
+	player_pass_turn()
+func _on_spd_up_pressed() -> void:
+	current_player.intended_action = Callable(current_player, "upgrade_spd")
+	player_pass_turn()
+
 func _on_itm_pressed() -> void:
 	print("haven't set this up yet")
 func _on_big_atk_pressed() -> void:
@@ -511,6 +544,10 @@ func _on_masochism_pressed() -> void:
 	current_player.current_hp -= 10
 func _on_flash_evily_pressed() -> void:
 	current_enemy.current_hp -= 10
+func _on_auto_sprun_pressed() -> void:
+	current_player.set_sprun(current_player.sprun_active + 1)
+func _on_auto_heal_pressed() -> void:
+	current_player.current_hp += 10
 
 # actual real serious things
 func _on_retry_pressed() -> void:

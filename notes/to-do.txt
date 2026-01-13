@@ -5,6 +5,9 @@
 	
 	Sprun Upgrade system (increase Sprun slots, ATK, DFD, SPD):
 		Starts at 1, to 3, to 5, to 7... (1 -> 1.5 -> 2 -> 3 -> 5?)
+		Increase ATK, DEF, SPD 
+	
+	Sprun cost stat showing on the bar (when attack, add atk stat, on dfd, add dfd stat...)
 	
 2 (more mechanics):
 	More enemy intents (debuff, buff, charge up, unknown)
@@ -90,6 +93,4 @@ Currently finished:
 	... I miss the Milkyway Devlogging
 	Even if nobody read it
 	
-	Set Actions as NOT Local to Scene
-	Fixed "All" and "Basic" Player classes
-	Rat can only ATK and PASS
+	Increase Max Sprun slots action

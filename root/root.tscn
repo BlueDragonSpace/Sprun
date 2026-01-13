@@ -1103,7 +1103,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 tab_alignment = 1
-current_tab = 4
+current_tab = 3
 drag_to_rearrange_enabled = true
 
 [node name="BackButton" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
@@ -1115,6 +1115,7 @@ metadata/_tab_index = 0
 layout_mode = 2
 text = "BAK"
 info = "Rechoose last action. (Currently only works while choosing a target on ATK)"
+usable_on_player = 1
 
 [node name="Attack" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
 visible = false
@@ -1127,7 +1128,7 @@ text = "ATK"
 icon = ExtResource("13_mg5wv")
 expand_icon = true
 info = "Attack 1 target."
-usable_on_player = 33
+usable_on_player = 34
 requires_target = true
 
 [node name="BigATK" parent="RootGame/LowerBar/VBoxContainer/Actions/Attack" instance=ExtResource("10_th5d7")]
@@ -1135,7 +1136,6 @@ layout_mode = 2
 text = "ATK+"
 info = " Costs 1 Sprun. A more damaging attack."
 sprun_cost = 1
-usable_on_player = 2
 requires_target = true
 
 [node name="Defend" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
@@ -1149,10 +1149,8 @@ text = "DFD"
 icon = ExtResource("14_x1xj5")
 expand_icon = true
 info = "Defend from attacks."
-usable_on_player = 2
 
 [node name="Sprun" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
@@ -1162,9 +1160,32 @@ text = "FOCUS"
 icon = ExtResource("26_5cox1")
 expand_icon = true
 info = "Create 1 Sprun."
-usable_on_player = 2
+
+[node name="IncreaseSprunSlots" parent="RootGame/LowerBar/VBoxContainer/Actions/Sprun" instance=ExtResource("10_th5d7")]
+layout_mode = 2
+text = "Increase Sprun Slots"
+info = "Increase this character's sprun reserve. Costs the max amount of sprun they can hold."
+
+[node name="ATKUp" parent="RootGame/LowerBar/VBoxContainer/Actions/Sprun" instance=ExtResource("10_th5d7")]
+layout_mode = 2
+text = "ATK Upgrade"
+info = "Multiplies ATK stat by 1.5. Costs 2 more Sprun every time you use this action."
+sprun_cost = 1
+
+[node name="DFDUp" parent="RootGame/LowerBar/VBoxContainer/Actions/Sprun" instance=ExtResource("10_th5d7")]
+layout_mode = 2
+text = "DFD Upgrade"
+info = "Multiplies DFD stat by 1.5. Costs 2 more Sprun every time you use this action."
+sprun_cost = 1
+
+[node name="SPDUp" parent="RootGame/LowerBar/VBoxContainer/Actions/Sprun" instance=ExtResource("10_th5d7")]
+layout_mode = 2
+text = "SPD Upgrade"
+info = "Multiplies SPD by 1.5. Costs 2 more Sprun every time you use this action."
+sprun_cost = 1
 
 [node name="Other" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 4
 
@@ -1173,12 +1194,12 @@ visible = false
 layout_mode = 2
 text = "ITM"
 info = "Do an item uwu (no inventory yet lol)"
-usable_on_player = 2
 
 [node name="PASS" parent="RootGame/LowerBar/VBoxContainer/Actions/Other" instance=ExtResource("10_th5d7")]
 layout_mode = 2
 text = "PASS"
 info = "Pass this character's turn."
+usable_on_player = 1
 
 [node name="DevTools" type="HBoxContainer" parent="RootGame/LowerBar/VBoxContainer/Actions"]
 visible = false
@@ -1189,12 +1210,26 @@ metadata/_tab_index = 5
 layout_mode = 2
 text = "Masochism"
 info = "Dev tool lol: 10 damage to self, immediately"
+usable_on_player = 1
 
 [node name="FlashEvily" parent="RootGame/LowerBar/VBoxContainer/Actions/DevTools" instance=ExtResource("10_th5d7")]
 layout_mode = 2
 text = "Evil Flash"
 info = "DEv tOOl: 10 damage to current enemy, immediately"
+usable_on_player = 1
 requires_target = true
+
+[node name="AutoSprun" parent="RootGame/LowerBar/VBoxContainer/Actions/DevTools" instance=ExtResource("10_th5d7")]
+layout_mode = 2
+text = "wow free sprun cheater"
+info = "anime freeze frame focus ahhhhh"
+usable_on_player = 1
+
+[node name="AutoHeal" parent="RootGame/LowerBar/VBoxContainer/Actions/DevTools" instance=ExtResource("10_th5d7")]
+layout_mode = 2
+text = "HealThySelf"
+info = "Heals10Immediately"
+usable_on_player = 1
 
 [node name="NextRound" parent="RootGame" instance=ExtResource("15_3ud1x")]
 stream = ExtResource("16_lh5hl")
@@ -1383,9 +1418,15 @@ libraries = {
 [connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/Attack/BigATK" to="." method="_on_big_atk_pressed"]
 [connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/Defend/DFD" to="." method="_on_dfd_pressed"]
 [connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/Sprun/FOCUS" to="." method="_on_focus_pressed"]
+[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/Sprun/IncreaseSprunSlots" to="." method="_on_increase_sprun_slots_pressed"]
+[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/Sprun/ATKUp" to="." method="_on_atk_up_pressed"]
+[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/Sprun/DFDUp" to="." method="_on_dfd_up_pressed"]
+[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/Sprun/SPDUp" to="." method="_on_spd_up_pressed"]
 [connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/Other/ITM" to="." method="_on_itm_pressed"]
 [connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/Other/PASS" to="." method="_on_pass_pressed"]
 [connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/DevTools/Masochism" to="." method="_on_masochism_pressed"]
 [connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/DevTools/FlashEvily" to="." method="_on_flash_evily_pressed"]
+[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/DevTools/AutoSprun" to="." method="_on_auto_sprun_pressed"]
+[connection signal="pressed" from="RootGame/LowerBar/VBoxContainer/Actions/DevTools/AutoHeal" to="." method="_on_auto_heal_pressed"]
 [connection signal="pressed" from="TPK/CenterBox/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="IntroSequence/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://ctlnpeebeoqgd"]
+[gd_scene load_steps=25 format=3 uid="uid://ctlnpeebeoqgd"]
 
 [ext_resource type="Texture2D" uid="uid://c3p85tdu00duw" path="res://placeholderArt/icon.svg" id="1_2jrf3"]
 [ext_resource type="Script" uid="uid://cdbuic4bcd67n" path="res://inGame/npc/npc.gd" id="1_3atjd"]
 [ext_resource type="Texture2D" uid="uid://skl6oj4btwmf" path="res://placeholderArt/myPixelArt/HPBar (1)/hp2.png" id="3_bj2b7"]
+[ext_resource type="Texture2D" uid="uid://c8n0k3x2k67si" path="res://placeholderArt/myPixelArt/NewSprun-1.png.png" id="3_hhgrb"]
 [ext_resource type="Texture2D" uid="uid://cfkr8gbn4j4sj" path="res://placeholderArt/myPixelArt/HPBar (1)/hp0.png" id="4_hhgrb"]
 [ext_resource type="Texture2D" uid="uid://bvhkmrse4oqmm" path="res://placeholderArt/myPixelArt/ShieldBadArt-1.png.png" id="4_wk2dw"]
 [ext_resource type="PackedScene" uid="uid://c3e3n4jvt2s4t" path="res://inGame/random_pitch.tscn" id="5_dvc8s"]
@@ -11,6 +12,24 @@
 [ext_resource type="AudioStream" uid="uid://qwvtdoovi5il" path="res://placeholderArt/sfx/shieldMaybeCloth.wav" id="6_dvc8s"]
 [ext_resource type="AudioStream" uid="uid://cvxoanu0qn6i8" path="res://placeholderArt/sfx/shieldBetter.wav" id="7_7swic"]
 [ext_resource type="AudioStream" uid="uid://c6a7y511mjrn3" path="res://placeholderArt/sfx/death.wav" id="8_yjg3n"]
+
+[sub_resource type="Gradient" id="Gradient_fq4yk"]
+offsets = PackedFloat32Array(0, 0.19444445, 0.8611111, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3c5kl"]
+gradient = SubResource("Gradient_fq4yk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dkh77"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+spread = 180.0
+initial_velocity_min = 250.0
+initial_velocity_max = 540.7
+gravity = Vector3(0, 980, 0)
+color_ramp = SubResource("GradientTexture1D_3c5kl")
 
 [sub_resource type="LabelSettings" id="LabelSettings_ak11v"]
 
@@ -136,6 +155,18 @@ tracks/10/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("VBoxContainer/Icon/Control/BuffParticle:emitting")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_1pxb3"]
@@ -299,10 +330,37 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4, 1)
 }
 
+[sub_resource type="Animation" id="Animation_7qu08"]
+resource_name = "buff"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/Icon:size_flags_stretch_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0.76, -0.25, 0, 0.25, 0, 1.7, -0.05166667, -0.15666668, 0, 0, 0.76, -0.06333333, 0.15666667, 0, 0),
+"times": PackedFloat32Array(0, 0.31, 0.69)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/Icon/Control/BuffParticle:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.31),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eymni"]
 _data = {
 &"RESET": SubResource("Animation_v55o0"),
 &"attack": SubResource("Animation_1pxb3"),
+&"buff": SubResource("Animation_7qu08"),
 &"defend": SubResource("Animation_eymni"),
 &"die": SubResource("Animation_wk2dw"),
 &"pop_in": SubResource("Animation_np5c4"),
@@ -341,6 +399,24 @@ size_flags_stretch_ratio = 0.76
 texture = ExtResource("1_2jrf3")
 expand_mode = 3
 stretch_mode = 5
+
+[node name="Control" type="Control" parent="VBoxContainer/Icon"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BuffParticle" type="GPUParticles2D" parent="VBoxContainer/Icon/Control"]
+emitting = false
+texture = ExtResource("3_hhgrb")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dkh77")
 
 [node name="VSeparator" type="VSeparator" parent="VBoxContainer"]
 modulate = Color(1, 1, 1, 0)

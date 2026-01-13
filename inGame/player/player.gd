@@ -1,18 +1,25 @@
 extends "res://inGame/npc/npc.gd"
 
-@export var sprun_slots = 8
+@onready var SprunContainer: Control = $VBoxContainer/Icon/SprunContainer
+
+@export var sprun_slots = 8 # ONLY CHANGE with set_sprun_slots()!!!!!!!!!!
 @export_range(0, 360) var sprun_container_angle = 135
 @export var sprun_distance = 0 ## wow that's pretty cool
 const SPRUN = preload("uid://b6wgjet502thq")
-@export var sprun_active: int = 0 # ONLY CHANGE WITH set_sprun(new_sprun_count)!!!!!!!!!!
+@export var sprun_active: int = 0 # ONLY CHANGE WITH set_sprun(new_sprun_count)!!!!!!!!!! 
+# they would be an automatically set method in code but Godot throws errors on ready
 
 @export var new_action: Array[Resource]
 @export_custom(PROPERTY_HINT_FLAGS, Action.PLAYER_TYPE) var player_type : int = 0
 
-@onready var SprunContainer: Control = $VBoxContainer/Icon/SprunContainer
-
 const ACTION_BUTTON = preload("uid://drtw4kuprkapi")
  
+# costs are listed in Sprun USD all purchases sold separately
+var atk_upgrade_cost = 1
+var dfd_upgrade_cost = 1
+var spd_upgrade_cost = 1
+
+
 func add_ready() -> void:
 	npc_type = CHARACTER_TYPE.PLAYER
 	
@@ -72,7 +79,6 @@ func add_actions(custom_actions : Array) -> void:
 		# 0 is Back Button, so everything past that is fair game
 		Root.Actions.get_child(this_action.action_type + 1).add_child(new_button)
 
-
 func set_sprun(new_sprun_count):
 	## I *would* set this as the set(new) method for active_sprun, but then it calls before ready and gives me an error
 	
@@ -124,16 +130,37 @@ func initiate_attack(action_name: String):
 	self.intended_action = Callable(self, action_name)
 	Root.initiate_select_enemy()
 
-
 func big_attack():
-	# now, I could check here to make sure the player has the sprun needed to attack... but I'm gonna rely on the button to disable it'self instead 
-	# plus it opens up the possibility to make a cheaper attack or decrease later on
 	set_sprun(sprun_active - 1)
 	
 	action_victim.take_damage(int(attack_stat * 2.5), self)
 	Animate.play("attack")
 	$BigAttack.play()
-
 func focus():
 	set_sprun(sprun_active + 1)
 	$SprunGet.play()
+
+func increase_sprun_slots():
+	set_sprun(0)
+	set_sprun_slots(sprun_slots + 1)
+
+func upgrade_atk():
+	@warning_ignore("narrowing_conversion")
+	attack_stat *= 1.5
+	set_sprun(sprun_active - atk_upgrade_cost)
+	atk_upgrade_cost += 2
+	Animate.play("buff")
+
+func upgrade_dfd():
+	@warning_ignore("narrowing_conversion")
+	defend_stat *= 1.5
+	set_sprun(sprun_active - dfd_upgrade_cost)
+	dfd_upgrade_cost += 2
+	Animate.play("buff")
+
+func upgrade_spd():
+	@warning_ignore("narrowing_conversion")
+	speed_stat *= 1.5
+	set_sprun(sprun_active - spd_upgrade_cost)
+	spd_upgrade_cost += 2
+	Animate.play("buff")
